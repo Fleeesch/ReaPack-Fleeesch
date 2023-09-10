@@ -4,19 +4,19 @@
 @author
   Fleeesch
 @about
-# **p**lain **a**dapting **R**eaper **t**heme
-An unspectacular theme made for Reaper that focusses on functionality and compatibility.
-
-### Key Features
-
-* 8 Zoom Levels: 100%, 125%, 150%, 175%, 200%, 225%, 250%, 300%
-* Dark and Light theme
-* Compatible with a variety of display generations
-* Compact and persistent Layout
-* More of data on less screenspace
-* Monochromatic design for enhanced Accessibility
-* Crisp Integer Scaling Borders
-* Completely Open-Source
+  # **p**lain **a**dapting **R**eaper **t**heme
+  An unspectacular theme made for Reaper that focusses on functionality and compatibility.
+  
+  ### Key Features
+  
+  * 8 Zoom Levels: 100%, 125%, 150%, 175%, 200%, 225%, 250%, 300%
+  * Dark and Light theme
+  * Compatible with a variety of display generations
+  * Compact and persistent Layout
+  * More of data on less screenspace
+  * Monochromatic design for enhanced Accessibility
+  * Crisp Integer Scaling Borders
+  * Completely Open-Source
 @provides
   paRt - Dark.ReaperThemeZip https://github.com/Fleeesch/paRt/releases/download/v$version/paRt.-.Dark.ReaperThemeZip
   paRt - Dark (Windows).ReaperThemeZip https://github.com/Fleeesch/paRt/releases/download/v$version/paRt.-.Dark.-.Windows.ReaperThemeZip
