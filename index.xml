@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Fleeesch" commit="b3f247bdec0c14c5deb25cc0a67b6cdcc730660a">
+<index version="1" name="Fleeesch" commit="ec2b35c87318b7489a8f87ffa6106e657b06ebfd">
   <category name="themes">
     <reapack name="part.theme" type="theme" desc="paRt">
       <metadata>
@@ -18,6 +18,11 @@
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Monochromatic design for enhanced Accessibility\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Crisp Integer Scaling Borders\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Completely Open-Source\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs28 Split Theme Files\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 If you're encountering compatibility issues, you can try the split theme files. Those are individual themes that contain only one specific zoom levels, you can get them from the {\field{\*\fldinst{HYPERLINK "https://github.com/Fleeesch/paRt/releases"}}{\fldrslt{\ul
+GitHub Releases page
+}}}
+\par}
 }
 ]]></description>
         <link rel="website">https://github.com/Fleeesch/paRt</link>
@@ -46,6 +51,37 @@
         <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 7.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/48f2e83d1040e3a0e94ffa6928664f0bf97e3af7/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%207.lua</source>
         <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/48f2e83d1040e3a0e94ffa6928664f0bf97e3af7/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%208.lua</source>
         <source type="script" file="paRt Scripts/_part_functions.lua.inc">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/48f2e83d1040e3a0e94ffa6928664f0bf97e3af7/themes/paRt%20Scripts/_part_functions.lua.inc</source>
+      </version>
+      <version name="1.0.1" author="Fleeesch" time="2023-09-16T15:32:35Z">
+        <changelog><![CDATA[- updated user-guide formatting
+- fixed user-guide links
+- fixed repository typos
+- updated showcase graphics (in-depth guides, forum buttons)
+- unmuted delay in test project
+- fixed MCP FX panel disappearing when sends or parameters are were grouped
+- fixed bug in Lua Scripts (they were not working at all)
+- changed MIDI note color palette to a monochromatic one]]></changelog>
+        <source file="paRt - Dark.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.1/paRt.-.Dark.ReaperThemeZip</source>
+        <source file="paRt - Dark (Windows).ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.1/paRt.-.Dark.-.Windows.ReaperThemeZip</source>
+        <source file="paRt - Light.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.1/paRt.-.Light.ReaperThemeZip</source>
+        <source file="paRt - additional Files.zip">https://github.com/Fleeesch/paRt/releases/download/v1.0.1/part_files.zip</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 1.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%201.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 2.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%202.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 3.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%203.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 4.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%204.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 5.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%205.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 6.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%206.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 7.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%207.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Load Set 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Load%20Set%208.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 1.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%201.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 2.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%202.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 3.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%203.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 4.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%204.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 5.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%205.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 6.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%206.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 7.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%207.lua</source>
+        <source main="main" type="script" file="paRt Scripts/Fleeesch - paRt - Save Set 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/Fleeesch%20-%20paRt%20-%20Save%20Set%208.lua</source>
+        <source type="script" file="paRt Scripts/_part_functions.lua.inc">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/ec2b35c87318b7489a8f87ffa6106e657b06ebfd/themes/paRt%20Scripts/_part_functions.lua.inc</source>
       </version>
     </reapack>
   </category>
