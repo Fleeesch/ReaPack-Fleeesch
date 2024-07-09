@@ -1,4 +1,4 @@
--- @version 1.0.2
+-- @version 1.0.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -578,9 +578,9 @@ Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_element_adj
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
-group_x = Part.Cursor.getCursorX()
+local group_x_2 = Part.Cursor.getCursorX()
 
-Part.Gui.Macros.drawGroupBox("Highlights", group_x, group_y, 250, 85)
+Part.Gui.Macros.drawGroupBox("Highlights", group_x_2, group_y, 250, 85)
 Part.Gui.Macros.lastGroup():setTint("colors")
 
 -- Selection Marker
@@ -597,8 +597,7 @@ Part.Gui.Macros.nextLine()
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-
-Part.Gui.Macros.drawGroupBox("Folders", group_x, Part.Cursor.getCursorY(), 250, 125)
+Part.Gui.Macros.drawGroupBox("Folders", group_x_2, Part.Cursor.getCursorY(), 250, 125)
 Part.Gui.Macros.lastGroup():setTint("folder")
 
 Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_folder_indent, false, slider_w, "Indentation",
@@ -613,6 +612,13 @@ Part.Gui.Macros.nextLine()
 Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_gen_folder_icon_mode, 50, "Folder Mode", "Show",
     label_w)
 
+-- Inserts
+-- ------------------------------
+
+Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
+Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(), 250, 55)
+Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_element_insert_slow_width, false, slider_w, "Slot Size",
+    label_w)
 
 -- ===========================================================================
 --      Tab : TCP : Track
