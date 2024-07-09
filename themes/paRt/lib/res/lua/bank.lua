@@ -1,4 +1,4 @@
--- @version 1.0.2
+-- @version 1.0.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -63,11 +63,20 @@ function bank.Functions.storeParameterFile(target_file_name)
     if not manual then
         -- last theme file
         local filepath = Part.Global.config_dir .. "/last_theme.partmap"
+        local last_theme_filepath = reaper.GetLastColorThemeFile()
 
-        -- store last theme
-        local file = io.open(filepath, "w")
-        file:write(Part.Functions.extractFileName(reaper.GetLastColorThemeFile()))
-        file:close()
+        -- path has to be valid
+        if last_theme_filepath ~= nil then
+            local last_theme = Part.Functions.extractFileName(reaper.GetLastColorThemeFile())
+            
+            -- string has to be valid
+            if last_theme ~= nil and #last_theme > 0 then
+                -- store last theme
+                local file = io.open(filepath, "w")
+                file:write()
+                file:close()
+            end
+        end
     end
 
     -- open file
@@ -120,9 +129,8 @@ function bank.Functions.loadParameterFile(force, target_file_name)
 
     -- either force or act on theme change
     if force or not same_theme then
-        
         local file = io.open(file_name, "r")
-        
+
         -- if previous parameters aren't available load the default file
         if not file then
             file = io.open(Part.Global.config_dir .. "/defaults.partmap", "r")

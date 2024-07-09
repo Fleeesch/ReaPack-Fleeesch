@@ -1,4 +1,4 @@
--- @version 1.0.2
+-- @version 1.0.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -171,6 +171,9 @@ par.par_tcp_gen_folder_indent = { Part.Parameter.Group.ParameterGroup:new(nil, "
 par.par_tcp_gen_folder_icon_collapse = { Part.Parameter.Group.ParameterGroup:new(nil,
     "par_tcp_gen_folder_icon_collapse") }
 par.par_tcp_gen_folder_icon_mode = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_folder_icon_mode") }
+
+-- inserts
+par.par_tcp_gen_element_insert_slow_width = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_element_insert_slow_width") }
 
 -- track
 
