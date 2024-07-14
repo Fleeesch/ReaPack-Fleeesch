@@ -1,4 +1,4 @@
--- @version 1.0.4
+-- @version 1.0.5
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -277,7 +277,7 @@ Part.Cursor.stackCursor()
 Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_tone_unlit, true, "Tone",
     label_w_meter_3)
 Part.Gui.Macros.nextInline()
-Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_alpha_unlit, true, "Alpha",
+Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_alpha_unlit, false, "Alpha",
     label_w_meter_3)
 Part.Gui.Macros.nextInline()
 Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_shadow_unlit, false, "Shadow",
@@ -293,7 +293,7 @@ Part.Cursor.stackCursor()
 Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_tone_lit, true, "Tone",
     label_w_meter_3)
 Part.Gui.Macros.nextInline()
-Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_alpha_lit, true, "Alpha",
+Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_alpha_lit, false, "Alpha",
     label_w_meter_3)
 Part.Gui.Macros.nextInline()
 Part.Gui.Macros.drawKnobGroup(true, Part.Parameter.Map.par_colors_track_meter_text_shadow_lit, false, "Shadow",
@@ -617,7 +617,7 @@ Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_gen_folde
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
 Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(), 250, 55)
-Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_element_insert_slow_width, false, slider_w, "Slot Size",
+Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width, false, slider_w, "Slot Size",
     label_w)
 
 -- ===========================================================================

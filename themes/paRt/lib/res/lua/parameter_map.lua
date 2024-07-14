@@ -1,4 +1,4 @@
--- @version 1.0.4
+-- @version 1.0.5
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -173,7 +173,7 @@ par.par_tcp_gen_folder_icon_collapse = { Part.Parameter.Group.ParameterGroup:new
 par.par_tcp_gen_folder_icon_mode = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_folder_icon_mode") }
 
 -- inserts
-par.par_tcp_gen_element_insert_slow_width = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_element_insert_slow_width") }
+par.par_tcp_gen_insert_slot_width = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width") }
 
 -- track
 
