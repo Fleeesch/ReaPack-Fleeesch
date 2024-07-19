@@ -1,4 +1,4 @@
--- @version 1.0.5
+-- @version 1.0.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -835,6 +835,21 @@ function draw.Graphics.setFont(size, flag_str)
     -- non-windows exception
     if reaper.GetOS():match("^Win") == nil then
         face = "Tahoma"
+    end
+
+    -- mac os font size reduction
+    local os_mac = {"OSX32", "OSX64", "macOS-arm64"}
+    local os_is_mac = false
+    for _, entry in ipairs(os_mac) do 
+        local current_os = string.lower(reaper.GetOS())        
+        if string.find(current_os, string.lower(entry)) then
+            os_is_mac = true
+            break
+        end
+    end
+
+    if os_is_mac then
+        size = size * 0.75
     end
 
     -- Part.Functions.rescale( font
