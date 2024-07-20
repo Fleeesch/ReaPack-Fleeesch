@@ -1,10 +1,34 @@
--- @version 1.0.6
+-- @version 1.0.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 local var = { globals = {}, list = {} }
 
+--  OS detection
+-- -------------------------------------------
+
+var.globals.os_windows = false
+var.globals.os_macos = false
+var.globals.os_linux = false
+
+-- windows
+if reaper.GetOS():match("^Win") ~= nil then
+    var.globals.os_windows = true
+else
+    -- mac os font size reduction
+    local os_mac = {"OSX32", "OSX64", "macOS-arm64"}
+    
+    for _, entry in ipairs(os_mac) do 
+        local current_os = string.lower(reaper.GetOS())        
+        if string.find(current_os, string.lower(entry)) then
+            var.globals.os_macos = true
+            break
+        end
+    end
+
+    var.globals.os_linux = true
+end
 
 --  Globals
 -- -------------------------------------------
