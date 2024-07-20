@@ -1,4 +1,4 @@
--- @version 1.0.6
+-- @version 1.0.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -114,9 +114,17 @@ end
 -- -------------------------------------------
 
 function gui.Window.setWindowPosition(x, y)
+    
     -- set window x and y position
-    local w = Part.Functions.rescale(Part.Global.win_w)
-    local h = Part.Functions.rescale(Part.Global.win_h)
+    local w, h
+
+    if Part.Global.os_macos then
+        w = Part.Global.win_w
+        h = Part.Global.win_h
+    else
+        w = Part.Functions.rescale(Part.Global.win_w)
+        h = Part.Functions.rescale(Part.Global.win_h)
+    end
 
     gfx.init(nil, w, h, false, x, y)
 
@@ -127,10 +135,17 @@ end
 -- -------------------------------------------
 
 function gui.Window.setScale(scale_factor)
+    
     -- calculate width and height
-    local w = math.floor(Part.Global.win_w * scale_factor)
-    local h = math.floor(Part.Global.win_h * scale_factor)
+    local w, h
 
+    if Part.Global.os_macos then
+        w = Part.Global.win_w
+        h = Part.Global.win_h
+    else
+        w = math.floor(Part.Global.win_w * scale_factor)
+        h = math.floor(Part.Global.win_h * scale_factor)
+    end
     -- adjust window
     gfx.init(nil, w, h, false, Part.Global.win_x, Part.Global.win_y)
 end
@@ -140,8 +155,15 @@ end
 
 function gui.Window.updateWindowDimensions()
     -- calculate width and height
-    local w = math.floor(Part.Global.win_w * Part.Global.scale)
-    local h = math.floor(Part.Global.win_h * Part.Global.scale)
+    local w, h
+
+    if Part.Global.os_macos then
+        w = Part.Global.win_w
+        h = Part.Global.win_h
+    else
+        w = math.floor(Part.Global.win_w * Part.Global.scale)
+        h = math.floor(Part.Global.win_h * Part.Global.scale)
+    end
 
     -- adjust window
     gfx.init(nil, w, h, false, Part.Global.win_x, Part.Global.win_y)

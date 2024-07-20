@@ -1,4 +1,4 @@
--- @version 1.0.6
+-- @version 1.0.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -829,26 +829,17 @@ end
 --  Method : Setup Font
 -- -------------------------------------------
 function draw.Graphics.setFont(size, flag_str)
+    
     -- default windows font
     local face = "Calibri"
 
     -- non-windows exception
-    if reaper.GetOS():match("^Win") == nil then
+    if Part.Global.os_windows == false then
         face = "Tahoma"
     end
 
-    -- mac os font size reduction
-    local os_mac = {"OSX32", "OSX64", "macOS-arm64"}
-    local os_is_mac = false
-    for _, entry in ipairs(os_mac) do 
-        local current_os = string.lower(reaper.GetOS())        
-        if string.find(current_os, string.lower(entry)) then
-            os_is_mac = true
-            break
-        end
-    end
-
-    if os_is_mac then
+    -- mac os 
+    if Part.Global.os_macos == true then
         size = size * 0.75
     end
 
