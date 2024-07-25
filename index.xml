@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Fleeesch" commit="e8a01ed6d82250db468ab417decdcbb0b57960f3">
+<index version="1" name="Fleeesch" commit="7b15ed5a80badaf93e567d1666c70348e5ff9bd1">
   <category name="themes">
     <reapack name="part.theme" type="theme" desc="paRt">
       <metadata>
@@ -855,6 +855,117 @@ MacOS: fixed Theme Adjuster opening at the wrong size]]></changelog>
         <source main="main" type="script" file="paRt/paRt - Load Bank 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/e8a01ed6d82250db468ab417decdcbb0b57960f3/themes/paRt/paRt%20-%20Load%20Bank%208.lua</source>
         <source main="main" type="script" file="paRt/paRt - Restart Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/e8a01ed6d82250db468ab417decdcbb0b57960f3/themes/paRt/paRt%20-%20Restart%20Theme%20Adjuster.lua</source>
         <source main="main" type="script" file="paRt/paRt - Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/e8a01ed6d82250db468ab417decdcbb0b57960f3/themes/paRt/paRt%20-%20Theme%20Adjuster.lua</source>
+      </version>
+      <version name="1.0.9" author="Fleeesch" time="2024-07-25T15:14:27Z">
+        <changelog><![CDATA[- potential fix for bug where TCP FX slots wouldn't cover the whole width of the inserts section
+- slightly reduced item label font size
+- reworked MIDI note colors
+- adjusted MIDI note name text for better readability
+- Dimmed Theme: lighter MIDI Editor background colors for higher contrast
+- Light Theme: adjusted item colors to make selection more obvious
+- MacOS: increased insert slot font margins]]></changelog>
+        <source file="paRt - Dark.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.9/part_dark.ReaperThemeZip</source>
+        <source file="paRt - Dimmed.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.9/part_dimmed.ReaperThemeZip</source>
+        <source file="paRt - Light.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.0.9/part_light.ReaperThemeZip</source>
+        <source type="script" file="paRt/conf/defaults.partmap">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/conf/defaults.partmap</source>
+        <source type="script" file="paRt/lib/part_lib.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/part_lib.lua</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_fader_size.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_fader_size.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_fader_layout_horz.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_fader_layout_horz.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_fader_layout_knob.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_fader_layout_knob.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_fader_layout_vert.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_fader_layout_vert.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_pan_layout_bottom.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_pan_layout_bottom.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_pan_layout_strip.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_pan_layout_strip.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mcp_pan_layout_top.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mcp_pan_layout_top.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_mixer_hide.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_mixer_hide.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_padding.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_padding.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_tcp_fader_layout_explode.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_tcp_fader_layout_explode.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_tcp_fader_layout_inline.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_tcp_fader_layout_inline.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_tcp_fader_layout_separate.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_tcp_fader_layout_separate.png</source>
+        <source type="script" file="paRt/lib/res/icon/dark/table_visible.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dark/table_visible.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_fader_size.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_fader_size.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_fader_layout_horz.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_fader_layout_horz.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_fader_layout_knob.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_fader_layout_knob.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_fader_layout_vert.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_fader_layout_vert.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_pan_layout_bottom.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_pan_layout_bottom.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_pan_layout_strip.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_pan_layout_strip.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mcp_pan_layout_top.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mcp_pan_layout_top.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_mixer_hide.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_mixer_hide.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_padding.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_padding.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_tcp_fader_layout_explode.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_tcp_fader_layout_explode.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_tcp_fader_layout_inline.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_tcp_fader_layout_inline.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_tcp_fader_layout_separate.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_tcp_fader_layout_separate.png</source>
+        <source type="script" file="paRt/lib/res/icon/dimmed/table_visible.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/dimmed/table_visible.png</source>
+        <source type="script" file="paRt/lib/res/icon/envcp_arm.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/envcp_arm.png</source>
+        <source type="script" file="paRt/lib/res/icon/envcp_bypass.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/envcp_bypass.png</source>
+        <source type="script" file="paRt/lib/res/icon/envcp_hide.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/envcp_hide.png</source>
+        <source type="script" file="paRt/lib/res/icon/envcp_learn.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/envcp_learn.png</source>
+        <source type="script" file="paRt/lib/res/icon/envcp_mod.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/envcp_mod.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_fader_size.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_fader_size.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_fader_layout_horz.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_fader_layout_horz.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_fader_layout_knob.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_fader_layout_knob.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_fader_layout_vert.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_fader_layout_vert.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_pan_layout_bottom.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_pan_layout_bottom.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_pan_layout_strip.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_pan_layout_strip.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mcp_pan_layout_top.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mcp_pan_layout_top.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_mixer_hide.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_mixer_hide.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_padding.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_padding.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_tcp_fader_layout_explode.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_tcp_fader_layout_explode.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_tcp_fader_layout_inline.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_tcp_fader_layout_inline.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_tcp_fader_layout_separate.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_tcp_fader_layout_separate.png</source>
+        <source type="script" file="paRt/lib/res/icon/light/table_visible.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/light/table_visible.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_env.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_env.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_fx.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_fx.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_infx.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_infx.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_input.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_input.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_io.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_io.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_monitor.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_monitor.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_mono.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_mono.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_mute.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_mute.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_phase.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_phase.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_recarm.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_recarm.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_recmode.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_recmode.png</source>
+        <source type="script" file="paRt/lib/res/icon/track_solo.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/track_solo.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_bpm.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_bpm.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_env.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_env.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_forward.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_forward.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_pause.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_pause.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_play.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_play.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_record.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_record.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_repeat.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_repeat.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_rewind.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_rewind.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_selection.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_selection.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_status.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_status.png</source>
+        <source type="script" file="paRt/lib/res/icon/transport_stop.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/icon/transport_stop.png</source>
+        <source type="script" file="paRt/lib/res/lua/bank.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/bank.lua</source>
+        <source type="script" file="paRt/lib/res/lua/color.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/color.lua</source>
+        <source type="script" file="paRt/lib/res/lua/color_palette.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/color_palette.lua</source>
+        <source type="script" file="paRt/lib/res/lua/control.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/control.lua</source>
+        <source type="script" file="paRt/lib/res/lua/control_bank.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/control_bank.lua</source>
+        <source type="script" file="paRt/lib/res/lua/cursor.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/cursor.lua</source>
+        <source type="script" file="paRt/lib/res/lua/draw.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/draw.lua</source>
+        <source type="script" file="paRt/lib/res/lua/functions.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/functions.lua</source>
+        <source type="script" file="paRt/lib/res/lua/gui.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/gui.lua</source>
+        <source type="script" file="paRt/lib/res/lua/gui_hints.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/gui_hints.lua</source>
+        <source type="script" file="paRt/lib/res/lua/layout.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/layout.lua</source>
+        <source type="script" file="paRt/lib/res/lua/macro.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/macro.lua</source>
+        <source type="script" file="paRt/lib/res/lua/map.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/map.lua</source>
+        <source type="script" file="paRt/lib/res/lua/map_macros.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/map_macros.lua</source>
+        <source type="script" file="paRt/lib/res/lua/message.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/message.lua</source>
+        <source type="script" file="paRt/lib/res/lua/parameter.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/parameter.lua</source>
+        <source type="script" file="paRt/lib/res/lua/parameter_map.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/parameter_map.lua</source>
+        <source type="script" file="paRt/lib/res/lua/tab.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/tab.lua</source>
+        <source type="script" file="paRt/lib/res/lua/var.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/var.lua</source>
+        <source type="script" file="paRt/lib/res/lua/version.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/lib/res/lua/version.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 1.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%201.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 2.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%202.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 3.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%203.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 4.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%204.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 5.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%205.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 6.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%206.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 7.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%207.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Load%20Bank%208.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Restart Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Restart%20Theme%20Adjuster.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/7b15ed5a80badaf93e567d1666c70348e5ff9bd1/themes/paRt/paRt%20-%20Theme%20Adjuster.lua</source>
       </version>
     </reapack>
   </category>
