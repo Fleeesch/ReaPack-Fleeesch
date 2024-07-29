@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -63,7 +63,7 @@ function tab.Entry.TabEntry:new(o, tab_group, title)
     o.state = false
 
     -- string flags
-    o.flags = 1
+    o.flags = 5
 
     -- colors
     o.color_bg_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.tab.off_bg)
@@ -154,7 +154,7 @@ function tab.Entry.TabEntry:draw()
     -- text
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
-    Part.Draw.Graphics.setFont(22)
+    Part.Draw.Graphics.setFont(16, "b")
     gfx.drawstr(self.title, self.flags, x + w, y + h)
 end
 
@@ -186,11 +186,11 @@ function tab.EntrySub.TabEntrySub:prepare()
     self.draw_w = Part.Functions.rescale(self.dim_w)
     self.draw_h = Part.Functions.rescale(self.dim_h)
 
-    Part.Draw.Graphics.setFont(18)
     local str_w, str_h = gfx.measurestr(self.title)
+    Part.Draw.Graphics.setFont(16)
     self.draw_circle_x = math.floor(self.draw_x + self.draw_w / 2 - str_w / 2 - Part.Functions.rescale(10))
-    self.draw_circle_y = math.floor(self.draw_y + str_h / 2) + Part.Functions.rescale(2)
-    self.draw_circle_r = math.floor(Part.Functions.rescale(4))
+    self.draw_circle_y = math.floor(self.draw_y + str_h / 1.1)
+    self.draw_circle_r = math.floor(Part.Functions.rescale(3))
 end
 
 --  Tab : Entry Sub : Draw
@@ -230,7 +230,7 @@ function tab.EntrySub.TabEntrySub:draw()
 
     -- font
     Part.Color.setColor(color_fg, true)
-    Part.Draw.Graphics.setFont(18)
+    Part.Draw.Graphics.setFont(16)
     y = y + Part.Functions.rescale(2)
     Part.Cursor.setCursorPos(x, y)
     gfx.drawstr(self.title, self.flags, x + w, y + h)

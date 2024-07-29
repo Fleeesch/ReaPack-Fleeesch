@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -25,6 +25,7 @@ par.par_global_color_gamma:rescale(800, 1200)
 par.par_global_color_highlights:rescale(-50, 50)
 par.par_global_color_midtones:rescale(-50, 50)
 par.par_global_color_shadows:rescale(-50, 50)
+par.par_global_color_custom_overwrite = Part.Parameter.Theme.ThemeParameter:new(nil, "custom_color_mod", false)
 
 -- track background
 par.par_colors_track_track_bg_tone = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_track_bg_tone") }

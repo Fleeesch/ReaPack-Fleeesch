@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -84,6 +84,7 @@ var.globals.refresh_theme = false
 var.globals.refresh_theme_rate = 5
 var.globals.refresh_theme_clock = 0
 var.globals.refresh_theme_rate_threshold = 25
+var.globals.parameter_buffer_time = 5
 
 -- Bank Bar size
 var.globals.bank_bar_size = 40

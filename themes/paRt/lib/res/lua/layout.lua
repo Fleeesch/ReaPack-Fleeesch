@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -310,7 +310,7 @@ function layout.Group.Group:draw()
         local pad_line = Part.Functions.rescale(20)
 
         Part.Color.setColor(self.color_fg, true)
-        Part.Draw.Graphics.setFont(16)
+        Part.Draw.Graphics.setFont(13, "b")
         gfx.drawstr(self.header_text, 1, gfx.x + w - pad_x * 2, gfx.y + line_h)
 
         Part.Draw.Graphics.drawRectangle(x + pad_line, gfx.y + line_h, w - pad_line * 2, Part.Draw.Graphics.border,
@@ -511,6 +511,7 @@ end
 function layout.Text.Text:parameterLabel()
     self:justRight()
     self:centerVert()
+    
     self:setColor(Part.Color.Lookup.color_palette.text.parameter.fg, Part.Color.Lookup.color_palette.text.parameter.bg,
         nil)
 end
@@ -575,8 +576,9 @@ function layout.Text.Text:divider(keep_width)
     self.ignore_cols = not keep_width
 
     self:centerHorz()
+    self:centerVert()
     self:setColors(Part.Color.Lookup.color_palette.label.divider, Part.Color.Lookup.color_palette.label.divider_bg, nil)
-    --self:setFontFlags("b")
+    
 
     -- register itself as divider
     self.is_divider = true
@@ -735,7 +737,7 @@ function layout.Text.Text:draw()
     end
 
     -- draw
-    Part.Draw.Graphics.setFont(16, self.font_flags)
+    Part.Draw.Graphics.setFont(13, self.font_flags)
 
     gfx.drawstr(text, self:getFlags(), x + w - p_x * 2, y + h - p_y * 2)
 end

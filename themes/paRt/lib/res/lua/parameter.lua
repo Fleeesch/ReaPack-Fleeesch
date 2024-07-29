@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -648,7 +648,7 @@ function parameter.Theme.ThemeParameter:new(o, lookup_name, buffered, store)
         o.buffer_to_process = false
 
         -- buffer time
-        o.timeout = 20
+        o.timeout = Part.Global.parameter_buffer_time or 10
 
         -- store during save
         o.store = store or false
@@ -787,7 +787,8 @@ parameter.Lookup.theme_par_lookup = {
     gamma = -1000,
     highlights = -1003,
     shadows = -1002,
-    midtones = -1001
+    midtones = -1001,
+    custom_color_mod = -1006
 }
 
 

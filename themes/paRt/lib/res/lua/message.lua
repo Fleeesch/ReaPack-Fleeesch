@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -28,8 +28,8 @@ function message.Entry.MessageEntry:new(o, text, symbol, type, handler)
     o.text = Part.Functions.textBlock(tostring(text), o.handler.char_limit)
 
     -- line height and font size
-    o.line_height = 16
-    o.font_size = 16
+    o.line_height = 14
+    o.font_size = 14
 
     -- type of message (for extra-formatting)
     o.type = type or ""

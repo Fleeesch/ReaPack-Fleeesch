@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -75,7 +75,7 @@ function control.ButtonBank:new(o, handler, text)
 
     if handler ~= nil then
         -- with must cover text
-        Part.Draw.Graphics.setFont(16 / Part.Global.scale)
+        Part.Draw.Graphics.setFont(14 / Part.Global.scale)
         local str_s = gfx.measurestr(o.text)
         o.dim_w = math.max(str_s + 10, o.dim_w)
         Part.Cursor.setCursorSize(o.dim_w, Part.Cursor.getCursorH())
@@ -290,7 +290,7 @@ function control.ButtonBank:draw()
     local text_out = self:getOutputText()
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
-    Part.Draw.Graphics.setFont(16, self.font_flags)
+    Part.Draw.Graphics.setFont(13, self.font_flags)
     gfx.drawstr(text_out, self.flags, x + w, y + h)
 
     -- highlight overlay

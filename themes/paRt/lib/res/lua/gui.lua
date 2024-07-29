@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -836,10 +836,10 @@ function gui.Hint.Hint:new(o)
     o.last_alpha = 0
     o.buffer_slot = 10
 
-    o.font_size = 16
-    o.height_size = 20
+    o.font_size = 13
+    o.height_size = 13
     o.paragraph_line_size = 8
-    o.padding = 6
+    o.padding = 12
     o.shadow_size = 3
 
     o.source = nil
