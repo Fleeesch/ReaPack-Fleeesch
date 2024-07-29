@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -162,7 +162,7 @@ color.color_base = {
     --  Parameter Set Shading
     -- --------------------------
     label = {
-        bg = { 255, 255, 255, 0.05 },
+        bg = { 0,0,0, 0.1 },
         border = { 0, 0, 0, 0 }
     },
 
@@ -193,10 +193,10 @@ color.color_base = {
         header_fg = { 200, 200, 200, 1 },
         entry_fg = { 150, 150, 150, 1 },
         empty_space = { 0, 0, 0, 0.1 },
-        row_even = { 255, 255, 255, 0.025 },
-        row_uneven = { 255, 255, 255, 0.05 },
-        column_even = { 255, 255, 255, 0.025 },
-        column_uneven = { 255, 255, 255, 0.025 },
+        row_even = { 0, 0, 0, 0.1 },
+        row_uneven = { 0, 0, 0, 0.1},
+        column_even = { 0, 0, 0, 0.1 },
+        column_uneven = { 0, 0, 0, 0.1 },
     },
 
     --  Tab Selection

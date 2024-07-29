@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -84,6 +84,9 @@ function bank.Functions.storeParameterFile(target_file_name)
     local file = io.open(filepath, "w")
     file:write("return {\n")
 
+    -- version
+    file:write("version=" .. '"' .. tostring(Part.Version.version_theme) .. '"' .. ",\n")
+
     -- theme parameters
     for key, val in pairs(Part.List.theme_parameter) do
         if string.find(val.lookup_name, "par") then
@@ -148,6 +151,13 @@ function bank.Functions.loadParameterFile(force, target_file_name)
             if success then
                 -- clear graphics buffer
                 Part.Draw.Buffer.clearCompleteBuffer()
+
+                -- version
+                --local load_version = 0
+
+                if data["version"] ~= nil then
+                    --load_version = data["version"]
+                end
 
                 -- theme parameters
                 for key, val in pairs(data) do

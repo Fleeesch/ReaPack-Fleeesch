@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -112,7 +112,15 @@ end
 Part.Gui.Macros.placeCursorAtLastGroup(false, true)
 group_y = Part.Cursor.getCursorY() + Part.Gui.Macros.pad_group
 
-Part.Gui.Macros.drawGroupBox("Color Adjustments", group_x, group_y, 300, 210)
+Part.Gui.Macros.drawGroupBox("Color Adjustments", group_x, group_y, 300, 230)
+
+Part.Cursor.stackCursor()
+Part.Cursor.incCursor(50,0)
+Part.Cursor.setCursorSize(160,nil)
+Part.Control.Button.Button:new(nil, Part.Parameter.Map.par_global_color_custom_overwrite, true, "Apply to Custom Colors",1)
+Part.Cursor.destackCursor()
+Part.Gui.Macros.nextLine()
+
 Part.Gui.Macros.lastGroup():setTint("colors")
 
 local color_adj_list = {

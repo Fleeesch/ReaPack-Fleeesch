@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -341,8 +341,6 @@ function control.Button.Button:prepare()
     self.draw_w = Part.Functions.rescale(self.dim_w)
     self.draw_h = Part.Functions.rescale(self.dim_h)
 
-    Part.Draw.Graphics.setFont(16, self.font_flags)
-
     if self.width_from_label then
         self.draw_w = Part.Functions.rescale(20) + gfx.measurestr(self.text)
     end
@@ -407,8 +405,9 @@ function control.Button.Button:draw()
 
     -- draw background
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, self.color_border)
-
     -- draw text
+    self:setFontFlags("b")
+    Part.Draw.Graphics.setFont(12, self.font_flags)
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
     gfx.drawstr(self.text, self.flags, x + w, y + h)
@@ -486,8 +485,6 @@ function control.ButtonBank.ButtonBank:prepare()
     self.draw_x = Part.Functions.rescale(self.dim_x + (self.dim_w - w) / 2, true)
     self.draw_y = Part.Functions.rescale(self.dim_y + (self.dim_h - h) / 2, false, true)
 
-    Part.Draw.Graphics.setFont(16, self.font_flags)
-
     if self.width_from_label then
         self.draw_w = Part.Functions.rescale(20) + gfx.measurestr(self.text)
     end
@@ -556,6 +553,10 @@ function control.ButtonBank.ButtonBank:draw()
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, color_border)
 
     -- draw text
+    
+    self:setFontFlags("b")
+    Part.Draw.Graphics.setFont(12, self.font_flags)
+
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
     gfx.drawstr(self.text, self.flags, x + w, y + h)

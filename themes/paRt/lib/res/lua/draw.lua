@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -702,7 +702,7 @@ function draw.Graphics.drawInfoBar()
     Part.Color.setColor(color_fg, true)
 
     -- udpate font
-    draw.Graphics.setFont(14)
+    draw.Graphics.setFont(12)
 
     -- info text table
     local str_data = { { "Esc", "Close" }, { "R", "Reset Window" }, { "L Click", "Set Value" }, { "R Click", "Reset Value" },
@@ -831,16 +831,11 @@ end
 function draw.Graphics.setFont(size, flag_str)
     
     -- default windows font
-    local face = "Calibri"
-
-    -- non-windows exception
-    if Part.Global.os_windows == false then
-        face = "Tahoma"
-    end
-
+    local face = "Tahoma"
+    
     -- mac os 
     if Part.Global.os_macos == true then
-        size = size * 0.75
+        size = size * 0.7
     end
 
     -- Part.Functions.rescale( font

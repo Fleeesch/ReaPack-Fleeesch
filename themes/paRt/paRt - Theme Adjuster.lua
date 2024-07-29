@@ -1,4 +1,4 @@
--- @version 1.0.9
+-- @version 1.1.0
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -28,7 +28,7 @@ Part.Gui.Theme.checkCurrentTheme()
 Part.Gui.Macros = require("lib.res.lua.map_macros")
 require("lib.res.lua.map")
 
-Part.Version.setVersion("1.05")
+Part.Version.setVersion("1.06")
 
 
 
