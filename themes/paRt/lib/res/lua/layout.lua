@@ -1,11 +1,11 @@
--- @version 1.1.2
+-- @version 1.1.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 
 
-local layout = { BankBar = {}, Group = {}, Label = {}, Text = {}, Image = {} }
+local layout = { BankBar = {}, Group = {}, Label = {}, Text = {}, Image = {}, Spritesheet = {}, Sprite = {} }
 
 -- ==========================================================================================
 --                      Layout : Generic
@@ -175,7 +175,7 @@ function layout.BankBar.BankBar:setupButtons()
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     if Part.Global.js_extension_available then
-    Part.Control.Bank.Load.ButtonBankLoad:new(nil, self.handler, "Load")
+        Part.Control.Bank.Load.ButtonBankLoad:new(nil, self.handler, "Load")
     end
 
     Part.Cursor.incCursor(Part.Cursor.getCursorW() + 10, 0)
@@ -511,7 +511,6 @@ end
 function layout.Text.Text:parameterLabel()
     self:justRight()
     self:centerVert()
-    
     self:setColor(Part.Color.Lookup.color_palette.text.parameter.fg, Part.Color.Lookup.color_palette.text.parameter.bg,
         nil)
 end
@@ -578,7 +577,7 @@ function layout.Text.Text:divider(keep_width)
     self:centerHorz()
     self:centerVert()
     self:setColors(Part.Color.Lookup.color_palette.label.divider, Part.Color.Lookup.color_palette.label.divider_bg, nil)
-    
+
 
     -- register itself as divider
     self.is_divider = true
@@ -959,6 +958,159 @@ function layout.Image.Image:draw()
         -- reset cursor
         Part.Cursor.setCursor(x, y, w, h)
     end
+end
+
+-- ==========================================================================================
+--                      Layout : Spritesheet
+-- ==========================================================================================
+
+-- Spritesheet
+-- -------------------------------------------
+
+layout.sprites = 0
+
+function layout.Spritesheet:new(o, file_image, file_lookup)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+
+    -- file path
+    o.file_image = file_image
+    o.file_lookup = file_lookup
+
+    o.lookup_data = require(file_lookup)
+
+
+    --reaper.ShowConsoleMsg(o.lookup_data.dark[100].table_mcp_pan_layout_top.width)
+
+    o.handle = Part.Draw.Sprites.getNextFreeImageSlot()
+    gfx.loadimg(o.handle, ScriptPath .. o.file_image)
+
+    return o
+end
+
+-- Spritesheet : Load
+-- -------------------------------------------
+
+function layout.Spritesheet:getSprite(theme, dpi, name)
+    if self.lookup_data[theme][dpi][name] ~= nil then
+        local x = self.lookup_data[theme][dpi][name].x
+        local y = self.lookup_data[theme][dpi][name].y
+        local w = self.lookup_data[theme][dpi][name].width
+        local h = self.lookup_data[theme][dpi][name].height
+
+        return x, y, w, h
+    end
+
+    return nil
+end
+
+-- Spritesheet : Draw Sprite
+-- -------------------------------------------
+
+function layout.Spritesheet:drawSprite(name, src_x, src_y, src_w, src_h, just_horz, just_vert)
+    local current_theme = Part.Global.themes[Part.Global.par_theme_selected:getValue() + 1]
+    local current_dpi = Part.Global.scale * 100
+
+    local sheet_x, sheet_y, sheet_w, sheet_h = self:getSprite(current_theme, current_dpi, name)
+
+    Part.Cursor.setCursorPos(src_x, src_y)
+
+    -- justify left
+    if just_horz == 0 then
+        gfx.x = gfx.x + (src_w - sheet_w) / 2
+    end
+
+    -- justify right
+    if just_horz > 0 then
+        gfx.x = gfx.x + (src_w - sheet_w)
+    end
+
+    -- justify top
+    if just_vert == 0 then
+        gfx.y = gfx.y + (src_h - sheet_h) / 2
+    end
+
+    -- justify bottom
+    if just_vert > 0 then
+        gfx.y = gfx.y + (src_h - sheet_h)
+    end
+
+
+    if sheet_x ~= nil then
+        gfx.blit(self.handle, 1, 0, sheet_x, sheet_y, sheet_w, sheet_h, gfx.x, gfx.y, sheet_w, sheet_h, 0, 0)
+    end
+end
+
+-- ==========================================================================================
+--                      Layout : Sprite
+-- ==========================================================================================
+
+-- Sprite
+-- -------------------------------------------
+
+layout.Sprite.Sprite = layout.LayoutElement:new()
+
+function layout.Sprite.Sprite:new(o, spritesheet, name, alpha)
+    o = o or layout.LayoutElement:new(o)
+    setmetatable(o, self)
+    self.__index = self
+
+    o.spritesheet = spritesheet
+    o.name = name
+
+    o.alpha = alpha or 1
+
+    -- justification
+    o.justHorz = 0
+    o.justVert = 0
+
+    -- transfer cursor dimensions
+    Part.Cursor.applyCursorToTarget(o)
+
+    -- register sprite in list
+    table.insert(Part.List.layout, o)
+
+    return o
+end
+
+-- Sprite : Justify
+-- -------------------------------------------
+
+-- left
+function layout.Sprite.Sprite:justLeft()
+    self.justHorz = -1
+end
+
+-- right
+function layout.Sprite.Sprite:justRight()
+    self.justHorz = 1
+end
+
+-- top
+function layout.Sprite.Sprite:justTop()
+    self.justVert = -1
+end
+
+-- bottom
+function layout.Sprite.Sprite:justBottom()
+    self.justVert = 1
+end
+
+-- Sprite : Draw
+-- -------------------------------------------
+
+function layout.Sprite.Sprite:draw()
+    -- prepare dimensions
+    local x = Part.Functions.rescale(self.dim_x, true)
+    local y = Part.Functions.rescale(self.dim_y, false, true)
+    local w = Part.Functions.rescale(self.dim_w)
+    local h = Part.Functions.rescale(self.dim_h)
+
+    gfx.a = self.alpha
+
+    -- draw sprite
+    self.spritesheet:drawSprite(self.name, x, y, w, h, self.justHorz, self.justVert)
 end
 
 return layout

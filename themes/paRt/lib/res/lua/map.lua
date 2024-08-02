@@ -1,7 +1,14 @@
--- @version 1.1.2
+-- @version 1.1.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
+
+-- ===========================================================================
+--      Spritesheet
+-- ===========================================================================
+
+Part.Layout.icon_spritesheet = Part.Layout.Spritesheet:new(nil,"lib/res/icon/themeadj_sprites.png","lib.res.icon.themeadj_sprites")
+
 -- ===========================================================================
 --      Tab Header Bar
 -- ===========================================================================

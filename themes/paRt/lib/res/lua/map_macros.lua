@@ -1,4 +1,4 @@
--- @version 1.1.2
+-- @version 1.1.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -330,6 +330,7 @@ function map_macros.drawHeader(header_text, w)
         Part.Color.Lookup.color_palette.group.inline_header.bg,
         nil)
     text:centerHorz()
+    text:centerVert()
     text:setFontFlags("b")
 
     map_macros.trackParameterLabel(text)
@@ -657,7 +658,7 @@ function map_macros.drawMcpLayoutConfiguration(row_data, parameter)
         -- image
         Part.Cursor.setCursorSize(table_w, map_macros.table_icon_h)
         Part.Cursor.incCursor(5, 0)
-        local image = Part.Layout.Image.Image:new(nil, icon_path .. images[idx].image, true, nil, map_macros.icon_alpha)
+        local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, images[idx].image)
         map_macros.trackParameterLabel(image)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
@@ -726,7 +727,7 @@ function map_macros.drawMcpPanConfiguration(row_data)
         table.insert(label_column, Part.Layout.Label.Label:new(nil))
 
         -- header image
-        local image = Part.Layout.Image.Image:new(nil, icon_path .. column.image, true, nil, map_macros.icon_alpha)
+        local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, column.image)
         map_macros.trackParameterLabel(image)
 
         -- increment cursor
@@ -818,7 +819,7 @@ function map_macros.drawTcpFaderLayoutConfiguration(parameter)
 
         -- image
         Part.Cursor.setCursorSize(40, map_macros.table_icon_h)
-        local image = Part.Layout.Image.Image:new(nil, icon_path .. layout.image, true, nil, map_macros.icon_alpha)
+        local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, layout.image)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
         map_macros.trackParameterLabel(image)
     end
@@ -855,24 +856,21 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
     end
 
     -- visibility header image
-    local image = Part.Layout.Image.Image:new(nil, icon_path .. map_macros.icons.table.visbility, true, nil,
-        map_macros.icon_alpha)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility, image, false)
+    local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.visbility)
+    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility, image, false)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- mixer-hide header image
     if has_mixer then
-        local image = Part.Layout.Image.Image:new(nil, icon_path .. map_macros.icons.table.mixer_hide, true, nil,
-            map_macros.icon_alpha)
-            Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_nomixer, image, false)
+        local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.mixer_hide)
+        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_nomixer, image, false)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     end
 
     -- fader size header image
     Part.Cursor.setCursorSize(slider_w)
-    local image = Part.Layout.Image.Image:new(nil, icon_path .. map_macros.icons.table.fader_size, true, nil,
-        map_macros.icon_alpha)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.fader_size, image, false)
+    local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.fader_size)
+    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.fader_size, image, false)
 
     Part.Cursor.destackCursor()
     map_macros.nextLine()
@@ -929,10 +927,6 @@ end
 
 function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter_visibility, parameter_mixer,
                                          parameter_separator)
-    -- image path
-    local icon_path = map_macros.icon_path_root .. "/" .. Part.Color.Lookup.image_set .. "/"
-    local icon_path_theme = map_macros.icon_path_root .. "/" .. Part.Color.Lookup.image_set_table .. "/"
-
     Part.Cursor.stackCursor()
     Part.Cursor.stackCursor()
 
@@ -973,11 +967,9 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
         Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
 
         -- image
-        local image = Part.Layout.Image.Image:new(nil, icon_path_theme .. icon, true, nil,
-            map_macros.icon_alpha)
+        local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, icon)
         Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
         empty_space_y = math.max(empty_space_y, Part.Cursor.getCursorY() - Part.Cursor.getCursorPadY())
-        
         map_macros.trackParameterLabel(image)
 
         Part.Cursor.destackCursor()
@@ -989,7 +981,8 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
     -- visibility header column
     if parameter_visibility ~= nil then
         drawTableHeader(parameter_visibility, map_macros.icons.table.visbility)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility, map_macros.getLastParameterLabel(), false)
+        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility, map_macros.getLastParameterLabel(),
+            false)
     end
 
     -- mixer-hide header column
@@ -1001,7 +994,8 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
     -- separator column
     if parameter_separator ~= nil then
         drawTableHeader(parameter_separator, map_macros.icons.table.separator)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_separator, map_macros.getLastParameterLabel(), false)
+        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_separator, map_macros.getLastParameterLabel(),
+            false)
     end
 
     -- update corner shader
@@ -1027,7 +1021,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
 
         -- image
         Part.Cursor.setCursorSize(map_macros.table_icon_w, map_macros.line_h)
-        Part.Layout.Image.Image:new(nil, icon_path .. entry.image, true, nil, map_macros.icon_alpha)
+        Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, entry.image)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- parameter label
