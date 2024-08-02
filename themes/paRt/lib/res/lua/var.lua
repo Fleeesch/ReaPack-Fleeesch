@@ -1,4 +1,4 @@
--- @version 1.1.2
+-- @version 1.1.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -11,6 +11,10 @@ local var = { globals = {}, list = {} }
 var.globals.os_windows = false
 var.globals.os_macos = false
 var.globals.os_linux = false
+
+
+-- index based theme lookup list
+var.globals.themes = {"dark","dimmed","light"}
 
 -- windows
 if reaper.GetOS():match("^Win") ~= nil then
@@ -134,7 +138,7 @@ var.globals.restart_shortcut = true
 var.globals.config_dir = ScriptPath .. "conf"
 
 -- theme selection parameter (for load theme button feedback)
-var.globals.par_theme_selected = Part.Parameter.Parameter:new(nil, "par_theme_selecteds", 0, 0, 3, true)
+var.globals.par_theme_selected = Part.Parameter.Parameter:new(nil, "par_theme_selected", 0, 0, 3, true)
 
 -- visible element update
 var.globals.update_visible_elements = false

@@ -1,4 +1,4 @@
--- @version 1.1.2
+-- @version 1.1.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -133,7 +133,7 @@ color.color_base = {
     --  Hover Hint Message
     -- ---------------------
     hint = {
-        bg = { 45, 45, 45, 1 },
+        bg = { 30, 30, 30, 1 },
         fg = { 200, 200, 200, 1 },
         text_highlight = { 255, 255, 255, 1 },
         shadow = { 0, 0, 0, 0.1 },
@@ -292,7 +292,7 @@ color.color_dark = {}
 color.color_dimmed = {
 
     -- Background
-    bg = { 140, 140, 140, 1 },
+    bg = { 100, 100, 100, 1 },
 
     --  Paths
     -- ------------------
@@ -356,14 +356,14 @@ color.color_dimmed = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        bg = { 130, 130, 130, 1 },
-        fg = { 70, 70, 70, 1 }
+        bg = { 80, 80, 80, 1 },
+        fg = { 150,150,150, 1 }
     },
 
     --  Bank Bar
     -- ------------------
     bank_bar = {
-        bg = { 110, 110, 110, 1 },
+        bg = { 90, 90, 90, 1 },
         border = { 0, 0, 0, 0 },
 
         button = {
@@ -407,7 +407,7 @@ color.color_dimmed = {
     --  Hover Hint Message
     -- ---------------------
     hint = {
-        bg = { 80, 80, 80, 1 },
+        bg = { 60, 60, 60, 1 },
         fg = { 200, 200, 200, 1 },
         text_highlight = { 255, 255, 255, 1 },
         shadow = { 0, 0, 0, 0.1 },
@@ -436,7 +436,7 @@ color.color_dimmed = {
     --  Parameter Set Shading
     -- --------------------------
     label = {
-        bg = { 0, 0, 0, 0.1 },
+        bg = { 0, 0, 0, 0.125 },
         border = { 0, 0, 0, 0 }
     },
 
@@ -466,22 +466,22 @@ color.color_dimmed = {
     table = {
         header_fg = { 200, 200, 200, 1 },
         entry_fg = { 200, 200, 200, 1 },
-        empty_space = { 255, 255, 255, 0.025 },
-        row_even = { 0, 0, 0, 0.05 },
-        row_uneven = { 0, 0, 0, 0.075 },
-        column_even = { 0, 0, 0, 0.05 },
-        column_uneven = { 0, 0, 0, 0.05 },
+        empty_space = { 0,0,0, 0.04 },
+        row_even = { 0, 0, 0, 0.075 },
+        row_uneven = { 0, 0, 0, 0.1 },
+        column_even = { 0, 0, 0, 0.075 },
+        column_uneven = { 0, 0, 0, 0.075 },
     },
 
     --  Tab Selection
     -- --------------------------
     tab = {
-        off_bg = { 100, 100, 100, 1 },
+        off_bg = { 70, 70, 70, 1 },
         off_fg = { 170, 170, 170, 1 },
-        on_bg = { 140, 140, 140, 1 },
+        on_bg = { 100, 100, 100, 1 },
         on_fg = { 0, 0, 0, 1 },
         sub = {
-            off_bg = { 140, 140, 140, 1 },
+            off_bg = { 100, 100, 100, 1 },
             off_fg = { 40, 40, 40, 1 },
             on_fg = { 0, 0, 0, 1 },
         },
@@ -491,7 +491,7 @@ color.color_dimmed = {
     --  Element Groups
     -- --------------------------
     group = {
-        bg = { 110, 110, 110, 1 },
+        bg = { 90, 90, 90, 1 },
         fg = { 210, 210, 210, 1 },
         border = { 0, 0, 0, 0.3 },
         header = {
@@ -519,7 +519,7 @@ color.color_dimmed = {
     --  Slider
     -- --------------------------
     slider = {
-        bg = { 90, 90, 90, 1 },
+        bg = { 60, 60, 60, 1 },
         border = { 0, 0, 0, 0.3 },
         knob_border = { 0, 0, 0, 0.75 },
         knob = { 170, 170, 170, 1 },
@@ -530,7 +530,7 @@ color.color_dimmed = {
     --  Knobs
     -- --------------------------
     knob = {
-        bg = { 90, 90, 90, 1 },
+        bg = { 60, 60, 60, 1 },
         fg = { 200, 200, 200, 1 },
         border = { 0, 0, 0, 0.5 },
         default = { 255, 255, 255, 0.2 },
