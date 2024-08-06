@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Fleeesch" commit="f124e444ac59dbd95b991d58334b896046285c76">
+<index version="1" name="Fleeesch" commit="9bbd84b69ade7cd5b2b10a903df203f36e159e0a">
   <category name="themes">
     <reapack name="part.theme" type="theme" desc="paRt">
       <metadata>
@@ -20,16 +20,18 @@
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Save and load parameter settings to setting files\sa180\par}
 }
 ]]></description>
-        <link rel="website">https://github.com/Fleeesch/paRt</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dark.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dimmed.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_light.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dark.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dimmed.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_light.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dark.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dimmed.png</link>
-        <link rel="screenshot">https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_light.png</link>
+        <link rel="website" href="https://fleeesch.github.io/part/index.html">Website</link>
+        <link rel="website" href="https://forum.cockos.com/showthread.php?t=282545">Reaper Forum Thread</link>
+        <link rel="website" href="https://github.com/Fleeesch/paRt">GitHub Repository</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dark.png">Dark Theme - FHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dark.png">Dark Theme - QHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dark.png">Dark Theme - UHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dimmed.png">Dimmed Theme - FHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dimmed.png">Dimmed Theme - QHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dimmed.png">Dimmed Theme - UHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_light.png">Light Theme - FHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_light.png">Light Theme - QHD</link>
+        <link rel="screenshot" href="https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_light.png">Light Theme - UHD</link>
       </metadata>
       <version name="1.0.0" author="Fleeesch" time="2023-09-10T14:01:02Z">
         <changelog><![CDATA[- initial version]]></changelog>
