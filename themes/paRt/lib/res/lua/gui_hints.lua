@@ -1,4 +1,4 @@
--- @version 1.1.4
+-- @version 1.1.5
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -27,7 +27,7 @@ hint.fader_size =
 --      Colors
 -- --------------------------------------
 
-hint.folder_tree = "Adjust track tone and tint dynamically based on its folder|level"
+hint.folder_tree = "Adjust track tone and tint dynamically based on its folder level"
 
 
 --      Transport
@@ -67,17 +67,17 @@ hint.mcp_folder_padding = "Add extra space for folder tracks and the last track 
 
 -- meter
 hint.mcp_meter_position =
-"Top Position  places the Meter below the buttons. \\n Bottom Position positions the meter next to the Volume Fader. \\n Choosing no position will hide the meter."
+"[Top|Position] \\n places the Meter below the buttons \\n [Bottom|Position] \\n positions the meter next to the Volume Fader \\n [No|Position] \\n hide the meter."
 hint.mcp_meter_size =
-"Adjusts the height when the Meter is in top position. \\n Extends the width when the Meter is in bottom position."
+"[@|Top|Position] \\n Adjusts the height of the meter \\n [@|Bottom|Position] \\n Extends the width when the meter"
 hint.mcp_meter_expand =
-'Increments the meter width by track channel count. \\n Activating "Fix" will extend the width only by a fixed amount when a given channel count is reached.'
+'Increments the meter width by track channel count \\n [Fix] \\n extends the width only by a fixed amount when a given channel count is reached'
 hint.mcp_meter_expand_threshold = "The amound of track channels needed for the Expand setting to kick in"
 
 -- faders layout
-hint.mcp_faders_layout_pan_top = "Place the Pan and Width adjustment in a separate section above the Volume fader"
-hint.mcp_faders_layout_strip = "Arrange the Pan, Width and Volume adjustments vertically as a strip"
-hint.mcp_faders_layout_bottom = "Place the Pan and Width adjustments as faders next to the Volume fader"
+hint.mcp_faders_layout_pan_top = "Separate top section for Pan / Width"
+hint.mcp_faders_layout_strip = "Vertical strip"
+hint.mcp_faders_layout_bottom = "Pan / Width next to Volume Fader"
 
 -- faders panmode
 hint.mcp_faders_panmode_knob = "Knobs"
@@ -86,8 +86,8 @@ hint.mcp_faders_panmode_horizontal = "Horizontal Faders"
 
 -- faders dimensions
 hint.mcp_faders_width =
-"Extends the width of the Pan Section when the Fader Layout is set to use a separate Pan Section."
-hint.mcp_faders_height = "Ignored when the Pan and Width adjustments are placed next to the Volume fader."
+"Extends the width of the Pan Section if possible"
+hint.mcp_faders_height = "Adjusts the height of the Pan Section if possible"
 
 -- extra width
 hint.mcp_extra_width =
@@ -95,14 +95,14 @@ hint.mcp_extra_width =
 
 -- inserts
 hint.mcp_insert_mode =
-"Embed will activate sidebar mode only when the track has embedded FX. \\n Selecting nothing will hide the Insert section from the MCP."
+"[Embed] \\n activate sidebar mode only when the track has embedded FX \\n [Nothing] hide the Insert section from the MCP"
 hint.size_onembed =
-"Increases the Sidebar Width when the track has embedded FX. \\n Sets the base width when the Sidebar Mode is triggered conditionally."
+"[Static|Sidebar] \\n Increases the Sidebar Width when the track has embedded FX \\n [Conditional|Sidebar] \\n Sets the base width when the Sidebar Mode is activated"
 
 -- button layout
 hint.mcp_button_layout =
-"Slim arranges the buttons vertically in a strip formation. \\n Wide spreads the buttons accross two columns."
-hint.mcp_input_size = "Only effective when Button Layout is set to Slim"
+"[Slim] \\n arranges the buttons vertically in a strip formation \\n [Wide] \\n spreads the buttons accross two columns"
+hint.mcp_input_size = "Button Layout must be set to Slim"
 
 
 return hint

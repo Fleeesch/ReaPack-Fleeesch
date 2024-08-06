@@ -1,4 +1,4 @@
--- @version 1.1.4
+-- @version 1.1.5
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -334,6 +334,7 @@ par.par_mcp_gen_folder_pad_folder_last = { Part.Parameter.Group.ParameterGroup:n
     "par_mcp_gen_folder_pad_folder_last") }
 par.par_mcp_gen_folder_icon_folder = { Part.Parameter.Group.ParameterGroup:new(nil, "par_mcp_gen_folder_icon_folder") }
 par.par_mcp_gen_folder_icon_last = { Part.Parameter.Group.ParameterGroup:new(nil, "par_mcp_gen_folder_icon_last") }
+
 
 -- settings
 par.par_mcp_track_settings_extrapad = { Part.Parameter.Group.ParameterGroup:new(nil,

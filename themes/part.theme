@@ -1,8 +1,17 @@
-@version 1.1.4
+@version 1.1.5
 @author Fleeesch
 @description paRt
 @links https://github.com/Fleeesch/paRt
-@screenshots https://fleeesch.github.io/part/res/gallery/resolution/part_fhd_dimmed.png
+@screenshots
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dark.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_dimmed.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_fhd_light.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dark.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_dimmed.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_qhd_light.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dark.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_dimmed.png
+  https://fleeesch.github.io/part/res/gallery/sshot/part_res_uhd_light.png
 @provides
   paRt - Dark.ReaperThemeZip https://github.com/Fleeesch/paRt/releases/download/v$version/part_dark.ReaperThemeZip
   paRt - Dimmed.ReaperThemeZip https://github.com/Fleeesch/paRt/releases/download/v$version/part_dimmed.ReaperThemeZip
@@ -10,6 +19,7 @@
   [script]paRt/conf/**/*
   [script]paRt/lib/**/*
   [script main]paRt/*.lua
+  [data]paRt/splash/*
 @about
   # paRt - plain adapting Reaper theme
   
@@ -25,8 +35,10 @@
   * Parameter bank support for changing settings on the fly
   * Save and load parameter settings to setting files
 @changelog
-  - re-implementation of alternating track background shading
-  - tweaked piano roll colors
-  - text is less affected by increased brightness of selected tracks
-  - Theme Adjuster: updated default settings and default parameter values
-  - Theme Adjuster: higher tonal range for text colors
+  - reworked folder-display assets
+  - added optional display of lines in track folder lanes in MCP & TCP
+  - reduced opacity of mouse position line
+  - added splash images in Data folder
+  - ReaPack: updated missing reapack screenshot
+  - Theme Adjuster: updated control hint messages
+  - Theme Adjuster: added option to toggle folder lines
