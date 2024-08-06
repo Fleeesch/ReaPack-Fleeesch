@@ -1,4 +1,4 @@
--- @version 1.1.4
+-- @version 1.1.5
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -7,7 +7,8 @@
 --      Spritesheet
 -- ===========================================================================
 
-Part.Layout.icon_spritesheet = Part.Layout.Spritesheet:new(nil,"lib/res/icon/themeadj_sprites.png","lib.res.icon.themeadj_sprites")
+Part.Layout.icon_spritesheet = Part.Layout.Spritesheet:new(nil, "lib/res/icon/themeadj_sprites.png",
+    "lib.res.icon.themeadj_sprites")
 
 -- ===========================================================================
 --      Tab Header Bar
@@ -122,9 +123,10 @@ group_y = Part.Cursor.getCursorY() + Part.Gui.Macros.pad_group
 Part.Gui.Macros.drawGroupBox("Color Adjustments", group_x, group_y, 300, 230)
 
 Part.Cursor.stackCursor()
-Part.Cursor.incCursor(50,0)
-Part.Cursor.setCursorSize(160,nil)
-Part.Control.Button.Button:new(nil, Part.Parameter.Map.par_global_color_custom_overwrite, true, "Apply to Custom Colors",1)
+Part.Cursor.incCursor(50, 0)
+Part.Cursor.setCursorSize(160, nil)
+Part.Control.Button.Button:new(nil, Part.Parameter.Map.par_global_color_custom_overwrite, true, "Apply to Custom Colors",
+    1)
 Part.Cursor.destackCursor()
 Part.Gui.Macros.nextLine()
 
@@ -545,7 +547,7 @@ Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_trans_playrate_size
 Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_tcp_general)
 Part.Gui.Macros.resetCursor()
 
-local group_x = 55
+local group_x = 50
 local group_y = Part.Cursor.getCursorY() + 20
 
 local header_w = 255
@@ -589,13 +591,21 @@ Part.Gui.Macros.nextLine()
 Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_element_adj_spacing_section_y, false, slider_w,
     "Vertical", label_w)
 
+-- Inserts
+-- ------------------------------
+
+Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
+Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(), 275, 55)
+Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width, false, slider_w, "Slot Size",
+    label_w)
+
 -- Highlights
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 local group_x_2 = Part.Cursor.getCursorX()
 
-Part.Gui.Macros.drawGroupBox("Highlights", group_x_2, group_y, 250, 85)
+Part.Gui.Macros.drawGroupBox("Highlights", group_x_2, group_y, 260, 85)
 Part.Gui.Macros.lastGroup():setTint("colors")
 
 -- Selection Marker
@@ -612,7 +622,7 @@ Part.Gui.Macros.nextLine()
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-Part.Gui.Macros.drawGroupBox("Folders", group_x_2, Part.Cursor.getCursorY(), 250, 125)
+Part.Gui.Macros.drawGroupBox("Folders", group_x_2, Part.Cursor.getCursorY(), 260, 140)
 Part.Gui.Macros.lastGroup():setTint("folder")
 
 Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_folder_indent, false, slider_w, "Indentation",
@@ -620,20 +630,25 @@ Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_folder_inde
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.drawHeader("Buttons", 230)
 Part.Gui.Macros.nextLine()
-Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_gen_folder_icon_collapse, 50, "Collapse Toggle",
-    "Show",
-    label_w)
+
+-- Buttons
+local selection = {
+    { label = "Buttons", value = 1, width = 50 },
+    { label = "+ Lines",    value = 2, width = 50 }
+}
+
+-- Position
+Part.Cursor.stackCursor()
+Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_gen_folder_icon_collapse, true, selection,
+    "Collapse Toggle", label_w)
+
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_gen_folder_icon_mode, 50, "Folder Mode", "Show",
     label_w)
+Part.Gui.Macros.nextLine()
 
--- Inserts
--- ------------------------------
 
-Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(), 250, 55)
-Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width, false, slider_w, "Slot Size",
-    label_w)
+
 
 -- ===========================================================================
 --      Tab : TCP : Track
@@ -1103,14 +1118,20 @@ Part.Gui.Macros.nextLine()
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-Part.Gui.Macros.drawGroupBox("Folders", group_x, Part.Cursor.getCursorY(), 250, 145)
+Part.Gui.Macros.drawGroupBox("Folders", group_x, Part.Cursor.getCursorY(), 250, 140)
 Part.Gui.Macros.lastGroup():setTint("folder")
 
 -- Buttons
-Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_mcp_gen_folder_icon_folder, 50, "Buttons",
-    "Show",
-    label_w)
-Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.mcp_folder_buttons, Part.Gui.Macros.getLastParameterLabel(), true)
+local selection = {
+    { label = "Buttons", value = 1, width = 50 },
+    { label = "+ Lines",    value = 2, width = 60 }
+}
+
+-- Position
+Part.Cursor.stackCursor()
+Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_mcp_gen_folder_icon_folder, true, selection,
+    "Folder Lane", label_w)
+
 Part.Gui.Macros.nextLine()
 
 -- Indentation
@@ -1140,7 +1161,7 @@ Part.Gui.Macros.nextLine()
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 group_x = Part.Cursor.getCursorX()
-Part.Gui.Macros.drawGroupBox("Spacing", group_x, group_y, 260, 235)
+Part.Gui.Macros.drawGroupBox("Spacing", group_x, group_y, 260, 230)
 Part.Gui.Macros.lastGroup():setTint("dimensions")
 
 local spacing_header_w = 240
