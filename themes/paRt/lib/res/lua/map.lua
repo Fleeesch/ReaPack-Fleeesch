@@ -1,4 +1,4 @@
--- @version 1.1.6
+-- @version 1.1.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -680,7 +680,7 @@ local visibility_data = {
     { label = "Phase",    image = Part.Gui.Macros.icons.track.phase,   separator = true,  index = 7 },
     { label = "FX",       image = Part.Gui.Macros.icons.track.fx,      separator = false, index = 8 },
     { label = "In FX",    image = Part.Gui.Macros.icons.track.infx,    separator = true,  index = 9 },
-    { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = false, index = 10 },
+    { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = true, index = 10 },
     { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = false, index = 11 },
 }
 
@@ -1474,7 +1474,7 @@ Part.Gui.Macros.drawGroupBox("Buttons", group_x_elements, group_y, 170, 415)
 Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 local visibility_data = {
-    { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = false, index = 1 },
+    { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = true, index = 1 },
     { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = true,  index = 2 },
     { label = "Rec Arm",  image = Part.Gui.Macros.icons.track.recarm,  separator = false, index = 3 },
     { label = "Rec Mon",  image = Part.Gui.Macros.icons.track.recmon,  separator = true,  index = 4 },
