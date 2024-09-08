@@ -1,4 +1,4 @@
-@version 1.1.7
+@version 1.1.8-pre.1
 @author Fleeesch
 @description paRt
 @links
@@ -38,14 +38,4 @@
   * Parameter bank support for changing settings on the fly
   * Save and load parameter settings to setting files
 @changelog
-  - minor color tuning
-  - rounded edges for interactive elements
-  - redesigned button assets with updated symbols and colors
-  - thinner separator lines
-  - added optional separator for input source button
-  - input source button in mixer is now part of the button section
-  - slimmer and rounder faders
-  - transparent fader caps
-  - round end cap for send slots
-  - updated marker and region colors for better text readability
-  - Theme Adjuster: fixed typos in control hints
+  - darker meter borders
