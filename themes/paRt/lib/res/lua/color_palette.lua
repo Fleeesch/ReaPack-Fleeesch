@@ -1,4 +1,4 @@
--- @version 1.1.8
+-- @version 1.1.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -156,7 +156,7 @@ color.color_base = {
     -- ---------------------
     marker = {
         border = { 0, 0, 0, 0.75 },
-        bg_off = { 50, 50, 50, 1 },
+        bg_off = { 10, 10, 10, 1 },
     },
 
     --  Parameter Set Shading
@@ -430,7 +430,7 @@ color.color_dimmed = {
     -- ---------------------
     marker = {
         border = { 0, 0, 0, 0.6 },
-        bg_off = { 80, 80, 80, 1 },
+        bg_off = { 40, 40, 40, 1 },
     },
 
     --  Parameter Set Shading

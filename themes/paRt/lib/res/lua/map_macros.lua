@@ -1,4 +1,4 @@
--- @version 1.1.8
+-- @version 1.1.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -86,6 +86,8 @@ map_macros.bank_h = 14
 
 map_macros.knob_w = 16
 map_macros.slider_w = 90
+map_macros.slider_offset = 0
+map_macros.slider_h = 14
 
 map_macros.group_pad_x = 10
 map_macros.group_pad_y = 30
@@ -569,7 +571,10 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
 
 
     -- slider
-    Part.Cursor.setCursorSize(slider_w, nil)
+    Part.Cursor.setCursorSize(slider_w)
+    Part.Cursor.stackCursor()
+    Part.Cursor.setCursorSize(slider_w, map_macros.slider_h)
+    Part.Cursor.incCursor(0,map_macros.slider_offset,0,0)
 
     local slider
 
@@ -578,6 +583,8 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     else
         slider = Part.Control.Slider.Slider:new(nil, parameter_slider)
     end
+
+    Part.Cursor.destackCursor()
 
     -- bi-directional value fill
     if slider_is_bi then
@@ -906,9 +913,17 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
         -- fader size
         Part.Cursor.setCursorSize(slider_w)
-        Part.Control.Slider.Slider:new(nil, entry.par_size[1])
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+        Part.Cursor.stackCursor()
 
+        Part.Cursor.setCursorSize(slider_w,Part.Gui.Macros.slider_h)
+        Part.Cursor.incCursor(0,Part.Gui.Macros.slider_offset,0,0)
+
+        Part.Control.Slider.Slider:new(nil, entry.par_size[1])
+        
+        Part.Cursor.destackCursor()
+        
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+        
         -- scale button
         Part.Cursor.setCursorSize(30)
         Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true, "%", 1)
