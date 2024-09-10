@@ -1,4 +1,4 @@
--- @version 1.1.8-pre.2
+-- @version 1.1.8
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -52,9 +52,9 @@ hint.tcp_master_size =
 
 -- envcp
 hint.envcp_iconlane =
-"Add an artifical track lane section to envelopes. \\n Only activated when Track icons  are set or the  Fixed Track Lanes feature is used."
+"Add an artifical track lane section to envelopes. \\n Only activated when Track icons are set or the Fixed Track Lanes feature is used."
 hint.envcp_fader_placement =
-"Icon Lane  is automatically set to Inline when the Track Icon Lane setting is not active."
+"[Icon|Lane] \\n Requires the Track Icon Lane setting to be activated or else it will fallback to Inline."
 hint.envcp_fader_size =
 "Bypassed when the Track Icon Lane  is active."
 
