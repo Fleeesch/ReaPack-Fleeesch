@@ -1,4 +1,4 @@
--- @version 1.1.8
+-- @version 1.1.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -151,7 +151,16 @@ for idx, color_adj in pairs(color_adj_list) do
     Part.Gui.Macros.openLabel()
     Part.Gui.Macros.drawParameterLabel(color_adj.label, label_w)
     Part.Cursor.setCursorSize(slider_w, nil)
+    
+    Part.Cursor.stackCursor()
+    
+    Part.Cursor.setCursorSize(slider_w, Part.Gui.Macros.slider_h)
+    Part.Cursor.incCursor(0,Part.Gui.Macros.slider_offset,0,0)
+
     Part.Control.Slider.Slider:new(nil, color_adj.paramter)
+    
+    Part.Cursor.destackCursor()
+
     Part.Draw.Elements.lastElement():colorFinder(color_adj.thumb_opcaity, color_adj.gradient)
     Part.Draw.Elements.lastElement():noValueFill()
     Part.Gui.Macros.closeLabel()
