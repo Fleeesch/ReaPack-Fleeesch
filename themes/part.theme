@@ -1,4 +1,4 @@
-@version 1.1.9
+@version 1.2.0
 @author Fleeesch
 @description paRt
 @links
@@ -38,11 +38,8 @@
   * Parameter bank support for changing settings on the fly
   * Save and load parameter settings to setting files
 @changelog
-  - minor TCP folder line tweaks
-  - added folder line support for ENVCP lanes
-  - changed dimmed ENVCP symbol to a light one
-  - fixed barely readable ReaSamplOmatic5000 knobs
-  - reworked Playrate knob assets
-  - fixed Playrate fader knob offset at various zoom levels
-  - Theme Adjuster: minor color tweaks
-  - Theme Adjuster: slimmer faders
+  - added custom item ranking assets
+  - larger margins for vertical mixer labels (less letter clipping)
+  - corrected fader x-offset in MCP
+  - fixed pan height calculation bug when pan is placed in bottom section
+  - fixed pan / width fader thumb offset in mixer at 225%
