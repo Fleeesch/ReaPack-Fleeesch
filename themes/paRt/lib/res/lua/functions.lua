@@ -1,4 +1,4 @@
--- @version 1.2.0
+-- @version 1.2.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -224,5 +224,24 @@ function functions.print(...)
         reaper.ShowConsoleMsg(tostring(val) .. "\n")
     end
 end
+
+--  Method : Print
+-- -------------------------------------------
+
+function functions.match_array(value, array)
+    local closest = array[1]
+    local min_diff = math.abs(value - closest)
+    
+    for i = 2, #array do
+        local diff = math.abs(value - array[i])
+        if diff < min_diff then
+            closest = array[i]
+            min_diff = diff
+        end
+    end
+    
+    return closest
+end
+
 
 return functions

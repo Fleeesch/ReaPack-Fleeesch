@@ -1,4 +1,4 @@
--- @version 1.2.0
+-- @version 1.2.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -1074,6 +1074,10 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
         -- next line
         Part.Cursor.destackCursor()
         Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
+
+        if parameter_separator ~= nil and entry.separator then
+            Part.Cursor.incCursor(0, 8,0,0)
+        end
     end
 
     -- upade row shaders
