@@ -1,4 +1,4 @@
--- @version 1.2.0
+-- @version 1.2.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -56,7 +56,7 @@ end
 --  Method : Get Window Scaling Factor
 -- -------------------------------------------
 function gui.Window.calcScale()
-    Part.Global.scale = gfx.ext_retina
+    Part.Global.scale = Part.Functions.match_array(gfx.ext_retina,Part.Global.zoom_levels)
     Part.Draw.Graphics.border = math.max(math.floor(Part.Draw.Graphics.border_base * Part.Global.scale), 1)
     return Part.Global.scale
 end

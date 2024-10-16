@@ -1,4 +1,4 @@
--- @version 1.2.0
+-- @version 1.2.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -36,6 +36,9 @@ end
 
 --  Globals
 -- -------------------------------------------
+
+-- paRt provided zoom levels
+var.globals.zoom_levels = {1,1.25,1.5,1.75,2,2.25,2.5}
 
 -- initial loading of parameters
 var.globals.initial_load = false

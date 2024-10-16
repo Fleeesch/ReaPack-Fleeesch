@@ -1,4 +1,4 @@
--- @version 1.2.0
+-- @version 1.2.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -406,7 +406,7 @@ Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_transport)
 Part.Gui.Macros.resetCursor()
 
 local group_x = 110
-local group_y = Part.Cursor.getCursorY()
+local group_y = Part.Cursor.getCursorY() - 16
 
 local header_w = 220
 local label_w = 60
@@ -415,7 +415,7 @@ local slider_w = 130
 -- Elements
 -- ------------------------------
 
-Part.Gui.Macros.drawGroupBox("Elements", group_x + 0, group_y, 185, 400)
+Part.Gui.Macros.drawGroupBox("Elements", group_x + 0, group_y, 185, 428)
 Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 -- visibility matrix
@@ -676,20 +676,20 @@ local slider_size_w = 90
 -- Elements
 -- ------------------------------
 
-Part.Gui.Macros.drawGroupBox("Elements", group_x + 0, group_y + 0, 210, 375)
+Part.Gui.Macros.drawGroupBox("Elements", group_x + 0, group_y + 0, 210, 410)
 Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 local visibility_data = {
     { label = "Env",      image = Part.Gui.Macros.icons.track.env,     separator = true,  index = 1 },
     { label = "Rec Arm",  image = Part.Gui.Macros.icons.track.recarm,  separator = false, index = 2 },
     { label = "Monitor",  image = Part.Gui.Macros.icons.track.recmon,  separator = true,  index = 3 },
-    { label = "Mute",     image = Part.Gui.Macros.icons.track.mute,    separator = false, index = 4 },
-    { label = "Solo",     image = Part.Gui.Macros.icons.track.solo,    separator = true,  index = 5 },
-    { label = "IO",       image = Part.Gui.Macros.icons.track.io,      separator = false, index = 6 },
-    { label = "Phase",    image = Part.Gui.Macros.icons.track.phase,   separator = true,  index = 7 },
+    { label = "Solo",     image = Part.Gui.Macros.icons.track.solo,    separator = false,  index = 4 },
+    { label = "Mute",     image = Part.Gui.Macros.icons.track.mute,    separator = true, index = 5 },
+    { label = "Phase",    image = Part.Gui.Macros.icons.track.phase,   separator = false,  index = 6 },
+    { label = "IO",       image = Part.Gui.Macros.icons.track.io,      separator = true, index = 7 },
     { label = "FX",       image = Part.Gui.Macros.icons.track.fx,      separator = false, index = 8 },
     { label = "In FX",    image = Part.Gui.Macros.icons.track.infx,    separator = true,  index = 9 },
-    { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = true, index = 10 },
+    { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = false, index = 10 },
     { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = false, index = 11 },
 }
 
@@ -975,15 +975,15 @@ local slider_size_w = 90
 -- Elements
 -- ------------------------------
 
-Part.Gui.Macros.drawGroupBox("Elements", group_x, group_y, 200, 240)
+Part.Gui.Macros.drawGroupBox("Elements", group_x, group_y, 200, 266)
 Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 local visibility_data = {
     { label = "Env",  image = Part.Gui.Macros.icons.track.env,  separator = true,  index = 1 },
-    { label = "Mute", image = Part.Gui.Macros.icons.track.mute, separator = false, index = 2 },
-    { label = "Solo", image = Part.Gui.Macros.icons.track.solo, separator = true,  index = 3 },
-    { label = "IO",   image = Part.Gui.Macros.icons.track.io,   separator = false, index = 4 },
-    { label = "Mono", image = Part.Gui.Macros.icons.track.mono, separator = true,  index = 5 },
+    { label = "Solo", image = Part.Gui.Macros.icons.track.solo, separator = false,  index = 2 },
+    { label = "Mute", image = Part.Gui.Macros.icons.track.mute, separator = true, index = 3 },
+    { label = "Mono", image = Part.Gui.Macros.icons.track.mono, separator = false,  index = 4 },
+    { label = "IO",   image = Part.Gui.Macros.icons.track.io,   separator = true, index = 5 },
     { label = "FX",   image = Part.Gui.Macros.icons.track.fx,   separator = false, index = 6 },
 }
 
@@ -1483,17 +1483,17 @@ Part.Gui.Macros.drawGroupBox("Buttons", group_x_elements, group_y, 170, 415)
 Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 local visibility_data = {
-    { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = true, index = 1 },
+    { label = "Input",    image = Part.Gui.Macros.icons.track.input,   separator = false, index = 1 },
     { label = "Rec Mode", image = Part.Gui.Macros.icons.track.recmode, separator = true,  index = 2 },
-    { label = "Rec Arm",  image = Part.Gui.Macros.icons.track.recarm,  separator = false, index = 3 },
-    { label = "Rec Mon",  image = Part.Gui.Macros.icons.track.recmon,  separator = true,  index = 4 },
-    { label = "In FX",    image = Part.Gui.Macros.icons.track.infx,    separator = false, index = 5 },
-    { label = "FX",       image = Part.Gui.Macros.icons.track.fx,      separator = true,  index = 6 },
-    { label = "Env",      image = Part.Gui.Macros.icons.track.env,     separator = true,  index = 7 },
-    { label = "IO",       image = Part.Gui.Macros.icons.track.io,      separator = false, index = 8 },
-    { label = "Phase",    image = Part.Gui.Macros.icons.track.phase,   separator = true,  index = 9 },
-    { label = "Mute",     image = Part.Gui.Macros.icons.track.mute,    separator = false, index = 10 },
-    { label = "Solo",     image = Part.Gui.Macros.icons.track.solo,    separator = false, index = 11 },
+    { label = "In FX",    image = Part.Gui.Macros.icons.track.infx,    separator = false, index = 3 },
+    { label = "FX",       image = Part.Gui.Macros.icons.track.fx,      separator = true,  index = 4 },
+    { label = "IO",       image = Part.Gui.Macros.icons.track.io,      separator = false, index = 5 },
+    { label = "Phase",    image = Part.Gui.Macros.icons.track.phase,   separator = true,  index = 6 },
+    { label = "Mute",     image = Part.Gui.Macros.icons.track.mute,    separator = false, index = 7 },
+    { label = "Solo",     image = Part.Gui.Macros.icons.track.solo,    separator = true, index = 8 },
+    { label = "Rec Arm",  image = Part.Gui.Macros.icons.track.recarm,  separator = false, index = 9 },
+    { label = "Rec Mon",  image = Part.Gui.Macros.icons.track.recmon,  separator = true,  index = 10 },
+    { label = "Env",      image = Part.Gui.Macros.icons.track.env,     separator = false,  index = 11 },
 }
 
 local matrix_data = {
@@ -1727,11 +1727,11 @@ Part.Gui.Macros.lastGroup():setTint("arrangement")
 
 local visibility_data = {
     { label = "FX",   image = Part.Gui.Macros.icons.track.fx,   separator = true,  index = 1 },
-    { label = "Env",  image = Part.Gui.Macros.icons.track.env,  separator = true,  index = 2 },
-    { label = "IO",   image = Part.Gui.Macros.icons.track.io,   separator = false, index = 3 },
-    { label = "Mono", image = Part.Gui.Macros.icons.track.mono, separator = true,  index = 4 },
-    { label = "Mute", image = Part.Gui.Macros.icons.track.mute, separator = false, index = 5 },
-    { label = "Solo", image = Part.Gui.Macros.icons.track.solo, separator = false, index = 6 },
+    { label = "IO",   image = Part.Gui.Macros.icons.track.io,   separator = false, index = 2 },
+    { label = "Mono", image = Part.Gui.Macros.icons.track.mono, separator = true,  index = 3 },
+    { label = "Mute", image = Part.Gui.Macros.icons.track.mute, separator = false, index = 4 },
+    { label = "Solo", image = Part.Gui.Macros.icons.track.solo, separator = true, index = 5 },
+    { label = "Env",  image = Part.Gui.Macros.icons.track.env,  separator = false,  index = 6 },
 }
 
 local matrix_data = {
