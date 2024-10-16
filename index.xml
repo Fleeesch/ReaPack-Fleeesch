@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Fleeesch" commit="6587067aa8dfe637e061fa22711868efba49169f">
+<index version="1" name="Fleeesch" commit="2cad2788dbf5b701a54c8094c1660b1f355e0930">
   <category name="themes">
     <reapack name="part.theme" type="theme" desc="paRt">
       <metadata>
-        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 paRt - plain adapting Reaper theme\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 paRt - plain adapting Reaper theme\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 A custom Reaper theme with a heavy focus on functionality.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs32 Features\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Features\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab 3 Theme files covering different brightness levels\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Support for zoom factors 100%, 125%, 150%, 175%, 200%, 225%, 250%\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Covers all Reaper V7 elements\par}
@@ -1779,17 +1779,63 @@ MacOS: fixed Theme Adjuster opening at the wrong size]]></changelog>
         <source type="data" file="paRt/splash/paRt_splash.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/6587067aa8dfe637e061fa22711868efba49169f/themes/paRt/splash/paRt_splash.png</source>
         <source type="data" file="paRt/splash/paRt_splash_x2.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/6587067aa8dfe637e061fa22711868efba49169f/themes/paRt/splash/paRt_splash_x2.png</source>
       </version>
+      <version name="1.2.1" author="Fleeesch" time="2024-10-16T11:51:38Z">
+        <changelog><![CDATA[- reorganized button layouts for more consistency across TCP / MCP
+- changed color of solo-elements to yellow
+- added orange color for mute-elements
+- Theme Adjuster: scaling is now quantized to zoom factors supported by the paRt theme files
+- Theme Adjuster: added space between element groups in visibility matrix]]></changelog>
+        <source file="paRt - Dark.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.2.1/part_dark.ReaperThemeZip</source>
+        <source file="paRt - Dimmed.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.2.1/part_dimmed.ReaperThemeZip</source>
+        <source file="paRt - Light.ReaperThemeZip">https://github.com/Fleeesch/paRt/releases/download/v1.2.1/part_light.ReaperThemeZip</source>
+        <source type="script" file="paRt/conf/defaults.partmap">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/conf/defaults.partmap</source>
+        <source type="script" file="paRt/lib/part_lib.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/part_lib.lua</source>
+        <source type="script" file="paRt/lib/res/icon/themeadj_sprites.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/icon/themeadj_sprites.lua</source>
+        <source type="script" file="paRt/lib/res/icon/themeadj_sprites.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/icon/themeadj_sprites.png</source>
+        <source type="script" file="paRt/lib/res/lua/bank.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/bank.lua</source>
+        <source type="script" file="paRt/lib/res/lua/color.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/color.lua</source>
+        <source type="script" file="paRt/lib/res/lua/color_palette.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/color_palette.lua</source>
+        <source type="script" file="paRt/lib/res/lua/control.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/control.lua</source>
+        <source type="script" file="paRt/lib/res/lua/control_bank.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/control_bank.lua</source>
+        <source type="script" file="paRt/lib/res/lua/cursor.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/cursor.lua</source>
+        <source type="script" file="paRt/lib/res/lua/draw.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/draw.lua</source>
+        <source type="script" file="paRt/lib/res/lua/functions.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/functions.lua</source>
+        <source type="script" file="paRt/lib/res/lua/gui.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/gui.lua</source>
+        <source type="script" file="paRt/lib/res/lua/gui_hints.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/gui_hints.lua</source>
+        <source type="script" file="paRt/lib/res/lua/layout.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/layout.lua</source>
+        <source type="script" file="paRt/lib/res/lua/macro.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/macro.lua</source>
+        <source type="script" file="paRt/lib/res/lua/map.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/map.lua</source>
+        <source type="script" file="paRt/lib/res/lua/map_macros.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/map_macros.lua</source>
+        <source type="script" file="paRt/lib/res/lua/message.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/message.lua</source>
+        <source type="script" file="paRt/lib/res/lua/parameter.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/parameter.lua</source>
+        <source type="script" file="paRt/lib/res/lua/parameter_map.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/parameter_map.lua</source>
+        <source type="script" file="paRt/lib/res/lua/tab.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/tab.lua</source>
+        <source type="script" file="paRt/lib/res/lua/var.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/var.lua</source>
+        <source type="script" file="paRt/lib/res/lua/version.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/lib/res/lua/version.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 1.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%201.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 2.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%202.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 3.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%203.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 4.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%204.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 5.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%205.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 6.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%206.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 7.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%207.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Load Bank 8.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Load%20Bank%208.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Restart Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Restart%20Theme%20Adjuster.lua</source>
+        <source main="main" type="script" file="paRt/paRt - Theme Adjuster.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/paRt%20-%20Theme%20Adjuster.lua</source>
+        <source type="data" file="paRt/splash/paRt_splash.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/splash/paRt_splash.png</source>
+        <source type="data" file="paRt/splash/paRt_splash_x2.png">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/2cad2788dbf5b701a54c8094c1660b1f355e0930/themes/paRt/splash/paRt_splash_x2.png</source>
+      </version>
     </reapack>
   </category>
   <metadata>
-    <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+    <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 ReaPack Repository of Fleeesch\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 ReaPack Repository of Fleeesch\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Here you can find my projects made for Reaper.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs32 Projects\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs28 paRt - plain adapting Reaper theme\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Projects\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 paRt - plain adapting Reaper theme\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 A quite bland but functional Reaper theme, made with compatiblity in mind.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 {\b {\field{\*\fldinst{HYPERLINK "https://github.com/Fleeesch/paRt"}}{\fldrslt{\ul
 GitHub Link
