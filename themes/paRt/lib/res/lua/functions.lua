@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -10,22 +10,27 @@
 
 local functions = {}
 
+--  Method : Print
+-- ------------------------------------------------
+function print(data)
+    reaper.ShowConsoleMsg(tostring(data) .. "\n")
+end
+
 --  Method : Print Table to Console
 -- ------------------------------------------------
 
-function functions.printTableToConsole(table, indent)
+function printTableToConsole(table, indent)
     indent = indent or ""
     for k, v in pairs(table) do
         local key = tostring(k)
         if type(v) == "table" then
-            reaper.ShowConsoleMsg(indent..key..":\n")
-            functions.printTableToConsole(v, indent.."  ")
+            reaper.ShowConsoleMsg(indent .. key .. ":\n")
+            functions.printTableToConsole(v, indent .. "  ")
         else
-            reaper.ShowConsoleMsg(indent..key.." = "..tostring(v).."\n")
+            reaper.ShowConsoleMsg(indent .. key .. " = " .. tostring(v) .. "\n")
         end
     end
 end
-
 
 --  Method : Check if String starts with a Phrase
 -- ------------------------------------------------
@@ -341,6 +346,4 @@ function functions.textBlock(input_txt, char_limit)
     return out
 end
 
-
 return functions
-

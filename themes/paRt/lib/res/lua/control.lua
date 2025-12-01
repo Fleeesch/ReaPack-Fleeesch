@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -1597,11 +1597,12 @@ function control.Hint.Hint:draw()
 
     -- set or release hover source as long as there is no ongoing mouse drag
     if Part.Gui.Mouse.Drag.isOff() then
+        
         if hover_count > 0 then
-            Part.Gui.Hint.hint_message:setSource(self)
+            Part.Hint.hint_message:setSource(self)
             control.Hint.target = self
-        elseif Part.Gui.Hint.hint_message.source == self then
-            Part.Gui.Hint.hint_message:clear()
+        elseif Part.Hint.hint_message.source == self then
+            Part.Hint.hint_message:clear()
             control.Hint.target = nil
         end
     end

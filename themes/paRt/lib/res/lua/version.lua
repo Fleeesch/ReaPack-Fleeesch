@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -22,9 +22,15 @@ version.version_adjuster = ""
 version.version_theme = ""
 version.version_theme_is_dev = false
 
+-- version nummeric values
+version.version_theme_value = 0
+version.version_adjuster_value = 0
+
 -- initial fixes
 version.universal_fixes_applied = false
 
+-- version comparison results
+version.theme_version_is_lower = false
 
 --  Method : Apply Legacy Fixes
 -- -------------------------------------------
@@ -33,6 +39,7 @@ version.universal_fixes_applied = false
 -- no requirement for version comparison in this case
 
 function version.applyLegacyFixes()
+    --
     --      Helper Function : Correct Parameter Values of a Group
     -- ==============================================================
     local function set_parameter_group_value(parameter_group, condition_value, target_value)
@@ -57,8 +64,7 @@ function version.applyLegacyFixes()
         end
     end
 
-    -- ==============================================================
-
+    -- ===============================================
     --  Fix : TCP Fader Placement
     -- ===============================================
 
@@ -85,6 +91,7 @@ end
 
 function version.setVersion(version_nr)
     version.version_adjuster = version_nr
+    version.version_adjuster_value = version.getNumericVersionValue(version.version_adjuster)
     version.getThemeVersion()
     version.handleVersionDifference()
 end
@@ -94,7 +101,29 @@ end
 
 function version.themeVersionIsValid()
     -- theme version must exist and be above 0
-    return version.version_theme_is_dev or (version.version_theme ~= nil and #version.version_theme > 0)
+    return version.version_theme_is_dev or
+        (version.version_theme ~= nil and #version.version_theme > 0)
+end
+
+--  Method : Numeric Version from Version String
+-- --------------------------------------------------
+
+function version.getNumericVersionValue(version_string)
+    local sum = 0
+    local idx = 0
+    local range = 10
+    for number in version_string:gmatch("%d") do
+        local value = (10 ^ range) * tonumber(number)
+
+        sum = sum + value
+
+        idx = idx + 1
+        range = range - 1
+        if range <= 0 then
+            break
+        end
+    end
+    return sum
 end
 
 --  Method : Get Theme Version
@@ -102,15 +131,12 @@ end
 
 function version.getThemeVersion()
     -- get first theme parameter
-
-
     local retval, desc, value, defValue, minValue, maxValue = reaper.ThemeLayout_GetParameter(0)
 
     if desc == nil then
         version.version_theme = ""
         return
     end
-
 
     if Part.Functions.stringStarts(desc, "paRt Theme") then
         local version_string = desc:match("v([0-9%.]+)")
@@ -128,53 +154,27 @@ function version.getThemeVersion()
         version.version_theme = ""
     end
 
+    -- numeric value
+    version.version_theme_value = version.getNumericVersionValue(version.version_theme)
+
     return version.version_theme
-end
-
---  Method : Compare Versions
--- -------------------------------------------
-
-function version.compareVersions(version1, version2)
-    local function splitVersion(version)
-        local parts = {}
-        for part in version:gmatch("([^.]+)") do
-            table.insert(parts, tonumber(part))
-        end
-        return parts
-    end
-
-    local v1 = splitVersion(version1)
-    local v2 = splitVersion(version2)
-
-    for i = 1, math.max(#v1, #v2) do
-        local part1 = v1[i] or 0
-        local part2 = v2[i] or 0
-        if part1 < part2 then
-            return version2
-        elseif part1 > part2 then
-            return version1
-        end
-    end
-
-    return "Equal"
 end
 
 --  Method : Detect Version Difference
 -- -------------------------------------------
 
--- there's no real version handling available currently,
--- just a bunch of simple parameter overrides
-
 function version.handleVersionDifference()
-    if version.version_theme ~= version.version_adjuster then
-        local version_latest = version.compareVersions(version.version_theme, version.version_adjuster)
+    -- default values
+    version.theme_version_is_lower = false
 
+    if version.version_theme ~= version.version_adjuster then
         -- Theme Adjuster has a lower version
-        if version_latest == version.version_theme then
+        if version.version_theme_value > version.version_adjuster_value then
         end
 
         -- Theme Adjuster has a higher version
-        if version_latest == version.version_adjuster then
+        if version.version_theme_value < version.version_adjuster_value then
+            version.theme_version_is_lower = true
         end
     end
 

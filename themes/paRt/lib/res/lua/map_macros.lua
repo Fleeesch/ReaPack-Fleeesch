@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -392,7 +392,7 @@ function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, 
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
     if has_bank then
         Part.Control.ButtonBank.ButtonBank:new(nil, parameter[2])
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     end
 
@@ -463,7 +463,7 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
     if has_bank then
         Part.Control.ButtonBank.ButtonBank:new(nil, parameter[2])
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     end
 
@@ -669,7 +669,7 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
     if has_bank then
         Part.Control.ButtonBank.ButtonBank:new(nil, parameter_slider[2])
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     else
         label_w = label_w + Part.Cursor.getCursorW() + Part.Cursor.getCursorPadX()
@@ -760,9 +760,9 @@ end
 function map_macros.drawMcpLayoutConfiguration(parameter)
     -- images
     local layouts = {
-        { value = 0, image = map_macros.icons.table.mcp_pan_layout_top,    hint = Part.Gui.Hint.Lookup.mcp_layout_fader_top },
-        { value = 1, image = map_macros.icons.table.mcp_pan_layout_strip,  hint = Part.Gui.Hint.Lookup.mcp_layout_strip },
-        { value = 2, image = map_macros.icons.table.mcp_pan_layout_bottom, hint = Part.Gui.Hint.Lookup.mcp_layout_block }
+        { value = 0, image = map_macros.icons.table.mcp_pan_layout_top,    hint = Part.Hint.Lookup.mcp_layout_fader_top },
+        { value = 1, image = map_macros.icons.table.mcp_pan_layout_strip,  hint = Part.Hint.Lookup.mcp_layout_strip },
+        { value = 2, image = map_macros.icons.table.mcp_pan_layout_bottom, hint = Part.Hint.Lookup.mcp_layout_block }
     }
 
     -- dimensions
@@ -779,7 +779,7 @@ function map_macros.drawMcpLayoutConfiguration(parameter)
 
     -- bank button
     local button = Part.Control.ButtonBank.ButtonBank:new(nil, parameter[2])
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, button, false)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, button, false)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- layout label
@@ -823,9 +823,9 @@ end
 function map_macros.drawMcpPanConfiguration(row_data)
     -- images
     local column_data = {
-        { image = map_macros.icons.table.mcp_fader_layout_knob, hint = Part.Gui.Hint.Lookup.mcp_panmode_fader_normal },
-        { image = map_macros.icons.table.mcp_fader_layout_vert, hint = Part.Gui.Hint.Lookup.mcp_panmode_fader_vertical },
-        { image = map_macros.icons.table.mcp_fader_layout_horz, hint = Part.Gui.Hint.Lookup.mcp_panmode_fader_horizontal }
+        { image = map_macros.icons.table.mcp_fader_layout_knob, hint = Part.Hint.Lookup.mcp_panmode_fader_normal },
+        { image = map_macros.icons.table.mcp_fader_layout_vert, hint = Part.Hint.Lookup.mcp_panmode_fader_vertical },
+        { image = map_macros.icons.table.mcp_fader_layout_horz, hint = Part.Hint.Lookup.mcp_panmode_fader_horizontal }
     }
 
     -- dimensions
@@ -839,7 +839,7 @@ function map_macros.drawMcpPanConfiguration(row_data)
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, header_h)
     Part.Control.ButtonBank.ButtonBank:new(nil, row_data[1].parameter[2])
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, button, false)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, button, false)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- starting corner header text
@@ -848,7 +848,7 @@ function map_macros.drawMcpPanConfiguration(row_data)
     text:parameterLabel()
     text:centerHorz()
     text:centerVert()
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.mcp_panmode, text, false)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_panmode, text, false)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- table header
@@ -912,9 +912,9 @@ end
 function map_macros.drawTcpFaderLayoutConfiguration(parameter)
     -- images
     local layouts = {
-        { value = 0, image = map_macros.icons.table.tcp_fader_layout_inline,   hint = Part.Gui.Hint.Lookup.tcp_fader_layout_inline },
-        { value = 2, image = map_macros.icons.table.tcp_fader_layout_explode,  hint = Part.Gui.Hint.Lookup.tcp_fader_layout_stacked },
-        { value = 3, image = map_macros.icons.table.tcp_fader_layout_vertical, hint = Part.Gui.Hint.Lookup.tcp_fader_layout_vertical }
+        { value = 0, image = map_macros.icons.table.tcp_fader_layout_inline,   hint = Part.Hint.Lookup.tcp_fader_layout_inline },
+        { value = 2, image = map_macros.icons.table.tcp_fader_layout_explode,  hint = Part.Hint.Lookup.tcp_fader_layout_stacked },
+        { value = 3, image = map_macros.icons.table.tcp_fader_layout_vertical, hint = Part.Hint.Lookup.tcp_fader_layout_vertical }
     }
 
     -- created icons
@@ -928,7 +928,7 @@ function map_macros.drawTcpFaderLayoutConfiguration(parameter)
 
     -- bank button
     local button = Part.Control.ButtonBank.ButtonBank:new(nil, parameter[2])
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, button, false)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, button, false)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- layout label
@@ -999,14 +999,14 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
     -- visibility header image
     local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.visbility)
-    hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility, image, false)
+    hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_visbility, image, false)
     hint:showHover(hover_offset_x, hover_offset_y)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- mixer-hide header image
     if has_mixer then
         local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.mixer_hide)
-        hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_nomixer, image, false)
+        hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_nomixer, image, false)
         hint:showHover(hover_offset_x, hover_offset_y)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     end
@@ -1014,7 +1014,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
     -- fader size header image
     Part.Cursor.setCursorSize(slider_w)
     local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.fader_size)
-    hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_size, image, false)
+    hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_size, image, false)
     hint:showHover(-40, hover_offset_y)
 
     Part.Cursor.destackCursor()
@@ -1030,7 +1030,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         -- bank button
         Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
         local button = Part.Control.ButtonBank.ButtonBank:new(nil, entry.par_vis[2])
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, button, false)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, button, false)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- fader label
@@ -1069,7 +1069,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         Part.Cursor.setCursorSize(30)
         local button = Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true,
             map_macros.button_percentage_label, 1)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.size_percentual, button, false)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, button, false)
 
         -- update row shader
         local label = map_macros.closeLabel()
@@ -1124,7 +1124,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
         -- bank button
         Part.Cursor.incCursor(offset, 0, 0, 0)
         Part.Control.ButtonBank.ButtonBank:new(nil, parameter_set[2])
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
         Part.Draw.Elements.lastElement():triggerBankUpdate()
         Part.Cursor.incCursor(24, 0, 0, 0)
 
@@ -1148,7 +1148,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
     -- visibility header column
     if parameter_visibility ~= nil then
         drawTableHeader(parameter_visibility, map_macros.icons.table.visbility)
-        local hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_visbility,
+        local hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_visbility,
             map_macros.getLastParameterLabel(),
             false)
         hint:showHover(hover_offset_x, hover_offset_y)
@@ -1157,7 +1157,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
     -- mixer-hide header column
     if parameter_mixer ~= nil then
         drawTableHeader(parameter_mixer, map_macros.icons.table.mixer_hide)
-        local hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_nomixer,
+        local hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_nomixer,
             map_macros.getLastParameterLabel(), false)
         hint:showHover(hover_offset_x, hover_offset_y)
     end
@@ -1165,7 +1165,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
     -- separator column
     if parameter_separator ~= nil then
         drawTableHeader(parameter_separator, map_macros.icons.table.separator)
-        local hint = Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.vismatrix_separator,
+        local hint = Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.vismatrix_separator,
             map_macros.getLastParameterLabel(),
             false)
         hint:showHover(hover_offset_x, hover_offset_y)
