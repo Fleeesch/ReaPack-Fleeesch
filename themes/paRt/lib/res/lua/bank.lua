@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.3
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -133,6 +133,7 @@ function bank.Functions.loadParameterFile(force, target_file_name)
     if target_file_name ~= nil then
         manual_load = true
     end
+    
 
     -- assume theme hasn't changed
     local same_theme = true
@@ -143,6 +144,13 @@ function bank.Functions.loadParameterFile(force, target_file_name)
 
         -- file not found
         if not file then
+            
+            -- if it's the parameters.partmap, do a reset
+            if not manual_load then
+                bank.Functions.hardResetAllParameters()
+                return
+            end
+
             --file = io.open(Part.Global.config_dir .. "/defaults.partmap", "r")
             Part.Message.Handler.showMessage(
                 'Couldn\'t find "' .. Part.Functions.extractFileName(file_name) .. '"', "!", "error")
