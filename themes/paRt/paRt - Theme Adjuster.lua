@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -22,11 +22,11 @@ package.path = path .. "?.lua"
 require("lib.part_lib")
 
 -- gui mapping
-Part.Gui.Theme.checkCurrentTheme()
+Part.Theme.checkCurrentTheme()
 Part.Gui.Macros = require("lib.res.lua.map_macros")
 require("lib.res.lua.map")
 
-Part.Version.setVersion("1.2.3")
+Part.Version.setVersion("1.2.4")
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 --  Method : Draw
@@ -50,7 +50,7 @@ function Part.draw()
 
     -- check if theme has changed
     if Part.Global.ticks > 0 then
-        Part.Gui.Theme.checkForThemeChange()
+        Part.Theme.checkForThemeChange()
     end
 
     -- update banks
@@ -72,7 +72,7 @@ function Part.draw()
 
 
     -- validate paRt theme
-    if Part.Gui.Theme.validateTheme() then
+    if Part.Theme.validateTheme() then
         if Part.Global.update_visible_elements then
             Part.Draw.Elements.filterVisibleElements()
         end
@@ -89,6 +89,9 @@ function Part.draw()
         -- static background graphics
         if Part.Draw.Buffer.buffer_bg:isOpen() then
             Part.Draw.Buffer.buffer_bg:activate()
+
+            -- control hint overlay
+            Part.Draw.Graphics.drawControlHints()
 
             -- layout elements
             for i = 1, #Part.List.visible_layout do
@@ -129,7 +132,7 @@ function Part.draw()
 
         
         -- draw single active hint
-        Part.Gui.Hint.hint_message:draw()
+        Part.Hint.hint_message:draw()
         
         -- pop-up messages
         Part.Gui.MessageHandler:draw()
@@ -245,7 +248,7 @@ function Part.exit(store_settings)
     Part.Gui.Window.storeWindow()
 
     -- create a snapshot if theme is valid
-    if Part.Gui.Theme.validateTheme() and store_settings ~= nil and store_settings then
+    if Part.Theme.validateTheme() and store_settings ~= nil and store_settings then
         Part.Bank.Functions.storeParameterFile()
     end
 
@@ -261,7 +264,7 @@ end
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 -- setup knob graphics
-Part.Draw.Sprites.createAssets()
+-- Part.Draw.Sprites.createAssets()
 
 -- create window
 Part.Gui.Window.initWindow()
@@ -270,7 +273,7 @@ Part.Draw.Buffer.buffer_bg:init()
 Part.Draw.Buffer.buffer_control:init()
 
 -- check for part theme before main loop begins
-if Part.Gui.Theme.validateTheme(true) then
+if Part.Theme.validateTheme(true) then
     -- draw once to initialize elements
     Part.draw()
 

@@ -2,7 +2,15 @@
 --      Part Custom Parameter Name Template
 -- ------------------------------------------------------------------------------
 
--- You can use this configuration file to rename the custom parameters
+--[[
+    Lookup-Table for Custom Parameter Labels.
+    
+    If you want to rename the labels of custom parameters in the Theme Adjuster,
+    you can copy this file and rename it to "custom_parameters.lua".
+
+    This file here serves as a fallback when there is no "custom_parameters.lua"
+    and will be overwritten with each update.
+]]-- 
 
 return {
     version="1.2.2",

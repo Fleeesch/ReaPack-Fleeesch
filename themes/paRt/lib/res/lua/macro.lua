@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -28,7 +28,7 @@ end
 function macro.SelectThemeWithoutGui(theme)
     
     -- try getting theme file
-    local theme_file = Part.Gui.Theme.validateLoadingTheme(theme)
+    local theme_file = Part.Theme.validateLoadingTheme(theme)
     
     -- abort if there is no valid theme file available
     if theme_file == nil then
@@ -39,7 +39,7 @@ function macro.SelectThemeWithoutGui(theme)
     
     Part.Bank.Functions.loadParameterFile(true)
     Part.Global.initial_load = true
-    Part.Gui.Theme.loadTheme(theme_file)
+    Part.Theme.loadTheme(theme_file)
     Part.Bank.Functions.loadParameterFile(true)
 
         -- force load the parameter file, skipping theme change comparison

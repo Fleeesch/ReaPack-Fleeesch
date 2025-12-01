@@ -1,11 +1,10 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     This section handles configurationis; originally this was the job of bank.lua before v1.2.2.
-    There's a bunch of stuff that should be moved to this file.
     ]] --
 
 local config = { Functions = {}, Handler = {}, Save = {}, Load = {}, HardReset = {}, Reset = {} }

@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -52,7 +52,9 @@ end
 
 -- ramining lua files
 Part.Gui = require("lib.res.lua.gui")
-Part.Gui.Hint.Lookup = require("lib.res.lua.gui_hints")
+Part.Theme = require("lib.res.lua.theme")
+Part.Hint = require("lib.res.lua.hint")
+Part.Hint.Lookup = require("lib.res.lua.hint_messages")
 Part.Message = require("lib.res.lua.message")
 Part.Cursor = require("lib.res.lua.cursor")
 Part.Color = require("lib.res.lua.color")
@@ -66,8 +68,6 @@ Part.Config = require("lib.res.lua.config")
 Part.Parameter.Map = require("lib.res.lua.parameter_map")
 Part.Macro = require("lib.res.lua.macro")
 Part.Version = require("lib.res.lua.version")
-
-
 
 --      Check if JS Extension is available
 -- -----------------------------------------

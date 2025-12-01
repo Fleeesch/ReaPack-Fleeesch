@@ -1,10 +1,16 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     Tools for drawing stuff; anything that actually puts the graphics on display.
+    
+    Includes:
+      - spritesheet creation
+      - screenbuffer processing
+      - graphical tools
+      - background drawing processes
 ]]
 
 local draw = { Buffer = {}, Elements = {}, Graphics = {}, Sprites = {} }
@@ -490,6 +496,22 @@ function draw.Graphics.drawThemeError()
         }
     }
 
+    -- alterantive string on version mismatch
+    if Part.Version.theme_version_is_lower then
+        str_header = "paRt Theme Version is outdated"
+
+        str_info = {
+            {
+                "Theme Adjuster Version: " .. Part.Version.version_adjuster,
+                "Theme Version: " .. Part.Version.version_theme
+            },
+            {
+                "Make sure your theme version is equal to or higher",
+                "than the Theme Adjuster version."
+            }
+        }
+    end
+
 
     -- update font size
     draw.Graphics.setFont(30)
@@ -695,7 +717,7 @@ end
 --  Method : Draw Controls
 -- -------------------------------------------
 
-function draw.Graphics.drawControls()
+function draw.Graphics.drawControlHints()
     --
     --  Helper Function: Draw Command Line
     -- =======================================
@@ -787,9 +809,6 @@ function draw.Graphics.drawBackground()
         Part.Color.setColor(Part.Color.Lookup.color_palette.theme_hint.modded, true)
         gfx.drawstr("MOD")
     end
-
-    -- control hint overlay
-    draw.Graphics.drawControls()
 end
 
 --  Method : Draw Theme Palette Sample
@@ -886,9 +905,8 @@ function draw.Graphics.drawInfoBar()
     -- update font
     draw.Graphics.setFont(12)
 
-    -- info bar string
-    local version_string = "v" .. Part.Version.version_theme
-    gfx.drawstr("paRt Theme Adjuster  -  v" .. Part.Version.version_theme)
+    -- version string
+    gfx.drawstr("paRt Theme Adjuster " .. Part.Version.version_adjuster .. "                 Theme Version " .. Part.Version.version_theme)
 
     --  Helper: Place Label
     -- =======================================

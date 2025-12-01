@@ -1,4 +1,4 @@
-@version 1.2.3
+@version 1.2.4
 @author Fleeesch
 @description paRt
 @links
@@ -33,4 +33,8 @@
   * Complete coverage of all Reaper V7 UI elements
   * Custom Theme Adjuster with extensive configuration options
 @changelog
-  - Bugfix: Initial Theme Adjuster Launch caused missing file error
+  - Github: Updated documentation
+  - Github: added PDF render of the user guide
+  - Theme Adjuster: added theme version requirement check
+  - Theme Adjuster: fixed false positives when trying to detect unpacked and modded themes
+  - Theme Adjuster: fixed bug that made config file saving impossible

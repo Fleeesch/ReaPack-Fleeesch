@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -157,7 +157,7 @@ function layout.BankBar.BankBar:setupButtons()
         if not bank:isGlobal() then
             -- create bank button
             local button = Part.Control.Config.SelectBank.ButtonBankSelect:new(nil, self.handler, bank.label, bank)
-            Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_slot_select, button, true)
+            Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_slot_select, button, true)
 
             Part.Draw.Elements.lastElement():setFontFlags("b")
 
@@ -182,7 +182,7 @@ function layout.BankBar.BankBar:setupButtons()
     -- copy button
     Part.Cursor.setCursorSize(self.button_w)
     local button = Part.Control.Config.Copy.ButtonBankCopy:new(nil, self.handler, "Copy")
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.bank_copy_mode, button, true)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_copy_mode, button, true)
 end
 
 --  Bank Bar : Tab Check
@@ -264,7 +264,7 @@ function layout.ConfigBar.ConfigBar:setupButtons()
     for i = 0, 7 do
         -- create config button
         local button = Part.Control.Config.SelectConfig.ButtonConfigSelect:new(nil, self.handler, tostring(i + 1), i)
-        Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_slot_select, button, true)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_slot_select, button, true)
 
         Part.Draw.Elements.lastElement():setFontFlags("b")
 
@@ -287,13 +287,13 @@ function layout.ConfigBar.ConfigBar:setupButtons()
     -- load to file using browser
     Part.Cursor.setCursorSize(35, self.button_h)
     button = Part.Control.Config.Load.ButtonConfigLoad:new(nil, self.handler, "Load")
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_slot_load, button, true)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_slot_load, button, true)
     Part.Draw.Elements.lastElement():useSelectedConfig()
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
     -- save from file using browser
     button = Part.Control.Config.Save.ButtonConfigSave:new(nil, self.handler, "Save")
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_slot_save, button, true)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_slot_save, button, true)
     Part.Draw.Elements.lastElement():useSelectedConfig()
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
@@ -307,13 +307,13 @@ function layout.ConfigBar.ConfigBar:setupButtons()
     -- -- load file
     -- if Part.Global.js_extension_available then
     --     button = Part.Control.Config.Load.ButtonConfigLoad:new(nil, self.handler, "Load File")
-    --     Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_load_from_file, button, true)
+    --     Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_load_from_file, button, true)
     --     Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
     -- end
     -- -- save file
     -- if Part.Global.js_extension_available then
     --     button = Part.Control.Config.Save.ButtonConfigSave:new(nil, self.handler, "Save File")
-    --     Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_save_to_file, button, true)
+    --     Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_save_to_file, button, true)
     -- end
 
     -- Part.Cursor.destackCursor()
@@ -325,7 +325,7 @@ function layout.ConfigBar.ConfigBar:setupButtons()
 
     -- reset values button
     button = Part.Control.Config.HardReset.ButtonConfigResetHard:new(nil, self.handler, "Reset")
-    Part.Control.Hint.Hint:new(nil, Part.Gui.Hint.Lookup.config_hard_reset, button, true)
+    Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_hard_reset, button, true)
 end
 
 --  Config Bar : Tab Check

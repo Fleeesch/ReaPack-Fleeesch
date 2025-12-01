@@ -1,4 +1,4 @@
--- @version 1.2.3
+-- @version 1.2.4
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -168,7 +168,7 @@ function bank.Functions.loadParameterFile(force, target_file_name)
 
             if success then
                 -- freeze
-                Part.Gui.Theme.freezeTheme()
+                Part.Theme.freezeTheme()
 
                 -- clear graphics buffer
                 Part.Draw.Buffer.clearCompleteBuffer()
@@ -208,7 +208,7 @@ function bank.Functions.loadParameterFile(force, target_file_name)
                 end
 
                 -- unfreeze
-                Part.Gui.Theme.unfreezeTheme()
+                Part.Theme.unfreezeTheme()
             else
                 -- error message
                 if not manual_load then
@@ -234,7 +234,7 @@ end
 
 function bank.Functions.hardResetAllParameters()
     -- freeze
-    Part.Gui.Theme.freezeTheme()
+    Part.Theme.freezeTheme()
 
     -- reset theme parameters
     for i = 1, #Part.List.theme_parameter do
@@ -247,7 +247,7 @@ function bank.Functions.hardResetAllParameters()
     end
 
     -- unfreeze
-    Part.Gui.Theme.unfreezeTheme()
+    Part.Theme.unfreezeTheme()
 end
 
 -- ==========================================================================================
@@ -427,7 +427,7 @@ function bank.Handler.BankHandler:update(force)
 
     -- bank selection happened or force is active?
     if self.bank_selected_last ~= self.bank_selected or (force ~= nil and force) then
-        Part.Gui.Theme.freezeTheme()
+        Part.Theme.freezeTheme()
 
         -- go through parameter sets
         for key, val in pairs(self.parameter_set) do
@@ -435,7 +435,7 @@ function bank.Handler.BankHandler:update(force)
             val:loadBank(self.bank_selected:getIndex())
         end
 
-        Part.Gui.Theme.unfreezeTheme()
+        Part.Theme.unfreezeTheme()
     end
 
     -- store current bank as last selected
