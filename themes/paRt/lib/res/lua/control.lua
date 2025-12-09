@@ -1,11 +1,11 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     Control Elements. Anything that can be clicked and modified by the user.
-    
+
     Contains also some unused stuff like knobs from previous versions.
 ]]
 
@@ -141,6 +141,11 @@ function control.Button.Button:new(o, parameter, toggle, text, target_value)
 
     o.functions = {}
 
+    -- sprite usage
+    o.use_sprite = false
+    o.sprite_off = nil
+    o.sprite_on = nil
+
     -- default colors
     o.color_bg_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.button.off_bg)
     o.color_fg_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.button.off_fg)
@@ -155,6 +160,17 @@ function control.Button.Button:new(o, parameter, toggle, text, target_value)
     end
 
     return o
+end
+
+--  Control : Button : Use Sprite
+-- -------------------------------------------
+
+function control.Button.Button:useSprite(sprite_name)
+    if sprite_name ~= nil then
+        self.use_sprite = true
+        self.sprite_off = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, sprite_name .. "_off", 1, false)
+        self.sprite_on = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, sprite_name .. "_on", 1, false)
+    end
 end
 
 --  Control : Button : Set Font Flags
@@ -409,12 +425,21 @@ function control.Button.Button:draw()
 
     -- draw background
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, self.color_border)
-    -- draw text
-    self:setFontFlags("b")
-    Part.Draw.Graphics.setFont(12, self.font_flags)
-    Part.Cursor.setCursorPos(x, y)
-    Part.Color.setColor(color_fg, true)
-    gfx.drawstr(self.text, self.flags, x + w, y + h)
+
+    -- draw text or sprite
+    if not self.use_sprite then
+        self:setFontFlags("b")
+        Part.Draw.Graphics.setFont(12, self.font_flags)
+        Part.Cursor.setCursorPos(x, y)
+        Part.Color.setColor(color_fg, true)
+        gfx.drawstr(self.text, self.flags, x + w, y + h)
+    else
+        if self.state then
+            self.sprite_on:draw()
+        else
+            self.sprite_off:draw()
+        end
+    end
 
     -- activation
     if action then
@@ -469,9 +494,13 @@ function control.ButtonBank.ButtonBank:new(o, parameter)
     o.color_border_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.button.bank.off_border)
     o.color_border_on = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.button.bank.on_border)
 
-    o.text = "+"
+    o.text = ""
 
     o.trigger_bank_update = true
+
+    -- visibility header image
+    o.image_bank_off = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, "bank_off", 1, false)
+    o.image_bank_on = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, "bank_on", 1, false)
 
     return o
 end
@@ -556,8 +585,14 @@ function control.ButtonBank.ButtonBank:draw()
     -- draw background
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, color_border)
 
-    -- draw text
+    -- symbol
+    if not self.state then
+        self.image_bank_off:draw()
+    else
+        self.image_bank_on:draw()
+    end
 
+    -- draw text
     self:setFontFlags("b")
     Part.Draw.Graphics.setFont(16, self.font_flags)
 
@@ -1597,7 +1632,6 @@ function control.Hint.Hint:draw()
 
     -- set or release hover source as long as there is no ongoing mouse drag
     if Part.Gui.Mouse.Drag.isOff() then
-        
         if hover_count > 0 then
             Part.Hint.hint_message:setSource(self)
             control.Hint.target = self

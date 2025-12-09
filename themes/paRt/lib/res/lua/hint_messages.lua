@@ -1,4 +1,4 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -48,7 +48,8 @@ hint.line_fader_vertical = { type = hint.HintTypes.attention, text = "Vertical-F
 hint.line_fader_stacked = { type = hint.HintTypes.attention, text = "Stacked-Faders mode ignores this setting and uses the volume fader size instead." }
 
 -- warnings
-hint.line_warning_overwrite = { type = hint.HintTypes.warning, text = "This will irreversibly overwrite data." }
+hint.line_warning_overwrite = { type = hint.HintTypes.warning, text = "This will irreversibly overwrite unsaved data." }
+hint.line_warning_overwrite_copy = { type = hint.HintTypes.warning, text = "This will irreversibly overwrite the target banks data." }
 
 -- requirements
 hint.line_requirement_rejs = { type = hint.HintTypes.attention, text = "Requires Rejs_ReaScriptAPI. If issues occur, fallback to the configuration slots." }
@@ -886,7 +887,7 @@ hint.mcp_master_menu_button = {
 -- bank slot select
 hint.bank_slot_select = {
     { type = hint.HintTypes.normal, text = "Sets the active slot in the Bank System." },
-    { type = hint.HintTypes.tip,    text = "Use the [+] buttons to enable bank support for the respective parameter." },
+    { type = hint.HintTypes.tip,    text = "Use the [⇆] buttons to enable bank support for the respective parameter." },
     { type = hint.HintTypes.tip,    text = "Bank slots can also be selected via Theme Adjuster, optional transport buttons or custom paRt scripts." },
 }
 
@@ -898,7 +899,7 @@ hint.bank_copy_mode = {
     { type = hint.HintTypes.tip,       text = "1. Activate copy mode" },
     { type = hint.HintTypes.tip,       text = "2. Select target banks" },
     { type = hint.HintTypes.tip,       text = "3. Press the Copy Bank button to confirm" },
-    { type = hint.HintTypes.warning,   text = "This will irreversibly overwrite data." },
+    hint.line_warning_overwrite_copy
 }
 
 -- config slot select
@@ -915,6 +916,7 @@ hint.config_slot_save = {
 hint.config_slot_load = {
     { type = hint.HintTypes.normal,    text = "Loads all Theme Adjuster settings from the current configuration slot." },
     { type = hint.HintTypes.attention, text = "If the slot is empty, the Theme Adjuster will fall back to a pre-defined default configuration." },
+    hint.line_warning_overwrite
 }
 
 -- config save to file
@@ -935,14 +937,14 @@ hint.config_load_from_file = {
 hint.config_load_default = {
     { type = hint.HintTypes.normal,    text = "Loads an optimized default configuration." },
     { type = hint.HintTypes.attention, text = "Requires pressing the button twice as a safety measure." },
-    { type = hint.HintTypes.warning,   text = "This will irreversibly overwrite data." },
+    hint.line_warning_overwrite
 }
 
 -- config hard reset
 hint.config_hard_reset = {
     { type = hint.HintTypes.normal,    text = "Resets all parameters to their hard-coded default values." },
     { type = hint.HintTypes.attention, text = "Requires pressing the button twice as a safety measure." },
-    { type = hint.HintTypes.warning,   text = "This will irreversibly overwrite data." },
+    hint.line_warning_overwrite
 }
 
 --      Custom

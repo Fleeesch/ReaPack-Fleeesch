@@ -1,4 +1,4 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -95,8 +95,8 @@ map_macros.knob_w = 16
 map_macros.slider_w = 90
 map_macros.slider_offset = 0
 map_macros.slider_h = 14
-map_macros.slider_button_w = 30
-map_macros.paramter_monitor_w = 30
+map_macros.slider_button_w = 18
+map_macros.paramter_monitor_w = 24
 
 map_macros.group_pad_x = 10
 map_macros.group_pad_y = 30
@@ -647,11 +647,11 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     local slider_size = slider_w or 50
 
     if parameter_toggle then
-        slider_size = slider_size - 30
+        label_w = label_w - (map_macros.slider_button_w + Part.Cursor.getCursorPadX())
     end
 
     if show_monitoring then
-        slider_size = slider_size - 30
+        label_w = label_w - (map_macros.paramter_monitor_w + Part.Cursor.getCursorPadX())
     end
 
 
@@ -674,6 +674,36 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     else
         label_w = label_w + Part.Cursor.getCursorW() + Part.Cursor.getCursorPadX()
     end
+
+    -- additional toggle parameter
+    if parameter_toggle ~= nil then
+        local label = toggle_button_label
+
+        if parameter_toggle_label ~= nil then
+            label = parameter_toggle_label
+        end
+
+        -- toggle button
+        Part.Cursor.setCursorSize(map_macros.slider_button_w, nil)
+        toggle_button = Part.Control.Button.Button:new(nil, parameter_toggle, true, label, 1)
+        toggle_button:useSprite("stretch")
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+    end
+
+    -- additional parameter monitor
+    if show_monitoring then
+        Part.Cursor.setCursorSize(map_macros.paramter_monitor_w)
+
+        if monitoring_has_bank then
+            Part.Layout.Text.Text:new(nil, "", parameter_slider[1])
+        else
+            Part.Layout.Text.Text:new(nil, "", parameter_slider)
+        end
+
+        Part.Draw.Elements.lastElement():parameterMonitor(monitoring_multiplier)
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+    end
+
 
     -- parameter label
     if label then
@@ -704,39 +734,10 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
         slider:valueFillBi()
     end
 
-    -- additional parameter monitor
-    if show_monitoring then
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0, 2, 0)
-        Part.Cursor.setCursorSize(map_macros.paramter_monitor_w)
-
-        if monitoring_has_bank then
-            Part.Layout.Text.Text:new(nil, "", parameter_slider[1])
-        else
-            Part.Layout.Text.Text:new(nil, "", parameter_slider)
-        end
-
-        Part.Draw.Elements.lastElement():parameterMonitor(monitoring_multiplier)
-    end
-
     -- box width
     local frame_w = Part.Cursor.getCursorX() - frame_x + Part.Cursor.getCursorW()
 
     Part.Cursor.destackCursor()
-
-    -- additional toggle parameter
-    if parameter_toggle ~= nil then
-        local label = toggle_button_label
-
-        if parameter_toggle_label ~= nil then
-            label = parameter_toggle_label
-        end
-
-        -- toggle button
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
-        Part.Cursor.setCursorSize(map_macros.slider_button_w, nil)
-        toggle_button = Part.Control.Button.Button:new(nil, parameter_toggle, true, label, 1)
-    end
-
 
     -- update background label
     map_macros.closeLabel()
@@ -976,7 +977,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
     -- default dimensions
     if label_w == nil then label_w = 40 end
-    if slider_w == nil then slider_w = 110 end
+    if slider_w == nil then slider_w = 140 - map_macros.slider_button_w end
 
     -- icon width
     local icon_w = 20
@@ -1033,6 +1034,14 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, button, false)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
+        -- scale button
+        Part.Cursor.setCursorSize(map_macros.slider_button_w)
+        local toggle_button = Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true,
+            map_macros.button_percentage_label, 1)
+            toggle_button:useSprite("stretch")
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, toggle_button, false)
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+
         -- fader label
         Part.Cursor.setCursorSize(label_w, Part.Cursor.getCursorH())
         Part.Layout.Text.Text:new(nil, entry.label)
@@ -1064,12 +1073,6 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         Part.Cursor.destackCursor()
 
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
-
-        -- scale button
-        Part.Cursor.setCursorSize(30)
-        local button = Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true,
-            map_macros.button_percentage_label, 1)
-        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, button, false)
 
         -- update row shader
         local label = map_macros.closeLabel()
@@ -1118,15 +1121,11 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
         -- table.insert(label_columns, Part.Layout.Label.Label:new(nil))
 
         Part.Cursor.stackCursor()
-
-        local offset = -24
-
-        -- bank button
-        Part.Cursor.incCursor(offset, 0, 0, 0)
-        Part.Control.ButtonBank.ButtonBank:new(nil, parameter_set[2])
-        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
-        Part.Draw.Elements.lastElement():triggerBankUpdate()
-        Part.Cursor.incCursor(24, 0, 0, 0)
+        
+        -- bank button        
+        local bank_button = Part.Control.ButtonBank.ButtonBank:new(nil, parameter_set[2])
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)        
+        Part.Cursor.incCursor(0, 20, 0, 0)
 
         -- image
         local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, icon)
@@ -1178,6 +1177,7 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
 
     -- row starting position
     Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
+    Part.Cursor.incCursor(0, 14)
 
     -- rigthmost position
     local rows_max_x = 0

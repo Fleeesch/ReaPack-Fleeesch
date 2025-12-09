@@ -1,4 +1,4 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -937,14 +937,12 @@ function draw.Graphics.drawInfoBar()
     label_x = x + Part.Functions.rescale(16)
     label_y = y + h + Part.Functions.rescale(6)
 
-    place_frame(label_x, label_y, icon_size, icon_size)
+    -- place_frame(label_x, label_y, icon_size, icon_size)
 
     gfx.x = label_x
     gfx.y = label_y
     Part.Color.setColor(color_label_frame, true)
     draw.Graphics.setFont(20)
-
-    gfx.drawstr("+", 5, gfx.x + Part.Functions.rescale(icon_size), gfx.y + Part.Functions.rescale(icon_size - 3))
 
     -- bank label
     label_x = x + Part.Functions.rescale(40)
