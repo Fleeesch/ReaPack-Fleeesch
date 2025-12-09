@@ -1,11 +1,11 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     Non-interactive Graphical elements that are handled in a pseudo-OOP style.
-]]--
+]] --
 
 local layout = { BankBar = {}, ConfigBar = {}, Group = {}, Label = {}, Text = {}, Image = {}, Spritesheet = {}, Sprite = {}, Line = {}, Box = {}, Function = {} }
 
@@ -167,12 +167,6 @@ function layout.BankBar.BankBar:setupButtons()
             -- register bank button
             table.insert(self.bank_buttons, Part.Draw.Elements.lastElement())
 
-            -- linebreak
-            -- if (idx - 1) % 4 == 0 then
-            --     button_x_end = Part.Cursor.getCursorX()
-            --     Part.Cursor.setCursorPos(button_x, Part.Cursor.getCursorY())
-            --     Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
-            -- end
         end
     end
 
@@ -1383,7 +1377,7 @@ end
 
 layout.Sprite.Sprite = layout.LayoutElement:new()
 
-function layout.Sprite.Sprite:new(o, spritesheet, name, alpha)
+function layout.Sprite.Sprite:new(o, spritesheet, name, alpha, draw_to_buffer)
     o = o or layout.LayoutElement:new(o)
     setmetatable(o, self)
     self.__index = self
@@ -1392,6 +1386,9 @@ function layout.Sprite.Sprite:new(o, spritesheet, name, alpha)
     o.name = name
 
     o.alpha = alpha or 1
+
+    -- can be excluded from buffer -> requires manual drawing call
+    o.draw_to_buffer = draw_to_buffer or true
 
     -- justification
     o.justHorz = 0
@@ -1411,7 +1408,9 @@ function layout.Sprite.Sprite:new(o, spritesheet, name, alpha)
     Part.Cursor.applyCursorToTarget(o)
 
     -- register sprite in list
-    table.insert(Part.List.layout, o)
+    if o.draw_to_buffer then
+        table.insert(Part.List.layout, o)
+    end
 
     return o
 end
@@ -1437,7 +1436,6 @@ end
 function layout.Sprite.Sprite:setScaleFactor(factor)
     self.scale_factor = factor or 1
 end
-
 
 -- Sprite : Justify
 -- -------------------------------------------
@@ -1481,7 +1479,7 @@ function layout.Sprite.Sprite:draw()
     gfx.a = self.alpha
 
     -- draw sprite
-    self.spritesheet:drawSprite(self.name, x, y, w, h, self.justHorz, self.justVert,self.scale_factor)
+    self.spritesheet:drawSprite(self.name, x, y, w, h, self.justHorz, self.justVert, self.scale_factor)
 end
 
 -- ==========================================================================================

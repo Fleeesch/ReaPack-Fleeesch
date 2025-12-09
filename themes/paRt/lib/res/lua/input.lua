@@ -1,4 +1,0 @@
--- @version 1.2.4
--- @author Fleeesch
--- @description paRt Theme Adjuster
--- @noIndex

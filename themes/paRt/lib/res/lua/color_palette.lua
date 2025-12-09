@@ -1,4 +1,4 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -9,7 +9,7 @@
     The base palette is used by the dark theme by default.
     The themes use the base palette as their basis and then overwrite the original entries
     with their own individual values.
-]]--
+]] --
 
 local color = {}
 
@@ -634,7 +634,7 @@ color.color_light = {
     },
 
     -- Background
-    bg = { 200, 200, 200 },
+    bg = { 250, 250, 250 },
 
     -- Markers
     line = { 0, 0, 0, 0.5 },
@@ -704,9 +704,9 @@ color.color_light = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 180, 180, 180 },
-        bg = { 120, 120, 120 },
-        fg = { 210, 210, 210 },
+        backdrop = { 210,210,210 },
+        bg = { 150, 150, 150 },
+        fg = { 230,230,230 },
         label = {
             fg = { 70, 70, 70 },
             frame = { 140, 140, 140 }
@@ -760,7 +760,7 @@ color.color_light = {
     --  Hover Hint Message
     -- ---------------------
     hint = {
-        stage_bg = { 200, 200, 200 },
+        stage_bg = { 235, 235, 235 },
         bg = { 255, 255, 255, 1 },
         fg = { 50, 50, 50 },
         highlight_fg = { 50, 50, 50 },
@@ -826,30 +826,30 @@ color.color_light = {
     --  Tab Selection
     -- --------------------------
     tab = {
-        bg = { 230, 230, 230 },
-        bg_sub = { 200, 200, 200 },
+        bg = { 250, 250, 250 },
+        bg_sub = { 250, 250, 250 },
         off_bg = { 230, 230, 230 },
-        off_fg = { 125, 125, 125 },
-        on_bg = { 200, 200, 200 },
+        off_fg = { 145, 145, 145 },
+        on_bg = { 250, 250, 250 },
         on_fg = { 0, 0, 0 },
         sub = {
-            off_bg = { 200, 200, 200 },
-            off_fg = { 80, 80, 80 },
+            off_bg = { 250, 250, 250 },
+            off_fg = { 140, 140, 140 },
             on_fg = { 0, 0, 0 },
         },
-        shadow = { 0, 0, 0, 0.2 }
+        shadow = { 0, 0, 0, 0.1 }
     },
 
     --  Element Groups
     -- --------------------------
     group = {
-        bg = { 180, 180, 180 },
+        bg = { 235, 235, 235 },
         fg = { 80, 80, 80, 1 },
         border = { 0, 0, 0, 0 },
 
         header = {
-            fg = { 225, 225, 225 },
-            bg = { 125, 125, 125 },
+            fg = { 255,255,255 },
+            bg = { 160,160,160 },
             border = { 255, 255, 255, 0.25 }
         },
         inline_header = {

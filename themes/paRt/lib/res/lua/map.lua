@@ -1,4 +1,4 @@
--- @version 1.2.4
+-- @version 1.2.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -75,12 +75,11 @@ Part.Cursor.destackCursor()
 Part.Cursor.setCursorPos(420, Part.Global.win_h - Part.Cursor.getCursorH())
 Part.Gui.ConfigBar = Part.Layout.ConfigBar.ConfigBar:new(nil, Part.Config.Handler)
 
--- logo
--- Part.Cursor.setCursorSize(100, Part.Cursor.getCursorH())
--- Part.Cursor.setCursorPos(720, 528)
--- local sprite = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, "logo")
--- sprite:setScaleFactor(0.65)
--- sprite:setCenterBehaviour(false, false, true)
+-- bank symbol
+Part.Cursor.setCursorSize(20, 20)
+Part.Cursor.setCursorPos(10, 520)
+local sprite = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, "bank_l")
+sprite:setCenterBehaviour(false, false, true)
 
 -- ===========================================================================
 --      Message Handler
@@ -671,7 +670,7 @@ Part.Gui.Macros.nextSection(section_w)
 -- bank button count
 Part.Cursor.stackCursor()
 slider = Part.Gui.Macros.drawSliderGroup(false, Part.Parameter.Map.par_trans_settings_theme_bank, false, slider_w,
-    "paRt Bank Buttons", label_w, nil, nil, true)
+    "Bank Buttons", label_w, nil, nil, true)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.transport_bank_buttons, slider, true)
 Part.Gui.Macros.nextLine()
 
@@ -1011,8 +1010,8 @@ Part.Cursor.incCursor(0, 4)
 
 -- Button Wrapping
 local selection = {
-    { label = "L",    value = 1, width = 35 },
-    { label = "M",   value = 2, width = 40 },
+    { label = "L", value = 1, width = 35 },
+    { label = "M", value = 2, width = 40 },
     { label = "S", value = 3, width = 40 }
 }
 
@@ -1191,8 +1190,8 @@ Part.Cursor.incCursor(0, 4)
 
 -- Button Wrapping
 local selection = {
-    { label = "L",    value = 1, width = 35 },
-    { label = "M",   value = 2, width = 40 },
+    { label = "L", value = 1, width = 35 },
+    { label = "M", value = 2, width = 40 },
     { label = "S", value = 3, width = 40 }
 }
 
@@ -1361,8 +1360,8 @@ Part.Cursor.incCursor(0, 4)
 
 -- Button Wrapping
 local selection = {
-    { label = "L",    value = 1, width = 35 },
-    { label = "M",   value = 2, width = 40 },
+    { label = "L", value = 1, width = 35 },
+    { label = "M", value = 2, width = 40 },
     { label = "S", value = 3, width = 40 }
 }
 
@@ -1787,7 +1786,7 @@ Part.Gui.Macros.nextLine()
 -- Expand Threshold
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_track_meter_expand_threshold, false,
     slider_w,
-    "Channel Threshold", label_w, nil, nil, true, true, 1, 2)
+    "Threshold", label_w, nil, nil, true, true, 1, 2)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_meter_channel_expansion_threshold, slider, true)
 Part.Gui.Macros.nextLine()
 
@@ -1823,14 +1822,14 @@ Part.Cursor.incCursor(0, 4, 0, 0)
 
 -- Width
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_track_fader_pan_width, false, slider_w,
-    "Panning Width", label_w)
+    "Pan Width", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_pan_section_width, slider,
     true)
 Part.Gui.Macros.nextLine()
 
 -- Height
 slider, button = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_track_fader_pan_height, false,
-    slider_w, "Panning Height", label_w,
+    slider_w, "Pan Height", label_w,
     Part.Parameter.Map.par_mcp_track_fader_pan_height_scale[1])
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_pan_section_height, slider, true)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, button, true)
@@ -1953,14 +1952,14 @@ Part.Cursor.incCursor(0, 4, 0, 0)
 
 -- Width
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_master_fader_pan_width, false, slider_w,
-    "Panning Width", label_w)
+    "Pan Width", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_pan_section_width, slider,
     true)
 Part.Gui.Macros.nextLine()
 
 -- Height
 slider, button = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_master_fader_pan_height, false,
-    slider_w, "Panning Height", label_w,
+    slider_w, "Pan Height", label_w,
     Part.Parameter.Map.par_mcp_master_fader_pan_height_scale[1])
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.mcp_pan_section_height, slider, true)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, button, true)
