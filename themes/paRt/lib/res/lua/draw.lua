@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -491,13 +491,13 @@ function draw.Graphics.drawThemeError()
         {
             "Examples:",
             "Part - Dark.ReaperThemeZip",
-            "part_dimmmed.ReaperThemeZip",
+            "part_dimmed.ReaperThemeZip",
             "part is light.ReaperTheme"
         }
     }
 
     -- alterantive string on version mismatch
-    if Part.Version.theme_version_is_lower then
+    if Part.Global.theme_is_part and Part.Version.theme_version_is_lower then
         str_header = "paRt Theme Version is outdated"
 
         str_info = {

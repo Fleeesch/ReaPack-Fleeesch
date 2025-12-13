@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -280,6 +280,9 @@ function config.ButtonConfig:draw()
 
     -- background
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, color_border)
+    
+    -- font
+    Part.Draw.Graphics.setFont(13, self.font_flags)
 
     -- submit handling
     if self:submitPending() then
@@ -288,14 +291,16 @@ function config.ButtonConfig:draw()
         local sub_w = Part.Functions.map(self.submit_counter, 0, self.submit_time, 0, inner_w)
 
         Part.Draw.Graphics.drawRectangle(inner_x, inner_y, sub_w, inner_h, color_submit)
+        
+        -- font override when highlighted
+        Part.Draw.Graphics.setFont(13, "b")
     end
-
 
     -- text
     local text_out = self:getOutputText()
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
-    Part.Draw.Graphics.setFont(13, self.font_flags)
+    
     gfx.drawstr(text_out, self.flags, x + w, y + h)
 
     -- highlight overlay

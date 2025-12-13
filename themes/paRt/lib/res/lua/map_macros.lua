@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -190,6 +190,7 @@ end
 
 function map_macros.openLabel()
     map_macros.label = Part.Layout.Label.Label:new(nil)
+    map_macros.label:expand(2,1)
     return map_macros.label
 end
 
@@ -208,7 +209,7 @@ function map_macros.closeLabel(x, y)
     end
 
     map_macros.label.dim_w = w
-    map_macros.label.dim_h = h
+    map_macros.label.dim_h = h + 2
 
     return map_macros.label
 end
@@ -684,10 +685,10 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
         end
 
         -- toggle button
-        Part.Cursor.setCursorSize(map_macros.slider_button_w, nil)
+        Part.Cursor.setCursorSize(map_macros.slider_button_w, Part.Cursor.getCursorH())
         toggle_button = Part.Control.Button.Button:new(nil, parameter_toggle, true, label, 1)
         toggle_button:useSprite("stretch")
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+        Part.Cursor.incCursor(map_macros.slider_button_w, 0)
     end
 
     -- additional parameter monitor
@@ -984,7 +985,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
     Part.Cursor.stackCursor()
     Part.Cursor.setCursorSize(icon_w, map_macros.line_h)
-    Part.Cursor.incCursor(label_w + 20, 0)
+    Part.Cursor.incCursor(label_w + 40, 0)
 
     -- check if mixer-hide is available
     local has_mixer = false
@@ -1035,11 +1036,11 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- scale button
-        Part.Cursor.setCursorSize(map_macros.slider_button_w)
+        Part.Cursor.setCursorSize(map_macros.slider_button_w, Part.Cursor.getCursorH())
         local toggle_button = Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true,
             map_macros.button_percentage_label, 1)
             toggle_button:useSprite("stretch")
-        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, toggle_button, false)
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, toggle_button, false)    
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- fader label
@@ -1072,7 +1073,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
         Part.Cursor.destackCursor()
 
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(),0)
 
         -- update row shader
         local label = map_macros.closeLabel()

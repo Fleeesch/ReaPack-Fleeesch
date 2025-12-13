@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -643,7 +643,7 @@ local visibility_data = {
     { label = "Play",       image = Part.Gui.Macros.icons.transport.play,       separator = true,  index = 5 },
     { label = "Record",     image = Part.Gui.Macros.icons.transport.record,     separator = true,  index = 6 },
     { label = "Repeat",     image = Part.Gui.Macros.icons.transport.loop,       separator = true,  index = 7 },
-    { label = "Automation", image = Part.Gui.Macros.icons.transport.automation, separator = true,  index = 8 },
+    { label = "Automation", image = Part.Gui.Macros.icons.transport.automation, separator = false,  index = 8 },
     { label = "Bpm",        image = Part.Gui.Macros.icons.transport.bpm,        separator = false, index = 9 },
     { label = "Status",     image = Part.Gui.Macros.icons.transport.status,     separator = false, index = 10 },
     { label = "Selection",  image = Part.Gui.Macros.icons.transport.selection,  separator = false, index = 11 }
@@ -799,7 +799,7 @@ Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
 group = Part.Gui.Macros.drawGroupBox("Folders", group_x, Part.Cursor.getCursorY(), group_w, 355)
 
 -- folder indentation
-Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_folder_indent, false, slider_w,
+local slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_folder_indent, false, slider_w,
     "Indentation",
     label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_folder_indent, slider, true)
@@ -2098,10 +2098,10 @@ local group_y = Part.Cursor.getCursorY()
 -- distancer between rows
 local custom_spacer = 10
 
--- Range Parameters
+-- Range Adjustments
 -- ------------------------------
 
-group = Part.Gui.Macros.drawGroupBox("Custom Adjustments", group_x, group_y, group_w, 420)
+group = Part.Gui.Macros.drawGroupBox("Range Adjustments", group_x, group_y, group_w, 420)
 
 local custom_parmaeter_settings = Part.Parameter.CustomParameterSettings
 
@@ -2165,12 +2165,12 @@ end
 group:stretchToPosition(nil, bottom_y)
 
 
--- Selections
+-- Multiple Choice Buttons
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 group_x = Part.Cursor.getCursorX()
-Part.Gui.Macros.drawGroupBox("Custom Selections", group_x, group_y, group_w, 220)
+Part.Gui.Macros.drawGroupBox("Multiple-Choice", group_x, group_y, group_w, 220)
 
 -- definition
 local parameters = {
@@ -2239,12 +2239,12 @@ end
 
 
 
--- Buttons
+-- Toggle Buttons
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
 group_y = Part.Cursor.getCursorY()
-group = Part.Gui.Macros.drawGroupBox("Custom Buttons", group_x, group_y, group_w, 220)
+group = Part.Gui.Macros.drawGroupBox("Toggle Buttons", group_x, group_y, group_w, 220)
 
 -- definition
 local parameters = {

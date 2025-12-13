@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -509,8 +509,8 @@ end
 -- -------------------------------------------
 
 function control.ButtonBank.ButtonBank:prepare()
-    local w = 14
-    local h = 14
+    local w = 16
+    local h = 16
 
     self.draw_w = Part.Functions.rescale(w)
     self.draw_h = Part.Functions.rescale(h)
