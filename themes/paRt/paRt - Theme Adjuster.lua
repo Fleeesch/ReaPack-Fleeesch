@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -26,7 +26,7 @@ Part.Theme.checkCurrentTheme()
 Part.Gui.Macros = require("lib.res.lua.map_macros")
 require("lib.res.lua.map")
 
-Part.Version.setVersion("1.2.5")
+Part.Version.setVersion("1.2.6")
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 --  Method : Draw
@@ -263,7 +263,6 @@ end
 --  Main Process
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
--- @deprecated - no knob spritesheets needd since v1.2.2 since there are no knobs
 -- setup knob graphics
 -- Part.Draw.Sprites.createAssets()
 

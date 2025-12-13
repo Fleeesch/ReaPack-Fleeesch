@@ -1,4 +1,4 @@
--- @version 1.2.2
+-- @version 1.2.6
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -23,6 +23,14 @@ local color = {}
 
 -- global colors
 color.color_base = {
+
+    --  Modulation
+    -- ------------------
+    mod = {
+        lighten_hover = 0.075,
+        lighten_click = 0.15,
+        lighten_hint = { 1.025, 0.025 }
+    },
 
     -- Sample
     -- ------------------
@@ -75,14 +83,7 @@ color.color_base = {
         modded = { 255, 150, 150, 0.4 }
     },
 
-    --  Modulation
-    -- ------------------
-    mod = {
-        lighten_hover = 0.1,
-        lighten_click = 0.3,
-        lighten_hint = { 1.05, 0.05 }
-    },
-
+    
     --  Buttons
     -- ------------------
     button = {
@@ -228,7 +229,7 @@ color.color_base = {
 
         monitor = {
             fg = { 180, 180, 180, 1 },
-            bg = { 50, 50, 50, 1 },
+            bg = { 30, 30, 30, 1 },
             border = { 0, 0, 0, 0 }
         }
 
@@ -402,13 +403,7 @@ color.color_dimmed = {
         modded = { 255, 150, 150, 0.5 }
     },
 
-    --  Modulation
-    -- ------------------
-    mod = {
-        lighten_hover = 0.1,
-        lighten_click = 0.3,
-    },
-
+    
     --  Buttons
     -- ------------------
     button = {
@@ -531,7 +526,7 @@ color.color_dimmed = {
         },
 
         monitor = {
-            fg = { 180, 180, 180, 1 },
+            fg = { 200, 200, 200, 1 },
             bg = { 50, 50, 50, 1 },
             border = { 0, 0, 0, 0 }
         }
@@ -669,23 +664,16 @@ color.color_light = {
         modded = { 150, 25, 25, 0.5 }
     },
 
-    --  Modulation
-    -- ------------------
-    mod = {
-        lighten_hover = 0.05,
-        lighten_click = 0.15,
-    },
-
     --  Buttons
     -- ------------------
     button = {
-        off_bg = { 150, 150, 150 },
+        off_bg = { 125, 125, 125 },
         off_fg = { 255, 255, 255 },
         on_fg = { 0, 0, 0, 0.9 },
         border = { 100, 100, 100 },
 
         selection = {
-            off_bg = { 160, 160, 160 },
+            off_bg = { 140, 140, 140 },
             off_fg = { 245, 245, 245 },
             on_fg = { 0, 0, 0, 0.9 },
             border = { 110, 110, 110 },
