@@ -1,4 +1,4 @@
--- @version 1.2.6
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -564,6 +564,17 @@ hint.tcp_index_separate = {
 hint.tcp_index_in_label = {
     { type = hint.HintTypes.normal, text = "Shows the index number inside the name label." },
 }
+
+-- TCP info box
+hint.tcp_info_box = {
+    { type = hint.HintTypes.normal, text = "Shows a context-sensitive info-box within the TCP label." },
+}
+
+-- TCP info box - master
+hint.tcp_info_box_master = {
+    { type = hint.HintTypes.normal, text = "Shows a context-sensitive info-box next to the buttons." },
+}
+
 
 -- TCP inserts size
 hint.tcp_inserts_size = {

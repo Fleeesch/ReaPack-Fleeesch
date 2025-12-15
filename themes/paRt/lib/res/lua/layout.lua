@@ -1,4 +1,4 @@
--- @version 1.2.6
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -419,7 +419,6 @@ function layout.Group.Group:draw()
     local line_h = Part.Functions.rescale(18)
     local header_w = math.floor(w / 2)
 
-
     Part.Draw.Graphics.drawRectangle(x, y, w, h, self.color_bg_tinted, self.color_border)
 
     if self.header_text ~= nil then
@@ -443,6 +442,7 @@ function layout.Group.Group:draw()
         -- draw text
         Part.Color.setColor(self.color_header_fg, true)
         gfx.drawstr(self.header_text, 0, gfx.x + w - pad_x * 2, gfx.y + line_h)
+        
     end
 end
 

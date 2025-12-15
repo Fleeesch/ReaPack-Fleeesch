@@ -1,4 +1,4 @@
--- @version 1.2.6
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -198,6 +198,7 @@ par.par_tcp_track_meter_channeldiv = { Part.Parameter.Group.ParameterGroup:new(n
 -- label
 par.par_tcp_track_label_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_size") }
 par.par_tcp_track_label_index_vis = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_index_vis") }
+par.par_tcp_track_label_infobox = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_infobox") }
 
 -- envcp
 
@@ -269,7 +270,6 @@ par.par_tcp_master_insert_mode = { Part.Parameter.Group.ParameterGroup:new(nil, 
 par.par_tcp_master_element_vis = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_master_element_vis") }
 par.par_tcp_master_element_separator = { Part.Parameter.Group.ParameterGroup:new(nil,
     "par_tcp_master_element_separator") }
-
 
 
 
