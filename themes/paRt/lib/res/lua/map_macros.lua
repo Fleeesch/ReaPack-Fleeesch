@@ -1,4 +1,4 @@
--- @version 1.2.6
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -8,7 +8,7 @@
     Mostly to safe space und reduce layout code redundancy, and constantly changing depending on what the map.lua demands.
 
     Could use an overhaul.
-]]--
+]] --
 
 local map_macros = {}
 
@@ -99,7 +99,7 @@ map_macros.slider_button_w = 18
 map_macros.paramter_monitor_w = 24
 
 map_macros.group_pad_x = 10
-map_macros.group_pad_y = 30
+map_macros.group_pad_y = 28
 
 map_macros.button_percentage_label = "◀▶"
 map_macros.button_percentage_w = 40
@@ -190,7 +190,7 @@ end
 
 function map_macros.openLabel()
     map_macros.label = Part.Layout.Label.Label:new(nil)
-    map_macros.label:expand(2,1)
+    map_macros.label:expand(2, 1)
     return map_macros.label
 end
 
@@ -243,7 +243,7 @@ function map_macros.drawGroupBox(header_text, x, y, w, h)
 
     -- header text
     if header_text == nil then
-        y_post_group = Part.Cursor.getCursorY() + map_macros.group_pad_x
+        y_post_group = Part.Cursor.getCursorY() + map_macros.group_pad_y
     end
 
     Part.Cursor.destackCursor()
@@ -379,6 +379,9 @@ end
 function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, button_label, label_w)
     Part.Cursor.stackCursor()
 
+    -- open label
+    map_macros.openLabel()
+
     -- store starting point of box
     local pad_x = map_macros.parameter_frame_pad_x
     local pad_y = map_macros.parameter_frame_pad_y
@@ -386,8 +389,6 @@ function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, 
     local frame_y = Part.Cursor.getCursorY()
     local frame_h = 16
 
-    -- create background label
-    map_macros.openLabel()
 
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
@@ -432,9 +433,9 @@ function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, 
     local frame_w = Part.Cursor.getCursorX() - frame_x + Part.Cursor.getCursorW() + pad_x
 
     -- box
-    Part.Layout.Box.Box:new(nil, true, true, frame_x - pad_x, frame_y - pad_y, frame_w + pad_x * 2, frame_h + pad_y * 2)
+    Part.Layout.Box.Box:new(nil, true, true, frame_x - pad_x, frame_y - pad_y, frame_w + pad_x, frame_h + pad_y * 2)
 
-    -- udpate background label dimensions
+    -- close label
     map_macros.closeLabel()
 
     Part.Cursor.destackCursor()
@@ -450,6 +451,9 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
 
     local buttons = {}
 
+    -- open label
+    map_macros.openLabel()
+
     -- store starting point of box
     local pad_x = map_macros.parameter_frame_pad_x
     local pad_y = map_macros.parameter_frame_pad_y
@@ -457,9 +461,7 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
     local frame_y = Part.Cursor.getCursorY()
     local frame_h = 16
 
-    -- background label
-    map_macros.openLabel()
-
+    
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
     if has_bank then
@@ -514,9 +516,9 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
     local frame_w = Part.Cursor.getCursorX() - frame_x
 
     -- box
-    Part.Layout.Box.Box:new(nil, true, true, frame_x - pad_x, frame_y - pad_y, frame_w + pad_x * 2, frame_h + pad_y * 2)
+    Part.Layout.Box.Box:new(nil, true, true, frame_x - pad_x, frame_y - pad_y, frame_w, frame_h + pad_y * 2)
 
-    -- udpate background label
+    -- close label
     map_macros.closeLabel()
 
     Part.Cursor.destackCursor()
@@ -529,8 +531,6 @@ end
 function map_macros.drawKnobGroupWithDisplay(has_bank, parameter, knob_is_bi, label, label_w, value_offset)
     Part.Cursor.stackCursor()
 
-    -- background label
-    map_macros.openLabel()
 
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
@@ -573,8 +573,6 @@ function map_macros.drawKnobGroupWithDisplay(has_bank, parameter, knob_is_bi, la
     Part.Layout.Text.Text:new(nil, "", parameter[1])
     Part.Draw.Elements.lastElement():parameterMonitor(value_offset)
 
-    -- update background label
-    map_macros.closeLabel()
 
     Part.Cursor.destackCursor()
 end
@@ -585,8 +583,6 @@ end
 function map_macros.drawKnobGroup(has_bank, parameter, knob_is_bi, label, label_w)
     Part.Cursor.stackCursor()
 
-    -- background label
-    map_macros.openLabel()
 
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
@@ -619,8 +615,6 @@ function map_macros.drawKnobGroup(has_bank, parameter, knob_is_bi, label, label_
         knob:valueFillBi()
     end
 
-    -- update parameter label
-    map_macros.closeLabel()
 
     Part.Cursor.destackCursor()
     return knob
@@ -632,6 +626,10 @@ end
 function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, slider_w, label, label_w, parameter_toggle,
                                     parameter_toggle_label, show_monitoring, monitoring_has_bank, monitoring_offset,
                                     monitoring_multiplier)
+    
+    -- open label
+    map_macros.openLabel()
+    
     Part.Cursor.stackCursor()
 
     -- parameter monitoring
@@ -663,8 +661,6 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     local frame_y = Part.Cursor.getCursorY()
     local frame_h = 16
 
-    -- background label
-    map_macros.openLabel()
 
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
@@ -740,11 +736,12 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
 
     Part.Cursor.destackCursor()
 
-    -- update background label
-    map_macros.closeLabel()
 
     -- box
     Part.Layout.Box.Box:new(nil, true, true, frame_x - pad_x, frame_y - pad_y, frame_w + pad_x * 2, frame_h + pad_y * 2)
+
+    -- close label
+    map_macros.openLabel()
 
     Part.Cursor.destackCursor()
 
@@ -985,7 +982,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
     Part.Cursor.stackCursor()
     Part.Cursor.setCursorSize(icon_w, map_macros.line_h)
-    Part.Cursor.incCursor(label_w + 40, 0)
+    Part.Cursor.incCursor(label_w + 44, 0)
 
     -- check if mixer-hide is available
     local has_mixer = false
@@ -1039,8 +1036,8 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
         Part.Cursor.setCursorSize(map_macros.slider_button_w, Part.Cursor.getCursorH())
         local toggle_button = Part.Control.Button.Button:new(nil, entry.par_size_scale[1], true,
             map_macros.button_percentage_label, 1)
-            toggle_button:useSprite("stretch")
-        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, toggle_button, false)    
+        toggle_button:useSprite("stretch")
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, toggle_button, false)
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- fader label
@@ -1073,7 +1070,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
         Part.Cursor.destackCursor()
 
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(),0)
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
         -- update row shader
         local label = map_macros.closeLabel()
@@ -1122,10 +1119,10 @@ function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter
         -- table.insert(label_columns, Part.Layout.Label.Label:new(nil))
 
         Part.Cursor.stackCursor()
-        
-        -- bank button        
+
+        -- bank button
         local bank_button = Part.Control.ButtonBank.ButtonBank:new(nil, parameter_set[2])
-        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)        
+        Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.bank_toggle, Part.Draw.Elements.lastElement(), true)
         Part.Cursor.incCursor(0, 20, 0, 0)
 
         -- image
