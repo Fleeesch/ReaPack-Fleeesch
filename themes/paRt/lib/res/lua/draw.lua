@@ -1,4 +1,4 @@
--- @version 1.2.8
+-- @version 1.2.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -819,7 +819,7 @@ end
 
 function draw.Graphics.drawThemePaletteSample(palette_address, width)
     local total_w = width or 200
-    local sample_h = 20
+    local sample_h = Part.Functions.rescale(20)
     local pad = 5
 
     -- palette has to be valid
@@ -833,9 +833,9 @@ function draw.Graphics.drawThemePaletteSample(palette_address, width)
     local x = Part.Cursor.getCursorX()
     local y = Part.Cursor.getCursorY()
     local shadow_offset = Part.Functions.rescale(4)
-    local draw_x = Part.Functions.rescale(x)
-    local draw_y = Part.Functions.rescale(y)
-    local w = total_w
+    local draw_x = x
+    local draw_y = y
+    local w = Part.Functions.rescale(total_w)
     local h = sample_h + pad * 2
 
     -- shadow
@@ -858,7 +858,7 @@ function draw.Graphics.drawThemePaletteSample(palette_address, width)
     local colors = Part.Functions.deepCopy(palette.sample.palette)
 
     -- color size
-    local sample_w = math.floor((total_w - pad * 2) / #colors)
+    local sample_w = Part.Functions.rescale(math.floor((total_w - pad * 2) / #colors))
 
     -- draw palettes
     for _, color in ipairs(colors) do

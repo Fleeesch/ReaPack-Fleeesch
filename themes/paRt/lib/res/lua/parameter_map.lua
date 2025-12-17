@@ -1,4 +1,4 @@
--- @version 1.2.8
+-- @version 1.2.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -100,6 +100,7 @@ par.par_trans_element_adj_spacing_section_x = { Part.Parameter.Group.ParameterGr
 par.par_trans_element_adj_separator_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_trans_element_adj_separator_size") }
 
 par.par_trans_element_adj_bpm_tap = { Part.Parameter.Group.ParameterGroup:new(nil, "par_trans_element_adj_bpm_tap") }
+par.par_trans_element_adj_timebase = { Part.Parameter.Group.ParameterGroup:new(nil, "par_trans_element_adj_timebase") }
 
 -- playrate
 par.par_trans_playrate_mode = { Part.Parameter.Group.ParameterGroup:new(nil, "par_trans_playrate_mode") }
