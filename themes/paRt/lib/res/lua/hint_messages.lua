@@ -1,4 +1,4 @@
--- @version 1.2.8
+-- @version 1.2.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -395,7 +395,12 @@ hint.transport_size_selection = {
 
 -- transport tap button
 hint.transport_tap_button = {
-    { type = hint.HintTypes.normal, text = "Shows the Tap Tempo button in the tempo section." },
+    { type = hint.HintTypes.normal, text = "Shows the Tap-Tempo button in the tempo section." },
+}
+
+-- transport tap button
+hint.transport_timebase_button = {
+    { type = hint.HintTypes.normal, text = "Shows a button in the tempo section to indicate and setup the project timebase." },
 }
 
 -- transport playrate knob
@@ -482,7 +487,7 @@ hint.tcp_meter_show = {
 -- TCP meter show collapsed
 hint.tcp_meter_show_collapsed = {
     { type = hint.HintTypes.normal, text = "Toggles meter visibility." },
-    { type = hint.HintTypes.normal, text = "Meter will be visible when the track is collapsed." },
+    { type = hint.HintTypes.normal, text = "The meter will also be visible when the track height is collapsed." },
 }
 
 -- TCP meter volume readout

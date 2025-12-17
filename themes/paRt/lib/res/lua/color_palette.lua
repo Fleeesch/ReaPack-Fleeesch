@@ -1,4 +1,4 @@
--- @version 1.2.8
+-- @version 1.2.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -120,7 +120,7 @@ color.color_base = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 60, 60, 60, 1 },
+        backdrop = { 60,60,60, 1 },
         bg = { 20, 20, 20, 1 },
         fg = { 100, 100, 100, 1 },
         label = {
@@ -250,9 +250,9 @@ color.color_base = {
     --  Tab Selection
     -- --------------------------
     tab = {
-        bg = { 40, 40, 40, 1 },
+        bg = { 45, 45, 45, 1 },
         bg_sub = { 65, 65, 65, 1 },
-        off_bg = { 40, 40, 40, 1 },
+        off_bg = { 45, 45, 45, 1 },
         off_fg = { 125, 125, 125, 1 },
         on_bg = { 65, 65, 65, 1 },
         on_fg = { 200, 200, 200, 1 },
@@ -368,7 +368,7 @@ color.color_dimmed = {
     },
 
     -- Background
-    bg = { 70, 70, 70 },
+    bg = { 75,75,75 },
 
     -- Markers
     line = { 0, 0, 0, 0.75 },
@@ -432,9 +432,13 @@ color.color_dimmed = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 75, 75, 75, 1 },
+        backdrop = { 70,70,70, 1 },
         bg = { 50, 50, 50 },
-        fg = { 150, 150, 150, 1 }
+        fg = { 150, 150, 150, 1 },
+        label = {
+            fg = { 160, 160, 160 },
+            frame = { 100,100,100, 1 }
+        }
     },
 
     --  Bank Bar
@@ -629,7 +633,7 @@ color.color_light = {
     },
 
     -- Background
-    bg = { 250, 250, 250 },
+    bg = { 220,220,220 },
 
     -- Markers
     line = { 0, 0, 0, 0.5 },
@@ -692,12 +696,12 @@ color.color_light = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 210,210,210 },
-        bg = { 150, 150, 150 },
+        backdrop = { 224,224,224 },
+        bg = { 140, 140, 140 },
         fg = { 230,230,230 },
         label = {
-            fg = { 70, 70, 70 },
-            frame = { 140, 140, 140 }
+            fg = { 100, 100, 100 },
+            frame = { 180, 180, 180 }
         }
     },
 
@@ -748,7 +752,7 @@ color.color_light = {
     --  Hover Hint Message
     -- ---------------------
     hint = {
-        stage_bg = { 235, 235, 235 },
+        stage_bg = { 230, 230, 230 },
         bg = { 255, 255, 255, 1 },
         fg = { 50, 50, 50 },
         highlight_fg = { 50, 50, 50 },
@@ -759,8 +763,8 @@ color.color_light = {
         attention_fg = { 0, 0, 0, 0.7 },
         warning_bg = { 231, 136, 136, 0.35 },
         warning_fg = { 0, 0, 0, 0.7 },
-        controls_fg = { 0, 0, 0, 0.3 },
-        controls_fg_desc = { 0, 0, 0, 0.4 }
+        controls_fg = { 0, 0, 0, 0.4 },
+        controls_fg_desc = { 0, 0, 0, 0.45 }
     },
 
 
@@ -814,14 +818,14 @@ color.color_light = {
     --  Tab Selection
     -- --------------------------
     tab = {
-        bg = { 250, 250, 250 },
-        bg_sub = { 250, 250, 250 },
-        off_bg = { 230, 230, 230 },
+        bg = { 210, 210, 210 },
+        bg_sub = { 230,230,230 },
+        off_bg = { 210,210,210 },
         off_fg = { 145, 145, 145 },
-        on_bg = { 250, 250, 250 },
+        on_bg = { 230, 230, 230 },
         on_fg = { 0, 0, 0 },
         sub = {
-            off_bg = { 250, 250, 250 },
+            off_bg = { 230, 230, 230 },
             off_fg = { 140, 140, 140 },
             on_fg = { 0, 0, 0 },
         },
@@ -831,7 +835,7 @@ color.color_light = {
     --  Element Groups
     -- --------------------------
     group = {
-        bg = { 235, 235, 235 },
+        bg = { 230, 230, 230 },
         fg = { 80, 80, 80, 1 },
         border = { 0, 0, 0, 0 },
 

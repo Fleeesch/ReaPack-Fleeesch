@@ -1,4 +1,4 @@
--- @version 1.2.8
+-- @version 1.2.9
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -191,7 +191,6 @@ local color_adj_list = {
 
 -- draw sliders
 for _, color_adj in pairs(color_adj_list) do
-    
     -- slider size
     Part.Cursor.setCursorSize(600, Part.Gui.Macros.slider_h + 10)
 
@@ -504,11 +503,16 @@ Part.Gui.Macros.nextLine()
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-Part.Gui.Macros.drawGroupBox("Tempo Elements", group_x, Part.Cursor.getCursorY(), group_w, 110)
+Part.Gui.Macros.drawGroupBox("Tempo Elements", group_x, Part.Cursor.getCursorY(), group_w, 122)
 
 -- tap tempo
 button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_trans_element_adj_bpm_tap, button_w_full, "Tap Tempo Button", "Show in Tempo Section", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.transport_tap_button, button, true)
+Part.Gui.Macros.nextLine()
+
+-- timebase
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_trans_element_adj_timebase, button_w_full, "Timebase Button", "Show in Tempo Section", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.transport_timebase_button, button, true)
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.nextSection(section_w)
 
@@ -868,11 +872,11 @@ group = Part.Gui.Macros.drawGroupBox("Meter", group_x, group_y, group_w, 114)
 
 -- Visibility
 local selection = {
-    { label = "Visible",   value = 1, width = button_w_2 },
-    { label = "Collapsed", value = 2, width = button_w_2 }
+    { label = "Show",   value = 1, width = button_w_3 },
+    { label = "+ Collapsed", value = 2, width = button_w }
 }
 
-button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_track_meter_mode, true, selection, "Visibility", label_w)
+button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_track_meter_mode, true, selection, "Show in TCP", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_show, button[1], true)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_show_collapsed, button[2], true)
 Part.Gui.Macros.nextLine()
@@ -983,12 +987,12 @@ Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_vol_readout, button, 
 Part.Gui.Macros.nextLine()
 
 -- VU Text
-button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_master_meter_vu_db, button_w_full, "VU Text", "Show in Meter",label_w)
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_master_meter_vu_db, button_w_full, "VU Text", "Show in Meter", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_text, button, true)
 Part.Gui.Macros.nextLine()
 
 -- Clip Text
-button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_master_meter_vu_readout, button_w_full, "Clip Text", "Show in Meter",label_w)
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_master_meter_vu_readout, button_w_full, "Clip Text", "Show in Meter", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_clip_text, button, true)
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.nextSection(section_w)
@@ -1800,7 +1804,7 @@ group:stretchToPosition(nil, bottom_y)
 -- Faders
 -- ------------------------------
 
-Part.Gui.Macros.placeCursorAtLastGroup(true,false, true)
+Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 group_x = Part.Cursor.getCursorX()
 group = Part.Gui.Macros.drawGroupBox("Faders", group_x, group_y, group_w, 220)
 
