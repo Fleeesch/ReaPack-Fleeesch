@@ -1,4 +1,4 @@
--- @version 1.2.9
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -42,7 +42,8 @@ Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
 -- Colors
 Part.Gui.Tab.tab_colors_sub = Part.Tab.Group.TabGroup:new(nil, "Global", Part.Gui.Tab.tab_colors, 1)
 Part.Gui.Tab.tab_colors_themes = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.Tab.tab_colors_sub, "Color Palettes")
-Part.Gui.Tab.tab_colors_tracks = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.Tab.tab_colors_sub, "Color Adjustments")
+Part.Gui.Tab.tab_colors_a = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.Tab.tab_colors_sub, "Adjustments A")
+Part.Gui.Tab.tab_colors_b = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.Tab.tab_colors_sub, "Adjustments B")
 
 -- Transport
 Part.Gui.Tab.tab_transport_sub = Part.Tab.Group.TabGroup:new(nil, "Transport", Part.Gui.Tab.tab_transport, 1) -- placeholder
@@ -245,76 +246,73 @@ group:stretchToPosition(nil, bottom_y)
 
 
 -- ===========================================================================
---      Tab : Colors : Track / Envelope
+--      Tab : Colors : A
 -- ===========================================================================
 
 -- Settings
 -- ------------------------------
 
-Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_colors_tracks)
+Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_colors_a)
 Part.Gui.Macros.resetCursor()
 
 local group_x = Part.Cursor.getCursorX()
 local group_y = Part.Cursor.getCursorY()
 
 
--- Tracks
+-- Track Background
 -- ------------------------------
 
-group = Part.Gui.Macros.drawGroupBox("Tracks", group_x + 0, group_y, group_w, 315)
-
--- Colobar
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_colorbar_intensity, false, slider_w, "Colorbar Intensity", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_colorbar_intensity, slider, true)
-Part.Gui.Macros.nextLine()
-Part.Gui.Macros.nextSection(section_w)
-
+group = Part.Gui.Macros.drawGroupBox("Track Background", group_x + 0, group_y, group_w, 120)
 -- background tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_tone, false, slider_w, "BG Tone", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_tone, false, slider_w, "Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_background_tone, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- background tone (selected)
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_select_tone, false, slider_w, "Sel. BG Tone", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_select_tone, false, slider_w, "Selected Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_background_tone_select, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- background tint
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_tint, false, slider_w, "BG Tint", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_tint, false, slider_w, "Tint", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_background_tint, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- background tint (selected)
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_select_tint, false, slider_w, "Sel. BG Tint", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_bg_select_tint, false, slider_w, "Selected Tint", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_background_tint_select, slider, true)
 Part.Gui.Macros.nextLine()
 
-Part.Gui.Macros.nextSection(section_w)
+-- Track Label
+-- ------------------------------
+
+Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
+group = Part.Gui.Macros.drawGroupBox("Track Label", group_x + 0, Part.Cursor.getCursorY(), group_w, 200)
 
 -- label tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_bg_tone, false, slider_w, "Label Tone", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_bg_tone, false, slider_w, "Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_label_bg_tone, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- label tone (selected)
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_select_tone, false, slider_w, "Sel. Label Tone", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_select_tone, false, slider_w, "Selected Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_label_bg_tone_select, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- label tint
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_bg_tint, false, slider_w, "Label Tint", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_bg_tint, false, slider_w, "Tint", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_label_bg_tint, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- label tint (selected)
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_select_tint, false, slider_w, "Sel. Label Tint", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_select_tint, false, slider_w, "Selected Tint", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_label_bg_tint_select, slider, true)
 Part.Gui.Macros.nextLine()
 
 Part.Gui.Macros.nextSection(section_w)
 
 -- label text tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_text_tone, false, slider_w, "Label Text Tone", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_label_text_tone, false, slider_w, "Text Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_label_text_tone, slider, true)
 Part.Gui.Macros.nextLine()
 
@@ -326,6 +324,98 @@ Part.Gui.Macros.nextLine()
 -- index tone (MCP)
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_index_tone_mcp, false, slider_w, "MCP Index Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_index_tone_mcp, slider, true)
+Part.Gui.Macros.nextLine()
+
+
+-- stretch group
+group:stretchToPosition(nil, bottom_y)
+
+
+
+-- Envelopes Background
+-- ------------------------------
+
+Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
+group_x = Part.Cursor.getCursorX()
+group = Part.Gui.Macros.drawGroupBox("Envelope Background", group_x, group_y, group_w, 70)
+
+-- background tone
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_bg_tone, false, slider_w, "Tone", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_background_tone, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- background tint
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_bg_tint, false, slider_w, "Tint", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_background_tint, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- Envelopes Label
+-- ------------------------------
+
+Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
+group = Part.Gui.Macros.drawGroupBox("Envelope Label", group_x, Part.Cursor.getCursorY(), group_w, 120)
+
+-- label background tone
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_bg_Tone, false, slider_w, "Tone", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_tone, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- label background tint
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_bg_tint, false, slider_w, "Tint", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_tint, slider, true)
+Part.Gui.Macros.nextLine()
+
+Part.Gui.Macros.nextSection(section_w)
+
+
+-- label text tone
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_text_tone, false, slider_w, "Text Tone", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_text_tone, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- label value tone
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_readout_tone, false, slider_w, "Value Tone", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_readout_tone, slider, true)
+Part.Gui.Macros.nextLine()
+
+
+-- stretch group
+group:stretchToPosition(nil, bottom_y)
+
+-- ===========================================================================
+--      Tab : Colors : B
+-- ===========================================================================
+
+-- Settings
+-- ------------------------------
+
+Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_colors_b)
+Part.Gui.Macros.resetCursor()
+
+local group_x = Part.Cursor.getCursorX()
+local group_y = Part.Cursor.getCursorY()
+
+
+-- Tracks
+-- ------------------------------
+
+group = Part.Gui.Macros.drawGroupBox("Highlights", group_x + 0, group_y, group_w, 100)
+
+-- Colorbar
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_colorbar_intensity, false, slider_w, "Colorbar Intensity", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_colorbar_intensity, slider, true)
+Part.Gui.Macros.nextLine()
+
+Part.Gui.Macros.nextSection(section_w)
+
+-- Selection Frame Tint
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_selectionframe_tint, false, slider_w, "Sel. Frame Tint", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_selectionframe_tint, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- Selection Frame Tone
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_track_selectionframe_tone, false, slider_w, "Sel. Frame Tone", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_selectionframe_tone, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- ------------------------------
@@ -358,52 +448,13 @@ Part.Gui.Macros.nextLine()
 group:stretchToPosition(nil, bottom_y)
 
 
-
--- Envelopes
+-- Meter Text
 -- ------------------------------
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 group_x = Part.Cursor.getCursorX()
-group = Part.Gui.Macros.drawGroupBox("Envelopes", group_x, group_y, group_w, 180)
+group = Part.Gui.Macros.drawGroupBox("Meter Text", group_x, group_y, group_w, 315)
 
--- background tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_bg_tone, false, slider_w, "BG Tone", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_background_tone, slider, true)
-Part.Gui.Macros.nextLine()
-
--- background tint
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_bg_tint, false, slider_w, "BG Tint", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_background_tint, slider, true)
-Part.Gui.Macros.nextLine()
-
--- label background tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_bg_Tone, false, slider_w, "Label Tone", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_tone, slider, true)
-Part.Gui.Macros.nextLine()
-
--- label background tint
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_bg_tint, false, slider_w, "Label Tint", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_tint, slider, true)
-Part.Gui.Macros.nextLine()
-
-Part.Gui.Macros.nextSection(section_w)
-
-
--- label text tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_text_tone, false, slider_w, "Label Text Tone", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_text_tone, slider, true)
-Part.Gui.Macros.nextLine()
-
--- label value tone
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_envcp_label_readout_tone, false, slider_w, "Value Text Tone", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_track_envcp_label_readout_tone, slider, true)
-Part.Gui.Macros.nextLine()
-
--- Meter Text
--- ------------------------------
-
-Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-group = Part.Gui.Macros.drawGroupBox("Meter Text", group_x, Part.Cursor.getCursorY(), group_w, 315)
 
 -- unlit tone
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_meter_text_tone_unlit, false, slider_w, "Unlit Tone", label_w)
@@ -436,6 +487,7 @@ Part.Gui.Macros.nextLine()
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_meter_text_tone_readout_clip, false, slider_w, "Clip Tone", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_meter_readout_clip_tone, slider, true)
 Part.Gui.Macros.nextLine()
+Part.Gui.Macros.nextSection(section_w)
 
 -- tcp alpha
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_colors_track_meter_text_alpha_tcp, false, slider_w, "TCP Alpha", label_w)
@@ -668,7 +720,7 @@ group:stretchToPosition(nil, bottom_y)
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 local group_x = Part.Cursor.getCursorX()
-Part.Gui.Macros.drawGroupBox("Highlights", group_x, group_y, group_w, 80)
+Part.Gui.Macros.drawGroupBox("Highlights", group_x, group_y, group_w, 100)
 
 -- Selection Marker
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_highlight_selection, false, slider_w, "Selection Bar", label_w)
@@ -679,6 +731,12 @@ Part.Gui.Macros.nextLine()
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_highlight_color, false, slider_w, "Color Bar", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.highlights_colorbar_size, slider, true)
 Part.Gui.Macros.nextLine()
+
+-- Selection Frame
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_gen_highlight_selectionframe, button_w_2, "Selection Frame", "Show", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_selectionframe_activation, button, true)
+Part.Gui.Macros.nextLine()
+
 
 -- Folders
 -- ------------------------------
@@ -872,7 +930,7 @@ group = Part.Gui.Macros.drawGroupBox("Meter", group_x, group_y, group_w, 114)
 
 -- Visibility
 local selection = {
-    { label = "Show",   value = 1, width = button_w_3 },
+    { label = "Show",        value = 1, width = button_w_3 },
     { label = "+ Collapsed", value = 2, width = button_w }
 }
 
@@ -1322,7 +1380,7 @@ group:stretchToPosition(nil, bottom_y)
 
 Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
 group_x = Part.Cursor.getCursorX()
-Part.Gui.Macros.drawGroupBox("Highlights", group_x, group_y, group_w, 80)
+Part.Gui.Macros.drawGroupBox("Highlights", group_x, group_y, group_w, 100)
 
 -- Selection Marker
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_gen_highlight_selection, false, slider_w, "Selection Bar", label_w)
@@ -1332,6 +1390,11 @@ Part.Gui.Macros.nextLine()
 -- Color Bar
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_mcp_gen_highlight_color, false, slider_w, "Color Bar", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.highlights_colorbar_size, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- Selection Frame
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_mcp_gen_highlight_selectionframe, button_w_2, "Selection Frame", "Show", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.colors_tuning_selectionframe_activation, button, true)
 Part.Gui.Macros.nextLine()
 
 -- Folders

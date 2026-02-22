@@ -1,4 +1,4 @@
--- @version 1.2.9
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -70,8 +70,10 @@ par.par_colors_track_meter_text_shadow_unlit = { Part.Parameter.Group.ParameterG
 par.par_colors_track_meter_text_alpha_tcp = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_meter_text_alpha_tcp") }
 par.par_colors_track_meter_text_alpha_mcp = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_meter_text_alpha_mcp") }
 
--- colorbar
+-- color markers
 par.par_colors_track_track_colorbar_intensity = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_track_colorbar_intensity") }
+par.par_colors_track_track_selectionframe_tint = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_track_selectionframe_tint") }
+par.par_colors_track_track_selectionframe_tone = { Part.Parameter.Group.ParameterGroup:new(nil, "par_colors_track_track_selectionframe_tone") }
 
 --      Transport
 -- -------------------------------------------
@@ -128,6 +130,7 @@ par.par_tcp_gen_element_adj_separator_line = { Part.Parameter.Group.ParameterGro
     "par_tcp_gen_element_adj_separator_line", nil, par.par_tcp_gen_element_adj_separator[3]) }
 
 -- highlight
+par.par_tcp_gen_highlight_selectionframe = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_highlight_selectionframe") }
 par.par_tcp_gen_highlight_selection = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_highlight_selection") }
 par.par_tcp_gen_highlight_color = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_highlight_color") }
 
@@ -282,6 +285,7 @@ par.par_tcp_master_element_separator = { Part.Parameter.Group.ParameterGroup:new
 -- -------------------------------------------
 
 -- highlights
+par.par_mcp_gen_highlight_selectionframe = { Part.Parameter.Group.ParameterGroup:new(nil, "par_mcp_gen_highlight_selectionframe") }
 par.par_mcp_gen_highlight_selection = { Part.Parameter.Group.ParameterGroup:new(nil, "par_mcp_gen_highlight_selection") }
 par.par_mcp_gen_highlight_color = { Part.Parameter.Group.ParameterGroup:new(nil, "par_mcp_gen_highlight_color") }
 
