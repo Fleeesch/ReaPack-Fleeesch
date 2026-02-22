@@ -1,4 +1,4 @@
--- @version 1.2.9
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -201,6 +201,23 @@ hint.colors_reaper_apply_custom = {
 -- colorbar intensity
 hint.colors_tuning_colorbar_intensity = {
     { type = hint.HintTypes.normal, text = "Adjusts the brightness and intensity of the track color bar." },
+}
+
+-- selection frame activation
+hint.colors_tuning_selectionframe_activation = {
+    { type = hint.HintTypes.normal, text = "Draws a frame around selected tracks." },
+}
+
+-- selection frame tint
+hint.colors_tuning_selectionframe_tint = {
+    { type = hint.HintTypes.normal, text = "Adjusts the saturation of the selection frame torwards the custom track color." },
+    { type = hint.HintTypes.attention, text = "Requires the selection frame to be activated in the TCP / MCP settings." },
+}
+
+-- selection frame tone
+hint.colors_tuning_selectionframe_tone = {
+    { type = hint.HintTypes.normal, text = "Increases the brightness of the selection frame." },
+    { type = hint.HintTypes.attention, text = "Requires the selection frame to be activated in the TCP / MCP settings." },
 }
 
 -- track background tone

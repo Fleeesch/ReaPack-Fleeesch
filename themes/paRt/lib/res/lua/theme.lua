@@ -1,4 +1,4 @@
--- @version 1.2.9
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -88,7 +88,8 @@ function themehandling.validateTheme(initial_validation)
         end
 
         -- update global theme data
-        local theme_path, theme_name = reaper.BR_GetCurrentTheme()
+        local theme_name = reaper.GetLastColorThemeFile()
+
         local theme_data = themehandling.getThemeMetaData(theme_name)
         Part.Global.theme_is_unpacked = theme_data.unpacked
         Part.Global.theme_is_modded = theme_data.mod

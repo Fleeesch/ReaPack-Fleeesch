@@ -1,4 +1,4 @@
--- @version 1.2.9
+-- @version 1.2.7
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -640,7 +640,7 @@ function draw.Graphics.drawSplashMessage()
 
     -- font
     local font_size = 30
-    local line_height = 30
+    local line_height = 50
     local line_height_rescaled = Part.Functions.rescale(line_height)
 
     -- colors
