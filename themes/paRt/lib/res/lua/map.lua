@@ -1,4 +1,4 @@
--- @version 1.2.7
+-- @version 1.3.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -749,8 +749,8 @@ local slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_folder_indent, slider, true)
 Part.Gui.Macros.nextLine()
 
--- Buttons
-local selection = {
+-- buttons
+selection = {
     { label = "Buttons", value = 1, width = button_w_2 },
     { label = "+ Lines", value = 2, width = button_w_2 }
 }
@@ -773,10 +773,33 @@ Part.Gui.Macros.nextLine()
 Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
 group = Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(), group_w, 55)
 
+-- display mode
+selection = {
+    { label = "Shared", value = 0, width = button_w_2 },
+    { label = "Split", value = 1, width = button_w_2 }
+}
+
+Part.Cursor.stackCursor()
+button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split , true, selection, "Display Mode", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_shared, button[1], true)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_split, button[2], true)
+Part.Gui.Macros.nextLine()
+
+-- sends block crossover
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split_send_crossover , false, slider_w, "Split Crossover", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_split_crossover, slider, true)
+Part.Gui.Macros.nextLine()
+Part.Gui.Macros.nextSection(section_w)
+
+-- slot width
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width, false, slider_w, "Slot Size", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_size, slider, true)
+Part.Gui.Macros.nextLine()
 
-
+-- sends slot width
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width_sends , false, slider_w, "Sends Slot Size", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_size_sends, slider, true)
+Part.Gui.Macros.nextLine()
 
 -- stretch group
 group:stretchToPosition(nil, bottom_y)
@@ -827,11 +850,17 @@ Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
 group = Part.Gui.Macros.drawGroupBox("Label", group_x, Part.Cursor.getCursorY(), group_w, 110)
 
 -- Label Size
-Part.Cursor.stackCursor()
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_track_label_size, false, slider_w, "Label Width", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_label_size, slider, true)
 
 Part.Gui.Macros.nextLine()
+
+-- Label Margin
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_track_element_adj_label_margin, false, slider_w, "Text Margin", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_label_margin, slider, true)
+
+Part.Gui.Macros.nextLine()
+
 
 -- Track Index
 local selection = {
@@ -1248,6 +1277,11 @@ group = Part.Gui.Macros.drawGroupBox("Label", group_x, Part.Cursor.getCursorY(),
 -- Label Size
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_envcp_label_size, false, slider_w, "Label Width", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_label_size, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- Label Margin
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_envcp_label_margin, false, slider_w, "Label Width", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_label_margin, slider, true)
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.nextSection(section_w)
 

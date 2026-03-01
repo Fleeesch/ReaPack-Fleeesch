@@ -1,4 +1,4 @@
--- @version 1.2.7
+-- @version 1.3.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -210,13 +210,13 @@ hint.colors_tuning_selectionframe_activation = {
 
 -- selection frame tint
 hint.colors_tuning_selectionframe_tint = {
-    { type = hint.HintTypes.normal, text = "Adjusts the saturation of the selection frame torwards the custom track color." },
+    { type = hint.HintTypes.normal,    text = "Adjusts the saturation of the selection frame torwards the custom track color." },
     { type = hint.HintTypes.attention, text = "Requires the selection frame to be activated in the TCP / MCP settings." },
 }
 
 -- selection frame tone
 hint.colors_tuning_selectionframe_tone = {
-    { type = hint.HintTypes.normal, text = "Increases the brightness of the selection frame." },
+    { type = hint.HintTypes.normal,    text = "Increases the brightness of the selection frame." },
     { type = hint.HintTypes.attention, text = "Requires the selection frame to be activated in the TCP / MCP settings." },
 }
 
@@ -437,15 +437,45 @@ hint.transport_playrate_fader_size = {
 }
 
 
-
 --      TCP
 -- --------------------------------------
 
+-- TCP insert display mode: shared
+hint.tcp_general_insert_slot_display_mode_shared = {
+    { type = hint.HintTypes.highlight, text = "Shared Inserts" },
+    { type = hint.HintTypes.normal,    text = "Changes the display formatting for the TCP inserts." },
+    { type = hint.HintTypes.normal,    text = "FX, Parameters and Sends are placed in one united block." },
+    { type = hint.HintTypes.normal,    text = "Reaper takes care of all slot distribution and respects the internal TCP settings." },
+}
+
+-- TCP insert display mode: split
+hint.tcp_general_insert_slot_display_mode_split = {
+    { type = hint.HintTypes.highlight, text = "Split Sends" },
+    { type = hint.HintTypes.normal,    text = "Changes the display formatting for the TCP inserts." },
+    { type = hint.HintTypes.normal,    text = "Sends are placed a separate column." },
+    { type = hint.HintTypes.attention, text = "The inserts section width is automatically doubled." },
+    { type = hint.HintTypes.attention, text = "The Reaper internal TCP Sends display flag will be ignored." },
+}
+
+-- TCP insert split crossover
+hint.tcp_general_insert_slot_split_crossover = {
+    { type = hint.HintTypes.normal,    text = "Adjusts the split point between the FX and Sends columns." },
+    { type = hint.HintTypes.attention, text = "Requires Split Mode to be activted." },
+}
+
 -- TCP insert slot size
 hint.tcp_general_insert_slot_size = {
-    { type = hint.HintTypes.normal, text = "Adjusts the target width for FX, send and parameter slots." },
+    { type = hint.HintTypes.normal, text = "Adjusts the generic target width for inserts slots." },
     { type = hint.HintTypes.normal, text = "REAPER formats the slots based on the size of the FX block in the TCP." },
     { type = hint.HintTypes.tip,    text = "To cover the full FX section, set this parameter to its maximum value." },
+}
+
+-- TCP insert sends slot size
+hint.tcp_general_insert_slot_size_sends = {
+    { type = hint.HintTypes.normal,    text = "Adjusts the target width for sends slots when displayed in a separate column." },
+    { type = hint.HintTypes.normal,    text = "REAPER formats the slots based on the size of the FX block in the TCP." },
+    { type = hint.HintTypes.tip,       text = "To cover the full FX section, set this parameter to its maximum value." },
+    { type = hint.HintTypes.attention, text = "Requires Split Mode to be activted." },
 }
 
 -- TCP folder indent
@@ -545,7 +575,7 @@ hint.tcp_meter_gainreduction_space = {
 
 -- TCP meter gain reduction width
 hint.tcp_meter_gainreduction_width = {
-    { type = hint.HintTypes.normal,    text = "Adjusts the width of the gain reduction meter." },
+    { type = hint.HintTypes.normal, text = "Adjusts the width of the gain reduction meter." },
     hint.line_gainreduction,
     hint.line_coarse_adjustment
 }
@@ -600,6 +630,11 @@ hint.tcp_fader_layout_vertical = {
 hint.tcp_label_size = {
     { type = hint.HintTypes.normal, text = "Adjusts the size of the label by drawing an invisible line that triggers hiding and button wrapping." },
     { type = hint.HintTypes.tip,    text = "The label is always trying to use as much width as possible, you have to play around with this setting and the TCP width to figure out the optimal value." },
+}
+
+-- TCP label margin
+hint.tcp_label_margin = {
+    { type = hint.HintTypes.normal,    text = "Increases the left-sided padding for the label text." },
 }
 
 -- TCP index - separate
