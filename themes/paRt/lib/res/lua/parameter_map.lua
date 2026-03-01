@@ -1,4 +1,4 @@
--- @version 1.2.7
+-- @version 1.3.1
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -142,6 +142,9 @@ par.par_tcp_gen_folder_icon_mode = { Part.Parameter.Group.ParameterGroup:new(nil
 
 -- inserts
 par.par_tcp_gen_insert_slot_width = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width") }
+par.par_tcp_gen_insert_slot_width_sends = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width_sends") }
+par.par_tcp_gen_insert_split = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split") }
+par.par_tcp_gen_insert_split_send_crossover = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split_send_crossover") }
 
 -- track
 
@@ -185,8 +188,7 @@ par.par_tcp_track_fader_placement = { Part.Parameter.Group.ParameterGroup:new(ni
 -- inserts
 par.par_tcp_track_insert_mode = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_insert_mode") }
 par.par_tcp_track_insert_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_insert_size") }
-par.par_tcp_track_insert_size_scale = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_insert_size_scale",
-    nil, par.par_tcp_track_insert_size[3]) }
+par.par_tcp_track_insert_size_scale = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_insert_size_scale", nil, par.par_tcp_track_insert_size[3]) }
 
 -- meter
 par.par_tcp_track_meter_mode = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_meter_mode") }
@@ -203,6 +205,7 @@ par.par_tcp_track_meter_gainwid = { Part.Parameter.Group.ParameterGroup:new(nil,
 
 -- label
 par.par_tcp_track_label_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_size") }
+par.par_tcp_track_element_adj_label_margin = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_element_adj_label_margin") }
 par.par_tcp_track_label_index_vis = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_index_vis") }
 par.par_tcp_track_label_infobox = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_infobox") }
 
@@ -219,6 +222,7 @@ par.par_tcp_envcp_settings_lane_display = { Part.Parameter.Group.ParameterGroup:
     "par_tcp_envcp_settings_lane_display") }
 
 par.par_tcp_envcp_label_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_envcp_label_size") }
+par.par_tcp_envcp_label_margin = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_envcp_label_margin") }
 par.par_tcp_envcp_label_readout_placement = { Part.Parameter.Group.ParameterGroup:new(nil,
     "par_tcp_envcp_label_readout_placement") }
 par.par_tcp_envcp_label_readout_size = { Part.Parameter.Group.ParameterGroup:new(nil,
