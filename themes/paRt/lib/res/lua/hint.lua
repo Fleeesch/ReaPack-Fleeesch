@@ -1,11 +1,14 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Hint message display.
-    Messages itself are contained in hint_messages.lua
+    The mechanism for hint messages displayed in the Theme Adjuster when
+    hovering the mouse over interactive elements.
+
+
+    The messages themself are contained in "hint_messages.lua"
 ]] --
 
 local hinthandling = { Hint = {} }
@@ -130,7 +133,7 @@ function hinthandling.Hint:buffer()
 
     -- height of background
     local background_w = Part.Functions.rescale(Part.Global.hint_w)
-    local background_h = Part.Functions.rescale(Part.Global.hint_h - 20)
+    local background_h = Part.Functions.rescale(Part.Global.hint_h - 50)
 
     -- resize buffer to final dimensions
     gfx.setimgdim(self.buffer_slot, -1, -1)
@@ -141,7 +144,6 @@ function hinthandling.Hint:buffer()
 
     -- draw background
     Part.Draw.Graphics.drawRectangle(0, 0, background_w, background_h, Part.Color.Lookup.color_palette.hint.stage_bg, nil)
-
 
     -- starting position
     local pos_x = pad

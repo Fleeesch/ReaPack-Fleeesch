@@ -1,11 +1,11 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Various functions to help out with calculations, data management and string conversions.
-    A little toolkit that can be used everywhere.
+    Various functions to help out with calculations, data management, string conversions and debugging.
+    Small helpers that are used everywhere accross the Theme Adjuster.
 ]]
 
 local functions = {}

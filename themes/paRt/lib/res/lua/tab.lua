@@ -1,13 +1,17 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Top-header tab management.
+    The system responsible for displaying tabs at the top of the Theme Adjuster.
     
-    Is quite confusing right now because of the division between main- and sub-tabs.
-    Could be replaced with something better in the future.
+    There's a differentiation between main and sub-tabs. This could be replaced
+    with a recursive system, but it wouldn't be worth it considering the limited amount of tabs and
+    the static design of the Theme Adjuster.
+
+    Speaking in general: There are already too many tabs used by the Theme Adjuster.
+    Adding more can't be considered an improvemenet.
 ]]
 
 local tab = { Entry = {}, EntrySub = {}, Group = {} }

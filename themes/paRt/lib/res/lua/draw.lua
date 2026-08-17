@@ -1,16 +1,39 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Tools for drawing stuff; anything that actually puts the graphics on display.
+    Tools for drawing graphics.
+    Could be split into different files, currently this one here
+    contains some makeshift solutions that prevail because they're kinda static in nature.
 
-    Includes:
-      - spritesheet creation
-      - screenbuffer processing
-      - graphical tools
-      - background drawing processes
+    This section contains a lot of code that is currently not used and might be considered deprecated in the futrue.
+    Considering a lot of the methods in here are heavily used at the same time, some cleanup might be necessary.
+
+    [Sprites]
+    Incremental image buffer slot handling.
+    Whenever a sprite wants a slot, this section takes care of it.
+
+    [Buffer]
+    A very simplistic buffer system to limit the amount of redrawing.
+    While it cannot be considered dynamic, it at least allows to differentiate
+    between static graphics and stuff that moves.
+    Most of the heavy lifting is alreardy taken care by the available internal Reaper toolset for buffering.
+
+    [Elements]
+    An umbrella object for any element that can be drawn.
+    This is used to create filtered lists of visible elements.
+    Reduces iteration counts and improves performance.
+
+    [Graphics]
+    Drawing functions for filters and objects that are drawn on the fly.
+    Mainly oneshot operations that are complex and demanding,
+    but way more flexible and performant than static bitmaps.
+
+    Covers also very simplistic drawing operations that are used very often
+    for creating basic shapes. Might be a good idea to divide this section in the future.
+
 ]]
 
 local draw = { Buffer = {}, Elements = {}, Graphics = {}, Sprites = {} }
@@ -28,223 +51,8 @@ function draw.Sprites.getNextFreeImageSlot()
     return draw.Sprites.image_index - 1
 end
 
---  Sprites
--- -------------------------------------------
-
-draw.Sprites.value_buffer_done = false
-
 -- sprite slot
 draw.Sprites.image_index = 1
-
--- knob dimensions
-draw.Sprites.knob_sprites = 100
-draw.Sprites.knob_val_size = 48
-draw.Sprites.knob_size = 16
-
--- corner dimensions
-draw.Sprites.rescale_corner_size = 14
-draw.Sprites.hint_corner_size = 7
-
--- knob slots
-draw.Sprites.slot_knob_line = draw.Sprites.getNextFreeImageSlot()
-draw.Sprites.slot_knob_line_default = draw.Sprites.getNextFreeImageSlot()
-draw.Sprites.slot_knob_val_linear = draw.Sprites.getNextFreeImageSlot()
-draw.Sprites.slot_knob_val_bi = draw.Sprites.getNextFreeImageSlot()
-
--- corner slots
-draw.Sprites.slot_corner_rescale = draw.Sprites.getNextFreeImageSlot()
-draw.Sprites.slot_corner_hint = draw.Sprites.getNextFreeImageSlot()
-draw.Sprites.slot_corner_hint_alt = draw.Sprites.getNextFreeImageSlot()
-
--- colors
-draw.Sprites.color_rescale = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.corner_triangle)
-draw.Sprites.color_hint = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.color.red)
-draw.Sprites.color_hint_alt = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.color.cyan)
-
-
-
---  Sprites : Corner Hint
--- -------------------------------------------
-
-function draw.Sprites.cornerHint()
-    return draw.Sprites.slot_corner_hint
-end
-
---  Sprites : Create Assets
--- -------------------------------------------
-
-function draw.Sprites.createAssets()
-    draw.Sprites.createKnobAssets()
-    draw.Sprites.createKnobValueAssets()
-    draw.Sprites.createCornerAssets()
-end
-
---  Sprites : Create Corner Assets
--- -------------------------------------------
-
-function draw.Sprites.createCornerAssets()
-    local last_dest = gfx.dest
-
-    local size = Part.Functions.rescale(draw.Sprites.hint_corner_size)
-    local dest = draw.Sprites.slot_corner_hint
-
-    gfx.setimgdim(dest, -1, -1)
-    gfx.setimgdim(dest, size, size)
-
-    gfx.dest = dest
-
-    Part.Color.setColor(draw.Sprites.color_hint, true)
-    gfx.triangle(0, 0, size - 1, 0, 0, size - 1)
-
-    gfx.dest = last_dest
-end
-
---  Sprites : Create Knob Value Assets
--- -------------------------------------------
-
-function draw.Sprites.createKnobValueAssets()
-    if draw.Sprites.value_buffer_done then
-        return
-    end
-
-    local last_dest = gfx.dest
-
-    -- slots
-    local slot_val_linear = draw.Sprites.slot_knob_val_linear
-    local slot_val_bi = draw.Sprites.slot_knob_val_bi
-
-
-    -- ::: Linear :::
-
-    -- dimensions
-    local size = draw.Sprites.knob_val_size
-    local size2 = math.floor(size / 2)
-    local r_inner = size2 - draw.Graphics.border
-
-    -- setup drawing area
-    gfx.dest = slot_val_linear
-    gfx.setimgdim(slot_val_linear, -1, -1)
-    gfx.setimgdim(slot_val_linear, size, size * (draw.Sprites.knob_sprites + 1))
-
-    -- fill
-    local color_fill = Part.Color.Lookup.color_palette.color.blue
-    Part.Color.setColor(color_fill, true)
-    gfx.a = 1
-
-    -- dimensions
-    local y = 0
-    local offset = -0.1
-    local range = 5
-    local range2 = range / 2
-
-    -- sprite creation
-    for i = 1, draw.Sprites.knob_sprites + 1 do
-        local rotation = (range / draw.Sprites.knob_sprites) * i - range2 + offset
-
-        -- differentiate betwenn <0 and >0
-        if rotation > -range2 then
-            -- border lines
-            gfx.arc(size2, size2 + y, r_inner, rotation + offset, -range2, true)
-            --gfx.arc(size2, size2 + y, r_inner - 8, rotation + offset, -range2, true)
-
-            -- filler lines
-            for i2 = 1, 32 do
-                gfx.arc(size2, size2 + y, r_inner + -(i2 - 1) / 4, rotation + offset, -range2, true)
-            end
-        end
-
-        -- next sprite
-        y = y + size
-    end
-
-    -- ::: Bi-Directional :::
-    gfx.dest = slot_val_bi
-    gfx.setimgdim(slot_val_bi, -1, -1)
-    gfx.setimgdim(slot_val_bi, size, size * (draw.Sprites.knob_sprites + 1))
-
-    -- coordinates
-    local y = 0
-    local offset = -0.1
-    local range = 5
-    local range2 = range / 2
-    local deadzone = 0.01
-
-    -- sprite creation
-    for i = 1, draw.Sprites.knob_sprites + 1 do
-        -- sprite skipping
-        local draw_arc = false
-
-        -- arc values
-        local a, b
-
-        -- pick a site
-        if i < draw.Sprites.knob_sprites / 2 - deadzone then
-            a = (range / draw.Sprites.knob_sprites) * i - range2 + 0
-            b = 0
-            draw_arc = true
-        elseif i > draw.Sprites.knob_sprites / 2 + deadzone then
-            a = 0
-            b = (range / draw.Sprites.knob_sprites) * i - range2 + offset
-            draw_arc = true
-        end
-
-        -- arc drawing
-        if draw_arc then
-            --gfx.arc(size2, size2 + y, r_inner, a, b, true)
-            --gfx.arc(size2, size2 + y, r_inner - 8, a, b, true)
-
-            for i2 = 1, 32 do
-                gfx.arc(size2, size2 + y, r_inner + -(i2 - 1) / 4, a, b, true)
-            end
-        end
-
-        -- next sprite
-        y = y + size
-    end
-
-    gfx.dest = last_dest
-
-    draw.Sprites.value_buffer_done = true
-end
-
---  Sprites : Create Knob Assets
--- -------------------------------------------
-
-function draw.Sprites.createKnobAssets()
-    local size = Part.Functions.rescale(16)
-
-    local last_dest = gfx.dest
-
-    -- calculate dimensions
-    local dim = size
-    local dim2 = dim * 0.5
-    local r = Part.Functions.rescale(1)
-    local l = Part.Functions.rescale(6)
-    local factor = 2
-
-    -- slots
-    local slot_line = draw.Sprites.slot_knob_line
-    local slot_default_line = draw.Sprites.slot_knob_line_default
-
-    -- knob line
-    gfx.dest = slot_line
-    gfx.setimgdim(slot_line, -1, -1)
-    gfx.setimgdim(slot_line, dim, dim)
-
-    -- color
-    Part.Color.setColor(Part.Color.Lookup.color_palette.knob.fg, true)
-    gfx.rect(dim2 - r, r, r * factor, l)
-
-    -- default knob line
-    gfx.dest = slot_default_line
-    gfx.setimgdim(slot_default_line, -1, -1)
-    gfx.setimgdim(slot_default_line, dim, dim)
-
-    Part.Color.setColor(Part.Color.Lookup.color_palette.knob.default, true)
-    gfx.rect(dim2 - r, r, r * factor, l - r)
-
-    gfx.dest = last_dest
-end
 
 -- ===========================================================================
 --                          Buffer
@@ -714,7 +522,7 @@ function draw.Graphics.drawSplashMessage()
     draw.Graphics.splash_message = nil
 end
 
---  Method : Draw Controls
+--  Method : Draw Control Hints
 -- -------------------------------------------
 
 function draw.Graphics.drawControlHints()
@@ -784,7 +592,7 @@ function draw.Graphics.drawBackground()
     gfx.rect(0, 0, gfx.w, gfx.h)
 
     -- only draw hint background if theme version is valid
-    if not (Part.Global.theme_is_part and Part.Version.theme_version_is_lower) then
+    if Part.Global.theme_is_part and not Part.Version.theme_version_is_lower then
         -- hint background
         local x = Part.Functions.rescale(Part.Global.hint_x, true, false)
         local y = Part.Functions.rescale(Part.Global.hint_y, false, true)
@@ -796,20 +604,29 @@ function draw.Graphics.drawBackground()
 
         -- theme hint coordinates
         gfx.x = x + Part.Functions.rescale(10)
-        gfx.y = y + h - Part.Functions.rescale(20)
+        gfx.y = y + h - Part.Functions.rescale(45)
+
         draw.Graphics.setFont(16)
+
+        -- update available
+        if Part.Version.new_version_available then
+            Part.Color.setColor(Part.Color.Lookup.color_palette.theme_hint.update, true)
+            gfx.drawstr("Update Available")
+            gfx.x = x + Part.Functions.rescale(10)
+        end
+
+        gfx.y = gfx.y + Part.Functions.rescale(20)
 
         -- unpacked
         if Part.Global.theme_is_unpacked then
             Part.Color.setColor(Part.Color.Lookup.color_palette.theme_hint.unpacked, true)
-            gfx.drawstr("UNPACKED")
-            gfx.drawstr("  ")
+            gfx.drawstr("Unpacked")
         end
 
         -- modded
         if Part.Global.theme_is_modded then
             Part.Color.setColor(Part.Color.Lookup.color_palette.theme_hint.modded, true)
-            gfx.drawstr("MOD")
+            gfx.drawstr("Modded")
         end
     end
 end
