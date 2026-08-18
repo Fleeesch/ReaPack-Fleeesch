@@ -1,12 +1,21 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Global variables, but stored in a LUA table in this case.
+    Semi-Global variables stored as a large LUA table.
     
-    There are a lot things that be adjusted here to change and break things.    
+    It's a mostly flat list of attributes that are partially static,
+    partially dynamic.
+    
+    The static attributes are mostly dimensions and behaviour attributes,
+    like for example the default window size and visibility timeout ranges.
+    A lot of those entries are lazy solutions for something that could or should be responsive.
+
+    This should be converted to a nested table structure in case the size increases drastically,
+    but for now a flat list will do just fine. Changing most of the variables here will likely
+    break things, so any refactoring should be considered a non-trivial task.
 ]]
 
 local var = { globals = {}, list = {} }
@@ -50,6 +59,9 @@ var.globals.theme_is_unpacked = false
 var.globals.theme_is_modded = false
 var.globals.theme_is_part = false
 
+-- custom tab is optional
+var.globals.show_custom_tab = false
+
 -- paRt provided zoom levels
 var.globals.zoom_levels = { 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5 }
 
@@ -75,9 +87,6 @@ var.globals.ext_section = "Fleeesch - paRt Theme Adjuster"
 
 -- default window title
 var.globals.win_title = "paRt Theme Adjuster"
-
--- availability of the js_extension
-var.js_extension_available = false
 
 -- last used theme adjuster (for detecting theme changes)
 var.globals.last_theme_file = reaper.GetLastColorThemeFile()

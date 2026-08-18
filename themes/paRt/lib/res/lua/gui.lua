@@ -1,10 +1,12 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Windows management and input device tracking (keyboard, mouse).
+    Windows management and input device tracking for keyboard and mouse.
+    
+    Handles dynamic DPI changes and scaling factors used by the Theme Adjuster.
 ]] --
 
 local gui = { Window = {}, Keyboard = {}, Mouse = {} }

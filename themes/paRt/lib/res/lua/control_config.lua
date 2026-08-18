@@ -1,13 +1,15 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Controls with a bank context.
-    Get's a separate file since the bank system is a little more complex and represents
-    a different context than the one of theme parameters.
-    ]] --
+    Controls with a configuration context.
+    
+    Like Bank related controls, this one takes care of more specialized
+    config actions. Nonetheless, a lot of redunancy. Should be merged with other
+    control related files in the future.
+]]
 
 local config = { Functions = {}, Handler = {}, Save = {}, Load = {}, HardReset = {}, LoadDefault = {}, Copy = {}, SelectBank = {}, SelectConfig = {}, Abstract = {} }
 
@@ -280,7 +282,7 @@ function config.ButtonConfig:draw()
 
     -- background
     Part.Draw.Graphics.drawRectangle(x, y, w, h, color_bg, color_border)
-    
+
     -- font
     Part.Draw.Graphics.setFont(13, self.font_flags)
 
@@ -291,7 +293,7 @@ function config.ButtonConfig:draw()
         local sub_w = Part.Functions.map(self.submit_counter, 0, self.submit_time, 0, inner_w)
 
         Part.Draw.Graphics.drawRectangle(inner_x, inner_y, sub_w, inner_h, color_submit)
-        
+
         -- font override when highlighted
         Part.Draw.Graphics.setFont(13, "b")
     end
@@ -300,7 +302,7 @@ function config.ButtonConfig:draw()
     local text_out = self:getOutputText()
     Part.Cursor.setCursorPos(x, y)
     Part.Color.setColor(color_fg, true)
-    
+
     gfx.drawstr(text_out, self.flags, x + w, y + h)
 
     -- highlight overlay

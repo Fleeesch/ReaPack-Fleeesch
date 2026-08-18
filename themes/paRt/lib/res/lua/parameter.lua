@@ -1,12 +1,20 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Parameter handling. Anything that is a user-adjustable value and has something to do with storage.
-    This file also covers parameter groups that are used to store multiple parameters in order to
-    implement the bank system.
+    Parameter integration using a pseudo-OOP method.
+
+    There are different types of parameters in order to cover various quirks,
+    as well as generic functions for thnigs like parsing paramerts from WALTER, etc.
+
+    [Custom Parameters]
+    A special type of parameter reserved for modding and development.
+    There's a "user" folder located in the Theme Adjuster directory, containig a "custom_parameters.lua.def" file.
+    One can copy that file, rename it to "custom_parameters.lua" and then start using it to give the custom parameters
+    unique names.
+    
 ]]--
 
 local parameter = { Group = {}, Reaper = {}, Theme = {}, Banked = {}, Lookup = {}, Map = {}, CustomParameterSettings = {} }
@@ -39,8 +47,13 @@ function parameter.Parameter:new(o, lookup_name, value_default, value_min, value
     -- individual name, acting as an id
     o.lookup_name = lookup_name
 
-    -- value
-    o.value = 0
+    -- value    
+    
+    -- setting the value to the default value during creation should ensure a
+    -- proper fallback when loading an incomplete configuration    
+
+    o.value = value_default -- o.value = 0
+    
 
     -- default value
     o.value_default = value_default
@@ -779,7 +792,7 @@ end
 -- ==========================================================================================
 
 
--- Theme Parmaeter Lookup Table
+-- Theme Parameter Lookup Table
 -- -------------------------------------------
 -- contanis index numbers of parameters
 parameter.Lookup.theme_par_lookup = {

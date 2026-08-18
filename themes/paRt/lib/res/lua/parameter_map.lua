@@ -1,12 +1,24 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    The inclusion of WALTER parameters is happening here.
-    It is mostly a 1:1 translation list for the parameters in the rtconfig.txt file,
-    but sometimes there are exceptions that require a specific treatment.
+    This file contains the inclusion of WALTER parameters.
+    They have to be integrated manually.
+
+    Not all parameters are the same:
+    Most of the parameters are using the bank slot system and are integrated
+    using a ParameterGroup, but some parameters (like the Reaper internal color adjustments)
+    are excluded from banking and require to be defined differently.
+
+    Some parameters, like the auto-scale toggles of size sliders
+    are using synchronized bank slot behaviour.
+    This feature quite confusing and was included for pragmatic reasons
+    in order to prevent the GUI from becoming to cluttered.
+
+    The names can differ, but for the sake of keeping things clean,
+    all of the parameters make use of their original WALTER name.
 ]] --
 
 local par = {}
@@ -143,10 +155,11 @@ par.par_tcp_gen_folder_icon_mode = { Part.Parameter.Group.ParameterGroup:new(nil
 -- inserts
 par.par_tcp_gen_insert_slot_width = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width") }
 par.par_tcp_gen_insert_slot_width_sends = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width_sends") }
+par.par_tcp_gen_insert_slot_width_fx = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_slot_width_fx") }
 par.par_tcp_gen_insert_split = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split") }
 par.par_tcp_gen_insert_split_send_crossover = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split_send_crossover") }
-
--- track
+par.par_tcp_gen_insert_split_fx = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split_fx") }
+par.par_tcp_gen_insert_split_fx_crossover = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_gen_insert_split_fx_crossover") }
 
 -- element adjustments
 par.par_tcp_track_element_adj_size_env = { Part.Parameter.Group.ParameterGroup:new(nil,
@@ -202,6 +215,7 @@ par.par_tcp_track_meter_vol_readout = { Part.Parameter.Group.ParameterGroup:new(
 par.par_tcp_track_meter_channeldiv = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_meter_channeldiv") }
 par.par_tcp_track_meter_gaindiv = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_meter_gaindiv") }
 par.par_tcp_track_meter_gainwid = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_meter_gainwid") }
+par.par_tcp_track_meter_collapsed_full_w = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_meter_collapsed_full_w") }
 
 -- label
 par.par_tcp_track_label_size = { Part.Parameter.Group.ParameterGroup:new(nil, "par_tcp_track_label_size") }

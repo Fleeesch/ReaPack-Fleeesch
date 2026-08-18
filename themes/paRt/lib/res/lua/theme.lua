@@ -1,10 +1,14 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Reaper Theme file management; validation and enumeration of color themes.
+    Reaper Theme file management.
+    
+    Validation and enumeration of color theme files,
+    basicially anything that is trying to find answers
+    to the question "Is this a paRt theme?".
 ]] --
 
 local themehandling = {}
@@ -93,6 +97,7 @@ function themehandling.validateTheme(initial_validation)
         local theme_data = themehandling.getThemeMetaData(theme_name)
         Part.Global.theme_is_unpacked = theme_data.unpacked
         Part.Global.theme_is_modded = theme_data.mod
+            Part.Global.show_custom_tab = Part.Global.theme_is_unpacked or Part.Global.theme_is_modded
 
         return true
     end

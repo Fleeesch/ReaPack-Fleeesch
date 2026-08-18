@@ -1,15 +1,15 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 
 --[[
-    This file stores the Theme Adjuster color schemes and some management tools.
-    The base palette is used by the dark theme by default.
-    The themes use the base palette as their basis and then overwrite the original entries
-    with their own individual values.
-]] --
+    This file stores the Theme Adjuster color schemes and some color management tools.
+
+    All the palettes are based on the dark theme plaette by default.
+    The color palette system is build to use fallback colors all the time.
+]]
 
 local color = {}
 
@@ -20,6 +20,11 @@ local color = {}
 -- ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
 --          Base Palette
 -- ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
+--[[
+The base palette is essentially the dark palette.
+What you're seeing here are the colors used by the dark scheme file.
+]]
 
 -- global colors
 color.color_base = {
@@ -79,11 +84,12 @@ color.color_base = {
     --  Theme Hint
     -- ------------------
     theme_hint = {
-        unpacked = { 100, 255, 150, 0.4 },
-        modded = { 255, 150, 150, 0.4 }
+        unpacked = { 100, 255, 150, 0.5 },
+        modded = { 255, 150, 150, 0.5 },
+        update = { 255, 255, 150, 0.5 }
     },
 
-    
+
     --  Buttons
     -- ------------------
     button = {
@@ -120,7 +126,7 @@ color.color_base = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 60,60,60, 1 },
+        backdrop = { 60, 60, 60, 1 },
         bg = { 20, 20, 20, 1 },
         fg = { 100, 100, 100, 1 },
         label = {
@@ -327,6 +333,11 @@ color.color_base = {
 --          Dark Palette
 -- ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
 
+--[[
+    The dark palette is based on the base palette,
+    so there's not much going on here.
+]]
+
 color.color_dark = {
     -- Sample
     -- ------------------
@@ -368,7 +379,7 @@ color.color_dimmed = {
     },
 
     -- Background
-    bg = { 75,75,75 },
+    bg = { 75, 75, 75 },
 
     -- Markers
     line = { 0, 0, 0, 0.75 },
@@ -399,11 +410,12 @@ color.color_dimmed = {
     --  Theme Hint
     -- ------------------
     theme_hint = {
-        unpacked = { 125, 255, 150, 0.5 },
-        modded = { 255, 150, 150, 0.5 }
+        unpacked = { 125, 255, 150, 0.6 },
+        modded = { 255, 150, 150, 0.6 },
+        update = { 255, 255, 150, 0.6 }
     },
 
-    
+
     --  Buttons
     -- ------------------
     button = {
@@ -432,12 +444,12 @@ color.color_dimmed = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 70,70,70, 1 },
+        backdrop = { 70, 70, 70, 1 },
         bg = { 50, 50, 50 },
         fg = { 150, 150, 150, 1 },
         label = {
             fg = { 160, 160, 160 },
-            frame = { 100,100,100, 1 }
+            frame = { 100, 100, 100, 1 }
         }
     },
 
@@ -633,7 +645,7 @@ color.color_light = {
     },
 
     -- Background
-    bg = { 220,220,220 },
+    bg = { 220, 220, 220 },
 
     -- Markers
     line = { 0, 0, 0, 0.5 },
@@ -664,8 +676,9 @@ color.color_light = {
     --  Theme Hint
     -- ------------------
     theme_hint = {
-        unpacked = { 5, 75, 20, 0.5 },
-        modded = { 150, 25, 25, 0.5 }
+        unpacked = { 5, 75, 20, 0.75 },
+        modded = { 150, 25, 25, 0.75 },
+        update = { 85, 85, 0, 0.75 }
     },
 
     --  Buttons
@@ -696,9 +709,9 @@ color.color_light = {
     --  Infobar (Keyboard Shortcuts)
     -- ------------------------------
     infobar = {
-        backdrop = { 224,224,224 },
+        backdrop = { 224, 224, 224 },
         bg = { 140, 140, 140 },
-        fg = { 230,230,230 },
+        fg = { 230, 230, 230 },
         label = {
             fg = { 100, 100, 100 },
             frame = { 180, 180, 180 }
@@ -819,8 +832,8 @@ color.color_light = {
     -- --------------------------
     tab = {
         bg = { 210, 210, 210 },
-        bg_sub = { 230,230,230 },
-        off_bg = { 210,210,210 },
+        bg_sub = { 230, 230, 230 },
+        off_bg = { 210, 210, 210 },
         off_fg = { 145, 145, 145 },
         on_bg = { 230, 230, 230 },
         on_fg = { 0, 0, 0 },
@@ -840,8 +853,8 @@ color.color_light = {
         border = { 0, 0, 0, 0 },
 
         header = {
-            fg = { 255,255,255 },
-            bg = { 160,160,160 },
+            fg = { 255, 255, 255 },
+            bg = { 160, 160, 160 },
             border = { 255, 255, 255, 0.25 }
         },
         inline_header = {
@@ -878,6 +891,9 @@ color.color_light = {
 }
 
 
+-- ======================================================================
+--                  Color Palette Functions
+-- ======================================================================
 
 --  Method : Use Dark Color Palette
 -- -------------------------------------------

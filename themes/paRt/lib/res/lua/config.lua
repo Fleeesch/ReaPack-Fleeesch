@@ -1,11 +1,15 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    This section handles configurationis; originally this was the job of bank.lua before v1.2.2.
-    ]] --
+    This section handles configurations.
+    Originally this was the job of "bank.lua" before v1.2.2.
+
+    The configuration is managed in a pseudo OOP way using a handler.
+    It handles the manual saving and loading of complete bank configurations.
+]] --
 
 local config = { Functions = {}, Handler = {}, Save = {}, Load = {}, HardReset = {}, Reset = {} }
 

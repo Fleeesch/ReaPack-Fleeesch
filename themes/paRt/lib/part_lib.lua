@@ -1,4 +1,4 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
@@ -8,12 +8,25 @@ if Part == nil then
     Part = {}
 end
 
+-- ================================================================
+--          paRt Theme library
+--
+--          Core features for handling user adjustments
+--          and general settings.
+--
+--          Works independently from the GUI and can be used
+--          for macros that are launched in the background.
+--          
+-- ================================================================
+
 -- functions
 Part.Functions = require("lib.res.lua.functions")
 
--- bank
+-- config & bank
 Part.Config = require("lib.res.lua.config")
 Part.Bank = require("lib.res.lua.bank")
+
+-- parameters
 Part.Parameter = require("lib.res.lua.parameter")
 Part.Parameter.Lookup.importThemeParameters()
 
@@ -32,7 +45,7 @@ Part.Parameter.Lookup.importCustomParameterSettings()
 Part.Config.Handler = Part.Config.Handler.ConfigHandler:new(nil,
     Part.Parameter.Theme.ThemeParameter:new(nil, "par_config_selected", false, true))
 
---      Bank Initialization
+--      Bank Slot Initialization
 -- -----------------------------
 
 -- initialize bank handler with bank selection parameter
@@ -47,10 +60,15 @@ for i = 1, Part.Global.bank_count do
     Part.Bank.Slot.BankSlot:new(nil, false, tostring(i), "bank_" .. tostring(i), i + 1)
 end
 
---      Bank Initialization End
+--      Remaining LUA files
 -- -----------------------------
 
--- ramining lua files
+--[[
+    Do not change the order.
+    There's a good chance for some nasty cross-referencing hidden in the files
+    that still hasn't been taken care of.
+]]
+
 Part.Gui = require("lib.res.lua.gui")
 Part.Theme = require("lib.res.lua.theme")
 Part.Hint = require("lib.res.lua.hint")
@@ -69,8 +87,4 @@ Part.Parameter.Map = require("lib.res.lua.parameter_map")
 Part.Macro = require("lib.res.lua.macro")
 Part.Version = require("lib.res.lua.version")
 
---      Check if JS Extension is available
--- -----------------------------------------
 
-local status, err = pcall(function() reaper.JS_Mouse_GetCursor() end)
-Part.Global.js_extension_available = status

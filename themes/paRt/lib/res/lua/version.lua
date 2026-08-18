@@ -1,12 +1,44 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Version Management.
+    Version Handling.
 
-    Is still very limited and only contains some basic legacy fixes.
+    The theme files themselves and the Theme Adjuster all have individiually set version numbers.
+    The theme version number is stored in the WALTER code,
+    while the Theme Adjuster needs to call "setVersion" to set its version manually.
+
+    The metadata at the top of the LUA files can safely be ignored
+    because it is entirely reserved for ReaPack.
+
+    [Version Naming]
+    There is no dogma for naming paRt versions,
+    but the safe way would be:
+
+    "1.2.3"
+
+    One can theoretically use even more digits and include letters.
+    An algorithm takes care of translating the version string into a numeric value
+    that is then used for version comparisons.
+
+    [Version Changes]
+    There's a very crude implementation of applying legacy fixes implemented
+    in the version handling, but it's not extensive enough to be considered fail-safe.
+
+    [Remote Version Check]
+    The Theme Adjuster uses "curl" for loding the contents of a version info file
+    from a remote server. It is really just a short string containing the current version
+    of the theme.
+
+    Curl should be available on all operating systems and is in this case
+    designed to be launched in the background without a fixed timeout.
+    Otherwise it would block the Theme Adjuster during it's initial loading phase
+    for several seconds if there is no internet connection available.
+
+    The remote version is only requested once per Reaper launch.
+    It's the simplest solution for prevent unnecessary web traffic.
 ]]
 
 local version = {}
@@ -32,6 +64,20 @@ version.universal_fixes_applied = false
 -- version comparison results
 version.theme_version_is_lower = false
 version.theme_is_part = false
+
+version.remote_version_link = "https://raw.githubusercontent.com/Fleeesch/ReaPack-Fleeesch/refs/heads/master/themes/paRt/version"
+version.remote_version_filepath = Part.Global.config_dir .. "/remote_version"
+
+-- remote version gets checked at least once per startup
+version.remote_version_check = 1
+
+-- 2000 frames of timeout for the remote version curl request
+version.remote_version_check_timeout = 2000
+
+local ext_section = "Fleeesch - paRt Theme Adjuster"
+local ext_key_remote_version = "Remote Version Request"
+
+version.new_version_available = false
 
 --  Method : Apply Legacy Fixes
 -- -------------------------------------------
@@ -131,7 +177,6 @@ end
 -- -------------------------------------------
 
 function version.getThemeVersion()
-    
     -- initially assume we're not dealing with a paRt theme
     version.theme_is_part = false
 
@@ -144,7 +189,6 @@ function version.getThemeVersion()
     end
 
     if Part.Functions.stringStarts(desc, "paRt Theme") then
-        
         -- paRt theme detected if the version parameter is there
         version.theme_is_part = true
 
@@ -189,6 +233,82 @@ function version.handleVersionDifference()
 
     -- universal fixes are always applied
     version.applyLegacyFixes()
+end
+
+--  Method : Initialize Remote Version Check
+-- -------------------------------------------
+
+function version.initializeRemoteVersionCheck()
+    -- check if a previous version already happened
+    if not reaper.HasExtState(ext_section, ext_key_remote_version) then
+        -- figure out if curl is there by launching it
+        local curlRequest = reaper.ExecProcess("curl -V", 100)
+
+        -- filter first line, check if there was an error
+        local curlRequestValue = tonumber(curlRequest:match("^(%d+)"))
+        local curlAvailable = curlRequestValue == 0
+
+        -- if curl is available request the remote version number to be stored into a file
+        if curlAvailable then
+            -- clear remote version file if it exists to avoid false positives
+            -- local file = io.open(version.remote_version_filepath, "w")
+            -- if file then
+            --     file:write("")
+            --     file:close()
+            -- end
+
+            -- request remote version file content to be stored to a local file
+            reaper.ExecProcess(
+                'curl -fsSL "' ..
+                version.remote_version_link ..
+                '" -o "' ..
+                version.remote_version_filepath ..
+                '"'
+                , -2)
+
+            -- process happens in the background with a timeout
+            version.remote_version_check = version.remote_version_check_timeout;
+        end
+    end
+end
+
+--  Method : Remote Version Check
+-- -------------------------------------------
+
+function version.remoteVersionCheck()
+    -- try opening remote version file
+    local filepath = version.remote_version_filepath
+    local file = io.open(filepath, "r")
+
+    -- file needs to be there
+    if file then
+        -- read the file content
+        local content = file:read("*all")
+        file:close()
+
+        if #content > 0 then
+            reaper.SetExtState(ext_section, ext_key_remote_version, "request used", false)
+            -- get the current theme version
+            Part.Version.getThemeVersion()
+
+            -- convert numeric version values with each other and store the results
+            local remoteVersionNumeric = version.getNumericVersionValue(content)
+            version.new_version_available = remoteVersionNumeric > version.version_theme_value
+
+            -- background needs to be redrawn if a new version is available
+            -- in order to show the hint message
+            if version.new_version_available then
+                Part.Draw.Buffer.clearCompleteBuffer()
+            end
+
+            -- no need for further checks
+            version.remote_version_check = 0
+            return
+        end
+    end
+
+    -- decrement timeout counter
+    version.remote_version_check = version.remote_version_check - 1
 end
 
 return version
