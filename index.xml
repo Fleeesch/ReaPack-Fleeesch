@@ -2551,9 +2551,9 @@ MacOS: fixed Theme Adjuster opening at the wrong size]]></changelog>
         <source type="script" file="paRt/lib/res/lua/control_bank.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/control_bank.lua</source>
         <source type="script" file="paRt/lib/res/lua/control_config.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/control_config.lua</source>
         <source type="script" file="paRt/lib/res/lua/cursor.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/cursor.lua</source>
-        <source type="script" file="paRt/lib/res/lua/draw.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/draw.lua</source>
+        <source type="script" file="paRt/lib/res/lua/draw.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/66ee5d333f79c641d4d5ea263391a9d9bda23df6/themes/paRt/lib/res/lua/draw.lua</source>
         <source type="script" file="paRt/lib/res/lua/functions.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/functions.lua</source>
-        <source type="script" file="paRt/lib/res/lua/gui.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/gui.lua</source>
+        <source type="script" file="paRt/lib/res/lua/gui.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/66ee5d333f79c641d4d5ea263391a9d9bda23df6/themes/paRt/lib/res/lua/gui.lua</source>
         <source type="script" file="paRt/lib/res/lua/hint.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/hint.lua</source>
         <source type="script" file="paRt/lib/res/lua/hint_messages.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/hint_messages.lua</source>
         <source type="script" file="paRt/lib/res/lua/layout.lua">https://github.com/Fleeesch/ReaPack-Fleeesch/raw/b90a9f8a5ed19075eb20b921e5ec52696b44e8ef/themes/paRt/lib/res/lua/layout.lua</source>
