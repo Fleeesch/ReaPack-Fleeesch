@@ -1,12 +1,14 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Drawing Cursor handling.
+    Simply a Stack system by another name used for drawing operations.
+    Used to simplify drawing operations by creating markers.
 
-    Exists to make layout easier by giving one a drawing cursor than be dynamically transformed.
+    The Theme Adjuster doesn't come with a framework for complex drawing operations,
+    this here is just a little helper for simplifying the drawing process.
 ]]
 
 local cursor = {}

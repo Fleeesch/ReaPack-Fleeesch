@@ -1,12 +1,22 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Control Elements. Anything that can be clicked and modified by the user.
+    Interactive Elements. Anything that can be clicked and modified by the user.
 
-    Contains also some unused stuff like knobs from previous versions.
+    Covers sliders and buttons, knobs and mouse-over-hints.
+    
+    Knobs are currently not used for pragmatic reasons.
+    They were fully functional but required a spritesheet to be rendered
+    dynamically during the Theme Adjuster launch.
+    Considering their small size and the inability of OS level mouse cursor transfomrations inside LUA scripts,
+    they can be considered more limited sliders.
+
+    Hints are also considered a control element,
+    they're simply just limited to their informative nature.
+    
 ]]
 
 local control = { Button = {}, ButtonBank = {}, Slider = {}, Knob = {}, Marker = {}, Hint = {} }

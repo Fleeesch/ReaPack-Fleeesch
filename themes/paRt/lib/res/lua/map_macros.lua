@@ -1,20 +1,28 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Snippets for creating the control maps.
-    Mostly to safe space und reduce layout code redundancy, and constantly changing depending on what the map.lua demands.
+    Code snippets used by the GUI mapping.
 
-    Could use an overhaul.
+    Helps a lot with maintenance while reducing the size of the actual mapping code.
+
+    Almost all of the code here is improvised and messy.
+    This should be a framework, but it isn't.
 ]] --
 
 local map_macros = {}
 
 
--- Icons
--- --------------------------------------------------
+-- ================================================================
+--      Icons
+-- ================================================================
+
+--[[
+    Reference names for spritesheet lookup.
+    They're based on the data in the "themeadj_sprites.lua" in the icon folder.
+]]
 
 map_macros.icons = {
     table = {
@@ -70,9 +78,9 @@ map_macros.icons = {
 
 }
 
-
--- Variables
--- --------------------------------------------------
+-- ================================================================
+--      Macro Variables
+-- ================================================================
 
 map_macros.icon_alpha = 0.75
 
@@ -124,14 +132,13 @@ map_macros.parameter_frame_pad_y = 1
 
 map_macros.parameter_labels = {}
 
--- Function : Track Parameter Label
--- --------------------------------------------------
 
+-- ================================================================
+--      Function : Track Parameter Label
+-- ================================================================
 function map_macros.trackParameterLabel(element)
     table.insert(map_macros.parameter_labels, element)
 end
-
--- --------------------------------------------------
 
 function map_macros.getLastParameterLabel(history_index)
     if #map_macros.parameter_labels == 0 then
@@ -146,31 +153,35 @@ function map_macros.getLastParameterLabel(history_index)
     return map_macros.parameter_labels[index]
 end
 
--- Function : Reset Cursor
--- --------------------------------------------------
+-- ================================================================
+--      Function : Reset Cursor
+-- ================================================================
 
 function map_macros.resetCursor()
     Part.Cursor.setCursor(map_macros.pos_x_left, map_macros.pos_y_top, 10, map_macros.line_h, map_macros.pad_x,
         map_macros.pad_y)
 end
 
--- Function : Next Inline
--- --------------------------------------------------
+-- ================================================================
+--      Function : Next Inline
+-- ================================================================
 
 function map_macros.nextInline()
     map_macros.placeCursorAtLastLabel(true, false)
     Part.Cursor.setCursorPos(Part.Cursor.getCursorX() + Part.Cursor.getCursorPadX() + 10)
 end
 
--- Function : Next Line
--- --------------------------------------------------
+-- ================================================================
+--      Function : Next Line
+-- ================================================================
 
 function map_macros.nextLine()
     Part.Cursor.incCursor(0, map_macros.line_h)
 end
 
--- Function : Next Section
--- --------------------------------------------------
+-- ================================================================
+--      Function : Next Section
+-- ================================================================
 
 function map_macros.nextSection(width)
     local w = width or 200
@@ -185,8 +196,9 @@ function map_macros.nextSection(width)
     line:setColor(Part.Color.Lookup.color_palette.group.section.line)
 end
 
--- Function : Open Label
--- --------------------------------------------------
+-- ================================================================
+--      Function : Open Label
+-- ================================================================
 
 function map_macros.openLabel()
     map_macros.label = Part.Layout.Label.Label:new(nil)
@@ -194,8 +206,9 @@ function map_macros.openLabel()
     return map_macros.label
 end
 
--- Function : Close Label
--- --------------------------------------------------
+-- ================================================================
+--      Function : Close Label
+-- ================================================================
 
 function map_macros.closeLabel(x, y)
     local element = Part.Draw.Elements.lastElement()
@@ -214,15 +227,17 @@ function map_macros.closeLabel(x, y)
     return map_macros.label
 end
 
--- Function : Get Last Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Get Last Group
+-- ================================================================
 
 function map_macros.lastGroup()
     return map_macros.last_group
 end
 
--- Function : Draw Group Box
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Group Box
+-- ================================================================
 
 function map_macros.drawGroupBox(header_text, x, y, w, h)
     Part.Cursor.stackCursor()
@@ -257,8 +272,9 @@ function map_macros.drawGroupBox(header_text, x, y, w, h)
     return map_macros.last_group
 end
 
--- Function : Place Cursor at last Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Place Cursor at last Group
+-- ================================================================
 
 function map_macros.placeCursorAtLastGroup(x_end, y_end, include_pad)
     local x = Part.Cursor.getCursorX()
@@ -288,8 +304,9 @@ function map_macros.placeCursorAtLastGroup(x_end, y_end, include_pad)
     Part.Cursor.setCursorPos(x, y)
 end
 
--- Function : Place Cursor at last Label
--- --------------------------------------------------
+-- ================================================================
+--      Function : Place Cursor at last Label
+-- ================================================================
 
 function map_macros.placeCursorAtLastLabel(x_end, y_end, include_pad)
     -- get last label
@@ -324,8 +341,9 @@ function map_macros.placeCursorAtLastLabel(x_end, y_end, include_pad)
     Part.Cursor.setCursorPos(x, y)
 end
 
--- Function : Draw Parameter Label
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Parameter Label
+-- ================================================================
 
 function map_macros.drawParameterLabel(parameter_text, w)
     Part.Cursor.setCursorSize(map_macros.par_label_w, map_macros.line_h)
@@ -345,8 +363,9 @@ function map_macros.drawParameterLabel(parameter_text, w)
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 end
 
--- Function : Draw Header Label
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Header Label
+-- ================================================================
 
 function map_macros.drawHeader(header_text, w)
     Part.Cursor.stackCursor()
@@ -373,8 +392,9 @@ function map_macros.drawHeader(header_text, w)
     Part.Cursor.destackCursor()
 end
 
--- Function : Draw Button Toggle Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Button Toggle Group
+-- ================================================================
 
 function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, button_label, label_w)
     Part.Cursor.stackCursor()
@@ -443,8 +463,9 @@ function map_macros.drawButtonToggleGroup(has_bank, parameter, button_w, label, 
     return button
 end
 
--- Function : Draw Button Selection Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Button Selection Group
+-- ================================================================
 
 function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, selection, label, label_w)
     Part.Cursor.stackCursor()
@@ -461,7 +482,7 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
     local frame_y = Part.Cursor.getCursorY()
     local frame_h = 16
 
-    
+
     -- bank button
     Part.Cursor.setCursorSize(map_macros.bank_w, map_macros.line_h)
     if has_bank then
@@ -525,8 +546,9 @@ function map_macros.drawButtonSelectionGroup(has_bank, parameter, is_toggle, sel
     return buttons
 end
 
--- Function : Draw Knob Group with Display
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Knob Group with Display
+-- ================================================================
 
 function map_macros.drawKnobGroupWithDisplay(has_bank, parameter, knob_is_bi, label, label_w, value_offset)
     Part.Cursor.stackCursor()
@@ -577,8 +599,9 @@ function map_macros.drawKnobGroupWithDisplay(has_bank, parameter, knob_is_bi, la
     Part.Cursor.destackCursor()
 end
 
--- Function : Draw Knob Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Knob Group
+-- ================================================================
 
 function map_macros.drawKnobGroup(has_bank, parameter, knob_is_bi, label, label_w)
     Part.Cursor.stackCursor()
@@ -620,16 +643,16 @@ function map_macros.drawKnobGroup(has_bank, parameter, knob_is_bi, label, label_
     return knob
 end
 
--- Function : Draw Slider Group
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Slider Group
+-- ================================================================
 
 function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, slider_w, label, label_w, parameter_toggle,
                                     parameter_toggle_label, show_monitoring, monitoring_has_bank, monitoring_offset,
                                     monitoring_multiplier)
-    
     -- open label
     map_macros.openLabel()
-    
+
     Part.Cursor.stackCursor()
 
     -- parameter monitoring
@@ -753,8 +776,9 @@ function map_macros.drawSliderGroup(has_bank, parameter_slider, slider_is_bi, sl
     return slider
 end
 
--- Function : Draw MCP Layout Configuration
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw MCP Layout Configuration
+-- ================================================================
 
 function map_macros.drawMcpLayoutConfiguration(parameter)
     -- images
@@ -816,8 +840,9 @@ function map_macros.drawMcpLayoutConfiguration(parameter)
     return images
 end
 
--- Function : Draw MCP Fader Configuration
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw MCP Fader Configuration
+-- ================================================================
 
 function map_macros.drawMcpPanConfiguration(row_data)
     -- images
@@ -905,8 +930,9 @@ function map_macros.drawMcpPanConfiguration(row_data)
     end
 end
 
--- Function : Draw TCP Fader Layout Configuration
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw TCP Fader Layout Configuration
+-- ================================================================
 
 function map_macros.drawTcpFaderLayoutConfiguration(parameter)
     -- images
@@ -967,8 +993,9 @@ function map_macros.drawTcpFaderLayoutConfiguration(parameter)
     return images
 end
 
--- Function : Draw TCP Fader Configuration
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw TCP Fader Configuration
+-- ================================================================
 
 function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
     local icon_path = map_macros.icon_path_root .. "/" .. Part.Color.Lookup.image_set_table .. "/"
@@ -1012,9 +1039,9 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
     -- compensate for lacking mixer icon
     if not has_mixer then
-        Part.Cursor.incCursor(Part.Cursor.getCursorW(),0)
+        Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
     end
-    
+
     -- fader size header image
     Part.Cursor.setCursorSize(slider_w)
     local image = Part.Layout.Sprite.Sprite:new(nil, Part.Layout.icon_spritesheet, map_macros.icons.table.fader_size)
@@ -1058,7 +1085,7 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
 
         -- mixer-hide marker
         if has_mixer then
-            Part.Control.Marker.Marker:new(nil, entry.par_vis_mixer[1], true, 1) 
+            Part.Control.Marker.Marker:new(nil, entry.par_vis_mixer[1], true, 1)
         end
 
         Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
@@ -1087,8 +1114,9 @@ function map_macros.drawTcpFaderConfiguration(fader_data, label_w, slider_w)
     end
 end
 
--- Function : Draw Visibility Matrix
--- --------------------------------------------------
+-- ================================================================
+--      Function : Draw Visibility Matrix
+-- ================================================================
 
 function map_macros.drawVisibilityMatrix(matrix_data, visibility_data, parameter_visibility, parameter_mixer,
                                          parameter_separator)

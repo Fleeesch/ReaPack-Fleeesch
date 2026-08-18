@@ -1,11 +1,15 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     Color setting and adjustment functions.
-]]--
+
+    Reserved for future helpers with a color context.
+    Currently there aren't many color calculations happening in the Theme Adjuster.
+
+]] --
 
 local color = { Lookup = {} }
 
@@ -13,9 +17,13 @@ local color = { Lookup = {} }
 --                      Color functions
 -- ======================================================================
 
-
 --  Method : Set Color
 -- -------------------------------------------
+
+--[[
+    Set's the colors for the internal drawing operations
+    provided by Reaper. It's just more convenient.
+]]
 
 function color.setColor(color, rgb)
     -- return black when color is faulty

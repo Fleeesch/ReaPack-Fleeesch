@@ -1,10 +1,13 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     Those are all the hint messages displayed in the Theme Adjuster when you hover over objects.
+
+    A lot of them are used multiple times, so it makes a lot of sense keeping them stored in a
+    separate file.
 ]]
 
 local hint = {}
@@ -440,43 +443,73 @@ hint.transport_playrate_fader_size = {
 --      TCP
 -- --------------------------------------
 
--- TCP insert display mode: shared
-hint.tcp_general_insert_slot_display_mode_shared = {
-    { type = hint.HintTypes.highlight, text = "Shared Inserts" },
-    { type = hint.HintTypes.normal,    text = "Changes the display formatting for the TCP inserts." },
-    { type = hint.HintTypes.normal,    text = "FX, Parameters and Sends are placed in one united block." },
+-- TCP sends display mode: shared
+hint.tcp_general_insert_slot_display_mode_shared_sends = {
+    { type = hint.HintTypes.highlight, text = "Sends grouped with Parameters" },
+    { type = hint.HintTypes.normal,    text = "Parameters and Sends are placed in one united block." },
     { type = hint.HintTypes.normal,    text = "Reaper takes care of all slot distribution and respects the internal TCP settings." },
+    { type = hint.HintTypes.attention, text = "Slot reordering and empty slots will be deactivated for Sends if this setting is activated." },
 }
 
--- TCP insert display mode: split
-hint.tcp_general_insert_slot_display_mode_split = {
-    { type = hint.HintTypes.highlight, text = "Split Sends" },
-    { type = hint.HintTypes.normal,    text = "Changes the display formatting for the TCP inserts." },
-    { type = hint.HintTypes.normal,    text = "Sends are placed a separate column." },
-    { type = hint.HintTypes.attention, text = "The inserts section width is automatically doubled." },
-    { type = hint.HintTypes.attention, text = "The Reaper internal TCP Sends display flag will be ignored." },
+-- TCP fx display mode: shared
+hint.tcp_general_insert_slot_display_mode_shared_fx = {
+    { type = hint.HintTypes.highlight, text = "FX grouped with Parameters" },
+    { type = hint.HintTypes.normal,    text = "Parameters and FX are placed in one united block." },
+    { type = hint.HintTypes.normal,    text = "Reaper takes care of all slot distribution and respects the internal TCP settings." },
+    { type = hint.HintTypes.attention, text = "Slot reordering and empty slots will be deactivated for Sends if this setting is activated." },
 }
 
--- TCP insert split crossover
-hint.tcp_general_insert_slot_split_crossover = {
-    { type = hint.HintTypes.normal,    text = "Adjusts the split point between the FX and Sends columns." },
-    { type = hint.HintTypes.attention, text = "Requires Split Mode to be activted." },
+-- TCP sends display mode: split
+hint.tcp_general_insert_slot_display_mode_split_sends = {
+    { type = hint.HintTypes.highlight, text = "Separate Sends Block" },
+    { type = hint.HintTypes.normal,    text = "Displays Sends in a separate block." },
+    { type = hint.HintTypes.attention, text = "The inserts section width is automatically increased." },
+    { type = hint.HintTypes.attention, text = "Must be enabled if you want to be able to use slot reordering and empty slots." },
 }
 
--- TCP insert slot size
+-- TCP fx display mode: split
+hint.tcp_general_insert_slot_display_mode_split_fx = {
+    { type = hint.HintTypes.highlight, text = "Separate FX Block" },
+    { type = hint.HintTypes.normal,    text = "Displays FX in a separate block." },
+    { type = hint.HintTypes.attention, text = "The inserts section width is automatically increased." },
+    { type = hint.HintTypes.attention, text = "Must be enabled if you want to be able to use slot reordering and empty slots." },
+}
+
+-- TCP sends insert split crossover
+hint.tcp_general_insert_slot_split_crossover_sends = {
+    { type = hint.HintTypes.normal,    text = "Adjusts the split point between the Parameter and Sends block." },
+    { type = hint.HintTypes.attention, text = "Requires Sends to be displayed in a separate block." },
+}
+
+-- TCP fx insert split crossover
+hint.tcp_general_insert_slot_split_crossover_fx = {
+    { type = hint.HintTypes.normal,    text = "Adjusts the split point between the Parameter and FX block." },
+    { type = hint.HintTypes.attention, text = "Requires FX to be displayed in a separate block." },
+}
+
+-- TCP insert parameter slot size
 hint.tcp_general_insert_slot_size = {
-    { type = hint.HintTypes.normal, text = "Adjusts the generic target width for inserts slots." },
-    { type = hint.HintTypes.normal, text = "REAPER formats the slots based on the size of the FX block in the TCP." },
-    { type = hint.HintTypes.tip,    text = "To cover the full FX section, set this parameter to its maximum value." },
+    { type = hint.HintTypes.normal, text = "Adjusts the slot size for anything placed in the parameters block." },
+    { type = hint.HintTypes.normal, text = "REAPER formats the slots based on the size of the parameters block in the TCP." },
+    { type = hint.HintTypes.tip,    text = "To cover the full block width, set this parameter to its maximum value." },
 }
 
 -- TCP insert sends slot size
 hint.tcp_general_insert_slot_size_sends = {
-    { type = hint.HintTypes.normal,    text = "Adjusts the target width for sends slots when displayed in a separate column." },
+    { type = hint.HintTypes.normal,    text = "Adjusts the target width for individual Send slots." },
     { type = hint.HintTypes.normal,    text = "REAPER formats the slots based on the size of the FX block in the TCP." },
-    { type = hint.HintTypes.tip,       text = "To cover the full FX section, set this parameter to its maximum value." },
-    { type = hint.HintTypes.attention, text = "Requires Split Mode to be activted." },
+    { type = hint.HintTypes.tip,       text = "To cover the full block width, set this parameter to its maximum value." },
+    { type = hint.HintTypes.attention, text = "Requires Sends to be displayed in separate block." },
 }
+
+-- TCP insert fx slot size
+hint.tcp_general_insert_slot_size_fx = {
+    { type = hint.HintTypes.normal,    text = "Adjusts the target width for individual FX slots." },
+    { type = hint.HintTypes.normal,    text = "REAPER formats the slots based on the size of the FX block in the TCP." },
+    { type = hint.HintTypes.tip,       text = "To cover the full block width, set this parameter to its maximum value." },
+    { type = hint.HintTypes.attention, text = "Requires FX to be displayed in separate block." },
+}
+
 
 -- TCP folder indent
 hint.tcp_general_folder_indent = {
@@ -535,6 +568,12 @@ hint.tcp_meter_show = {
 hint.tcp_meter_show_collapsed = {
     { type = hint.HintTypes.normal, text = "Toggles meter visibility." },
     { type = hint.HintTypes.normal, text = "The meter will also be visible when the track height is collapsed." },
+}
+
+-- TCP meter show collapsed
+hint.tcp_meter_collapsed_fullwidth = {
+    { type = hint.HintTypes.normal, text = "Stretches meters of collapsed tracks accross the entire track width." },
+    { type = hint.HintTypes.attention, text = "Requires setting to show meters on collapsed tracks to be activated." },
 }
 
 -- TCP meter volume readout
@@ -634,7 +673,7 @@ hint.tcp_label_size = {
 
 -- TCP label margin
 hint.tcp_label_margin = {
-    { type = hint.HintTypes.normal,    text = "Increases the left-sided padding for the label text." },
+    { type = hint.HintTypes.normal, text = "Increases the left-sided padding for the label text." },
 }
 
 -- TCP index - separate

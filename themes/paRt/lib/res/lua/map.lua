@@ -1,18 +1,23 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    The layouting of (mostly) interactive elements in the Theme Adjuster.
-    Anything than can be clicked with a button will be defined right here,
-    plus some eye candy like section backgrounds and whatnot.
-    Makes heavy use of map_macros.lua in order to keep things readable.
+    This file contains the entire GUI layout of the Theme Adjuster.    
+    It uses the "map_macros.lua" file in order to keep things more compact and readable.
+
+    There are some things - like the window size for example - that are
+    taken care of using semi-global variables defined in "var.lua".
 ]]
 
 -- ===========================================================================
 --      Spritesheet
 -- ===========================================================================
+
+--[[
+    The spritesheet containing all the little graphics.
+]]
 
 Part.Layout.icon_spritesheet = Part.Layout.Spritesheet:new(nil, "lib/res/icon/themeadj_sprites.png",
     "lib.res.icon.themeadj_sprites")
@@ -20,6 +25,12 @@ Part.Layout.icon_spritesheet = Part.Layout.Spritesheet:new(nil, "lib/res/icon/th
 -- ===========================================================================
 --      Tab Header Bar
 -- ===========================================================================
+
+--[[
+    Need to validate theme first in order to find out if the theme file is modded or unpacked.
+]]
+
+Part.Theme.validateTheme()
 
 Part.Gui.Tab = {}
 
@@ -35,7 +46,10 @@ Part.Gui.Tab.tab_colors = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top,
 Part.Gui.Tab.tab_transport = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top, "Transport")
 Part.Gui.Tab.tab_tcp = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top, "TCP")
 Part.Gui.Tab.tab_mcp = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top, "MCP")
-Part.Gui.Tab.tab_custom = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top, "Custom")
+
+if Part.Global.show_custom_tab then
+    Part.Gui.Tab.tab_custom = Part.Tab.Entry.TabEntry:new(nil, Part.Gui.Tab.tab_top, "Custom")
+end
 
 Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
 
@@ -64,7 +78,9 @@ Part.Gui.Tab.tab_mcp_track_b = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.T
 Part.Gui.Tab.tab_mcp_master = Part.Tab.EntrySub.TabEntrySub:new(nil, Part.Gui.Tab.tab_mcp_sub, "Master")
 
 -- Custom
-Part.Gui.Tab.tab_custom_sub = Part.Tab.Group.TabGroup:new(nil, "Custom", Part.Gui.Tab.tab_custom, 1) -- placeholder
+if Part.Global.show_custom_tab then
+    Part.Gui.Tab.tab_custom_sub = Part.Tab.Group.TabGroup:new(nil, "Custom", Part.Gui.Tab.tab_custom, 1) -- placeholder
+end
 
 -- Bank Bar
 Part.Cursor.setCursorSize(Part.Global.win_w, Part.Global.bank_bar_size)
@@ -86,6 +102,10 @@ sprite:setCenterBehaviour(false, false, true)
 -- ===========================================================================
 --      Message Handler
 -- ===========================================================================
+
+--[[
+    The handler that takes care of floating messages that are temporarily displayed after certain events happened.
+]]
 
 Part.Cursor.incCursor(0, -10)
 Part.Cursor.setCursorPos(0, Part.Cursor.getCursorY())
@@ -776,29 +796,46 @@ group = Part.Gui.Macros.drawGroupBox("Inserts", group_x, Part.Cursor.getCursorY(
 -- display mode
 selection = {
     { label = "Shared", value = 0, width = button_w_2 },
-    { label = "Split", value = 1, width = button_w_2 }
+    { label = "Split",  value = 1, width = button_w_2 }
 }
 
-Part.Cursor.stackCursor()
-button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split , true, selection, "Display Mode", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_shared, button[1], true)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_split, button[2], true)
-Part.Gui.Macros.nextLine()
-
--- sends block crossover
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split_send_crossover , false, slider_w, "Split Crossover", label_w)
-Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_split_crossover, slider, true)
-Part.Gui.Macros.nextLine()
-Part.Gui.Macros.nextSection(section_w)
-
--- slot width
+-- parameter slot width
 slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width, false, slider_w, "Slot Size", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_size, slider, true)
 Part.Gui.Macros.nextLine()
+Part.Gui.Macros.nextSection(section_w)
+
+-- sends block split
+button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split, true, selection, "Sends", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_shared_sends, button[1], true)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_split_sends, button[2], true)
+Part.Gui.Macros.nextLine()
+
+-- sends block crossover
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split_send_crossover, false, slider_w, "Sends Section Size", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_split_crossover_sends, slider, true)
+Part.Gui.Macros.nextLine()
 
 -- sends slot width
-slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width_sends , false, slider_w, "Sends Slot Size", label_w)
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width_sends, false, slider_w, "Sends Slot Size", label_w)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_size_sends, slider, true)
+Part.Gui.Macros.nextLine()
+Part.Gui.Macros.nextSection(section_w)
+
+-- fx block split
+button = Part.Gui.Macros.drawButtonSelectionGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split_fx, true, selection, "FX", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_shared_fx, button[1], true)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_display_mode_split_fx, button[2], true)
+Part.Gui.Macros.nextLine()
+
+-- fx block crossover
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_split_fx_crossover, false, slider_w, "FX Section Size", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_split_crossover_fx, slider, true)
+Part.Gui.Macros.nextLine()
+
+-- fx slot width
+slider = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tcp_gen_insert_slot_width_fx, false, slider_w, "FX Slot Size", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_general_insert_slot_size_fx, slider, true)
 Part.Gui.Macros.nextLine()
 
 -- stretch group
@@ -973,6 +1010,11 @@ slider, button = Part.Gui.Macros.drawSliderGroup(true, Part.Parameter.Map.par_tc
     label_w, Part.Parameter.Map.par_tcp_track_meter_size_scale[1])
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_size, slider, true)
 Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.size_percentual, button, true)
+Part.Gui.Macros.nextLine()
+
+-- Collapsed Width
+button = Part.Gui.Macros.drawButtonToggleGroup(true, Part.Parameter.Map.par_tcp_track_meter_collapsed_full_w, button_w_full, "Collapsed Tracks", "Full Meter Width", label_w)
+Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.tcp_meter_collapsed_fullwidth, button, true)
 Part.Gui.Macros.nextLine()
 Part.Gui.Macros.nextSection(section_w)
 
@@ -1987,214 +2029,225 @@ group:stretchToPosition(nil, bottom_y)
 --      Tab : Custom
 -- ===========================================================================
 
--- ------------------------------
--- Settings
+--[[
+    The Custom Tab is only shown for Theme files that are registered as unpacked or modded.
+    They're unused parameters that can potentially used during development, but also for modding.
+    
+    Anyone wanting to extend the theme can use the already provided custom parameters instead of having to come up with their own ones.
+    Avoids potentially naming conflicts.
+]]
 
-Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_custom)
-Part.Gui.Macros.resetCursor()
+-- custom tab is optional
+if Part.Global.show_custom_tab then
+    -- ------------------------------
+    -- Settings
 
-local group_x = Part.Cursor.getCursorX()
-local group_y = Part.Cursor.getCursorY()
+    Part.Tab.Entry.setRecentTab(Part.Gui.Tab.tab_custom)
+    Part.Gui.Macros.resetCursor()
 
--- distancer between rows
-local custom_spacer = 10
+    local group_x = Part.Cursor.getCursorX()
+    local group_y = Part.Cursor.getCursorY()
 
--- Range Adjustments
--- ------------------------------
+    -- distancer between rows
+    local custom_spacer = 10
 
-group = Part.Gui.Macros.drawGroupBox("Range Adjustments", group_x, group_y, group_w, 420)
+    -- Range Adjustments
+    -- ------------------------------
 
-local custom_parmaeter_settings = Part.Parameter.CustomParameterSettings
+    group = Part.Gui.Macros.drawGroupBox("Range Adjustments", group_x, group_y, group_w, 420)
 
--- definition
-local parameters = {
-    { par = Part.Parameter.Map.par_user_range_0,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_1,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_2,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_3,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_4,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_5,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_6,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_7,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_8,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_9,  bank = true },
-    { par = Part.Parameter.Map.par_user_range_10, bank = true },
-    { par = Part.Parameter.Map.par_user_range_11, bank = true },
-    { par = Part.Parameter.Map.par_user_range_12, bank = true },
-    { par = Part.Parameter.Map.par_user_range_13, bank = true },
-    { par = Part.Parameter.Map.par_user_range_14, bank = true },
-    { par = Part.Parameter.Map.par_user_range_15, bank = true },
-}
+    local custom_parmaeter_settings = Part.Parameter.CustomParameterSettings
 
--- parameters
-for idx, parameter in pairs(parameters) do
-    local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_range)
-    local parameter_name = "par_user_range_" .. tostring(idx - 1)
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
-
-    -- info if there's no bank and sync support
-    if not parameter.bank then
-        table.insert(hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
-    end
-
-    -- get label name
-    local label_name = parameter_name
-
-    if custom_parmaeter_settings["adjustments"] ~= nil then
-        if custom_parmaeter_settings.adjustments[idx] ~= nil then
-            label_name = custom_parmaeter_settings.adjustments[idx]
-        end
-    end
-
-    -- slider
-    slider = Part.Gui.Macros.drawSliderGroup(parameter.bank, parameter.par, false, slider_w, label_name, label_w)
-
-    -- hint
-    Part.Control.Hint.Hint:new(nil, hint_msg, slider, true)
-
-    -- next line
-    Part.Gui.Macros.nextLine()
-
-    -- divider
-    if idx % 4 == 0 then
-        Part.Cursor.incCursor(0, custom_spacer, 0, 0)
-    end
-end
-
--- stretch group
-group:stretchToPosition(nil, bottom_y)
-
-
--- Multiple Choice Buttons
--- ------------------------------
-
-Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
-group_x = Part.Cursor.getCursorX()
-Part.Gui.Macros.drawGroupBox("Multiple-Choice", group_x, group_y, group_w, 220)
-
--- definition
-local parameters = {
-    { par = Part.Parameter.Map.par_user_selection_0, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_1, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_2, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_3, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_4, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_5, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_6, bank = true },
-    { par = Part.Parameter.Map.par_user_selection_7, bank = true },
-}
-
--- parameters
-for idx, parameter in pairs(parameters) do
-    local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_selection)
-    local parameter_name = "par_user_selection_" .. tostring(idx - 1)
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
-
-
-    -- values
-    local selection = {
-        { label = "A", value = 0, width = 16 },
-        { label = "B", value = 1, width = 16 },
-        { label = "C", value = 2, width = 16 },
-        { label = "D", value = 3, width = 16 },
-        { label = "E", value = 4, width = 16 },
-        { label = "F", value = 5, width = 16 },
+    -- definition
+    local parameters = {
+        { par = Part.Parameter.Map.par_user_range_0,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_1,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_2,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_3,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_4,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_5,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_6,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_7,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_8,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_9,  bank = true },
+        { par = Part.Parameter.Map.par_user_range_10, bank = true },
+        { par = Part.Parameter.Map.par_user_range_11, bank = true },
+        { par = Part.Parameter.Map.par_user_range_12, bank = true },
+        { par = Part.Parameter.Map.par_user_range_13, bank = true },
+        { par = Part.Parameter.Map.par_user_range_14, bank = true },
+        { par = Part.Parameter.Map.par_user_range_15, bank = true },
     }
 
-    -- get label name
-    local label_name = parameter_name
-
-    if custom_parmaeter_settings["choices"] ~= nil then
-        if custom_parmaeter_settings.choices[idx] ~= nil then
-            label_name = custom_parmaeter_settings.choices[idx]
-        end
-    end
-
-    -- button
-    button = Part.Gui.Macros.drawButtonSelectionGroup(parameter.bank, parameter.par, false, selection, label_name, label_w)
-
-    -- hint
-    for button_idx, button_entry in pairs(button) do
-        local button_hint_msg = Part.Functions.deepCopy(hint_msg)
-        table.insert(button_hint_msg,
-            { type = Part.Hint.Lookup.HintTypes.tip, text = "Target Value: " .. tostring(button_idx - 1) })
+    -- parameters
+    for idx, parameter in pairs(parameters) do
+        local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_range)
+        local parameter_name = "par_user_range_" .. tostring(idx - 1)
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
 
         -- info if there's no bank and sync support
         if not parameter.bank then
-            table.insert(button_hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
+            table.insert(hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
         end
 
-        Part.Control.Hint.Hint:new(nil, button_hint_msg, button_entry, true)
-    end
+        -- get label name
+        local label_name = parameter_name
 
-    -- next line
-    Part.Gui.Macros.nextLine()
+        if custom_parmaeter_settings["adjustments"] ~= nil then
+            if custom_parmaeter_settings.adjustments[idx] ~= nil then
+                label_name = custom_parmaeter_settings.adjustments[idx]
+            end
+        end
 
-    -- divider
-    if idx % 4 == 0 then
-        Part.Cursor.incCursor(0, custom_spacer, 0, 0)
-    end
-end
+        -- slider
+        slider = Part.Gui.Macros.drawSliderGroup(parameter.bank, parameter.par, false, slider_w, label_name, label_w)
 
+        -- hint
+        Part.Control.Hint.Hint:new(nil, hint_msg, slider, true)
 
+        -- next line
+        Part.Gui.Macros.nextLine()
 
--- Toggle Buttons
--- ------------------------------
-
-Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
-group_y = Part.Cursor.getCursorY()
-group = Part.Gui.Macros.drawGroupBox("Toggle Buttons", group_x, group_y, group_w, 220)
-
--- definition
-local parameters = {
-    { par = Part.Parameter.Map.par_user_switch_0, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_1, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_2, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_3, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_4, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_5, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_6, bank = true },
-    { par = Part.Parameter.Map.par_user_switch_7, bank = true },
-}
-
--- parameters
-for idx, parameter in pairs(parameters) do
-    local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_button)
-    local parameter_name = "par_user_switch_" .. tostring(idx - 1)
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
-    table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
-
-    -- info if there's no bank and sync support
-    if not parameter.bank then
-        table.insert(hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
-    end
-
-    -- get label name
-    local label_name = parameter_name
-
-    if custom_parmaeter_settings["buttons"] ~= nil then
-        if custom_parmaeter_settings.buttons[idx] ~= nil then
-            label_name = custom_parmaeter_settings.buttons[idx]
+        -- divider
+        if idx % 4 == 0 then
+            Part.Cursor.incCursor(0, custom_spacer, 0, 0)
         end
     end
 
+    -- stretch group
+    group:stretchToPosition(nil, bottom_y)
 
-    -- button
-    button = Part.Gui.Macros.drawButtonToggleGroup(parameter.bank, parameter.par, 40, label_name, "On", label_w)
 
-    -- hint
-    Part.Control.Hint.Hint:new(nil, hint_msg, button, true)
+    -- Multiple Choice Buttons
+    -- ------------------------------
 
-    -- next line
-    Part.Gui.Macros.nextLine()
+    Part.Gui.Macros.placeCursorAtLastGroup(true, false, true)
+    group_x = Part.Cursor.getCursorX()
+    Part.Gui.Macros.drawGroupBox("Multiple-Choice", group_x, group_y, group_w, 220)
 
-    -- divider
-    if idx % 4 == 0 then
-        Part.Cursor.incCursor(0, custom_spacer, 0, 0)
+    -- definition
+    local parameters = {
+        { par = Part.Parameter.Map.par_user_selection_0, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_1, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_2, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_3, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_4, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_5, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_6, bank = true },
+        { par = Part.Parameter.Map.par_user_selection_7, bank = true },
+    }
+
+    -- parameters
+    for idx, parameter in pairs(parameters) do
+        local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_selection)
+        local parameter_name = "par_user_selection_" .. tostring(idx - 1)
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
+
+
+        -- values
+        local selection = {
+            { label = "A", value = 0, width = 16 },
+            { label = "B", value = 1, width = 16 },
+            { label = "C", value = 2, width = 16 },
+            { label = "D", value = 3, width = 16 },
+            { label = "E", value = 4, width = 16 },
+            { label = "F", value = 5, width = 16 },
+        }
+
+        -- get label name
+        local label_name = parameter_name
+
+        if custom_parmaeter_settings["choices"] ~= nil then
+            if custom_parmaeter_settings.choices[idx] ~= nil then
+                label_name = custom_parmaeter_settings.choices[idx]
+            end
+        end
+
+        -- button
+        button = Part.Gui.Macros.drawButtonSelectionGroup(parameter.bank, parameter.par, false, selection, label_name, label_w)
+
+        -- hint
+        for button_idx, button_entry in pairs(button) do
+            local button_hint_msg = Part.Functions.deepCopy(hint_msg)
+            table.insert(button_hint_msg,
+                { type = Part.Hint.Lookup.HintTypes.tip, text = "Target Value: " .. tostring(button_idx - 1) })
+
+            -- info if there's no bank and sync support
+            if not parameter.bank then
+                table.insert(button_hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
+            end
+
+            Part.Control.Hint.Hint:new(nil, button_hint_msg, button_entry, true)
+        end
+
+        -- next line
+        Part.Gui.Macros.nextLine()
+
+        -- divider
+        if idx % 4 == 0 then
+            Part.Cursor.incCursor(0, custom_spacer, 0, 0)
+        end
     end
-end
 
--- stretch group
-group:stretchToPosition(nil, bottom_y)
+
+
+    -- Toggle Buttons
+    -- ------------------------------
+
+    Part.Gui.Macros.placeCursorAtLastGroup(false, true, true)
+    group_y = Part.Cursor.getCursorY()
+    group = Part.Gui.Macros.drawGroupBox("Toggle Buttons", group_x, group_y, group_w, 220)
+
+    -- definition
+    local parameters = {
+        { par = Part.Parameter.Map.par_user_switch_0, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_1, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_2, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_3, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_4, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_5, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_6, bank = true },
+        { par = Part.Parameter.Map.par_user_switch_7, bank = true },
+    }
+
+    -- parameters
+    for idx, parameter in pairs(parameters) do
+        local hint_msg = Part.Functions.deepCopy(Part.Hint.Lookup.custom_button)
+        local parameter_name = "par_user_switch_" .. tostring(idx - 1)
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = "WALTER Address:" })
+        table.insert(hint_msg, { type = Part.Hint.Lookup.HintTypes.tip, text = parameter_name })
+
+        -- info if there's no bank and sync support
+        if not parameter.bank then
+            table.insert(hint_msg, Part.Hint.Lookup.line_stored_per_theme_file)
+        end
+
+        -- get label name
+        local label_name = parameter_name
+
+        if custom_parmaeter_settings["buttons"] ~= nil then
+            if custom_parmaeter_settings.buttons[idx] ~= nil then
+                label_name = custom_parmaeter_settings.buttons[idx]
+            end
+        end
+
+
+        -- button
+        button = Part.Gui.Macros.drawButtonToggleGroup(parameter.bank, parameter.par, 40, label_name, "On", label_w)
+
+        -- hint
+        Part.Control.Hint.Hint:new(nil, hint_msg, button, true)
+
+        -- next line
+        Part.Gui.Macros.nextLine()
+
+        -- divider
+        if idx % 4 == 0 then
+            Part.Cursor.incCursor(0, custom_spacer, 0, 0)
+        end
+    end
+
+    -- stretch group
+    group:stretchToPosition(nil, bottom_y)
+end

@@ -1,12 +1,11 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 local message = { Entry = {}, Handler = {} }
 
 --[[
-    Floating notification handling.
-    Little error and info messages that disappear on their own.
+    The system for displaying floating messages.
 ]]
 
 -- =======================================================================

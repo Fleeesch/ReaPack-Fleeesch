@@ -1,10 +1,58 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
-    Non-interactive Graphical elements that are handled in a pseudo-OOP style.
+    Non-interactive graphical elements that are handled in a pseudo-OOP style.
+
+    They exist to allow a more centralized approach to drawing graphics,
+    otherwise tiny layout changes would require a huge amount of manual labor.
+    They are also a necessity because of the buffering system.
+    Any manual drawing operation used directly by Reaper's internal toolset is not covered by
+    the buffering system in the paRt Theme Adjuster, so some abstraction was needed.
+
+    There are some overlaps with the "draw.lua" file that should be taken care of.
+
+    [Bank Bar]
+    The part of the bottom bar covering the bank buttons.
+    Contains actual logic linked to the bank system. Might be a good idea to move parts of the section.
+
+    [Config Bar]
+    The part of the bottom bar covering the configuration slots.
+
+    [Group]
+    A group of elements.
+    Doesn't have any influence on the elements directly,
+    instead it acts as a container for drawing a frame around a group of elements.
+
+    [Line]
+    It's a line.
+
+    [Box]
+    It's a box. Rectangular.
+    Round corners are expensive, there's a recession.
+
+    [Label]
+    Backgrounds used for texts and interactive elements.
+
+    [Text]
+    Text elements with lots of optional formatting tweaks.
+
+    [Image]
+    Deprecated bitmap management.
+
+    [Spritesheet]
+    Handles spritesheets.
+    There are multiple versions of sprites covering the various zoom factors.
+    Using spritesheets improves performance a lot by reducing the amount of individual bitmap files.
+
+    [Sprite]
+    Handles sprites extracted from spritesheets.
+
+    [Function]
+    Generic layout element for calling a function that acts within a given rectangle.
+    Necessary for the color palette sample graphics, since they are generated dynamically.
 ]] --
 
 local layout = { BankBar = {}, ConfigBar = {}, Group = {}, Label = {}, Text = {}, Image = {}, Spritesheet = {}, Sprite = {}, Line = {}, Box = {}, Function = {} }
@@ -12,7 +60,6 @@ local layout = { BankBar = {}, ConfigBar = {}, Group = {}, Label = {}, Text = {}
 -- ==========================================================================================
 --                      Layout : Generic
 -- ==========================================================================================
-
 
 -- Layout
 -- -------------------------------------------
@@ -290,28 +337,6 @@ function layout.ConfigBar.ConfigBar:setupButtons()
     Part.Draw.Elements.lastElement():useSelectedConfig()
     Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
 
-    --  optional file handling (requires extension)
-    -- =============================================
-
-    -- Part.Cursor.setCursorPos(source_x + pos_file_handling_x, source_y)
-    -- Part.Cursor.setCursorSize(60, self.button_h)
-    -- Part.Cursor.stackCursor()
-
-    -- -- load file
-    -- if Part.Global.js_extension_available then
-    --     button = Part.Control.Config.Load.ButtonConfigLoad:new(nil, self.handler, "Load File")
-    --     Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_load_from_file, button, true)
-    --     Part.Cursor.incCursor(0, Part.Cursor.getCursorH())
-    -- end
-    -- -- save file
-    -- if Part.Global.js_extension_available then
-    --     button = Part.Control.Config.Save.ButtonConfigSave:new(nil, self.handler, "Save File")
-    --     Part.Control.Hint.Hint:new(nil, Part.Hint.Lookup.config_save_to_file, button, true)
-    -- end
-
-    -- Part.Cursor.destackCursor()
-    -- Part.Cursor.incCursor(Part.Cursor.getCursorW(), 0)
-
     -- reset values button
     Part.Cursor.incCursor(5, 0)
     Part.Cursor.setCursorSize(40, nil)
@@ -442,7 +467,6 @@ function layout.Group.Group:draw()
         -- draw text
         Part.Color.setColor(self.color_header_fg, true)
         gfx.drawstr(self.header_text, 0, gfx.x + w - pad_x * 2, gfx.y + line_h)
-        
     end
 end
 
@@ -1083,219 +1107,219 @@ end
 -- ==========================================================================================
 
 
--- Image
--- -------------------------------------------
+-- -- Image
+-- -- -------------------------------------------
 
-layout.Image.Image = layout.LayoutElement:new()
+-- layout.Image.Image = layout.LayoutElement:new()
 
--- lookup table, used for detecting duplicates
-layout.Image.image_lookup = {}
+-- -- lookup table, used for detecting duplicates
+-- layout.Image.image_lookup = {}
 
-function layout.Image.Image:new(o, file, hdpi, scale, alpha)
-    o = o or layout.LayoutElement:new(o)
-    setmetatable(o, self)
-    self.__index = self
+-- function layout.Image.Image:new(o, file, hdpi, scale, alpha)
+--     o = o or layout.LayoutElement:new(o)
+--     setmetatable(o, self)
+--     self.__index = self
 
-    -- file path
-    o.file = file
+--     -- file path
+--     o.file = file
 
-    -- scaling
-    o.scale = scale or 1
+--     -- scaling
+--     o.scale = scale or 1
 
-    -- transparency
-    o.alpha = alpha or 1
+--     -- transparency
+--     o.alpha = alpha or 1
 
-    -- [!] don't use hdpi assets (works, image count is way too high)
-    --o.use_hdpi_assets = hdpi or false
-    o.use_hdpi_assets = false
+--     -- [!] don't use hdpi assets (works, image count is way too high)
+--     --o.use_hdpi_assets = hdpi or false
+--     o.use_hdpi_assets = false
 
-    -- hdpi levels
-    o.levels = { 100, 125, 150, 175, 200, 225, 250 }
+--     -- hdpi levels
+--     o.levels = { 100, 125, 150, 175, 200, 225, 250 }
 
-    -- image handle is current image index
-    o.handle = Part.Draw.Sprites.getNextFreeImageSlot()
+--     -- image handle is current image index
+--     o.handle = Part.Draw.Sprites.getNextFreeImageSlot()
 
-    -- use existing handle or initially load image
-    if layout.Image.image_lookup[file] ~= nil then
-        o.handle = layout.Image.image_lookup[file].handle
-    else
-        o:load()
-    end
+--     -- use existing handle or initially load image
+--     if layout.Image.image_lookup[file] ~= nil then
+--         o.handle = layout.Image.image_lookup[file].handle
+--     else
+--         o:load()
+--     end
 
-    -- justification
-    o.justHorz = 0
-    o.justVert = 0
+--     -- justification
+--     o.justHorz = 0
+--     o.justVert = 0
 
-    -- transfer cursor dimensions
-    Part.Cursor.applyCursorToTarget(o)
+--     -- transfer cursor dimensions
+--     Part.Cursor.applyCursorToTarget(o)
 
-    -- register image in list
-    table.insert(Part.List.layout, o)
+--     -- register image in list
+--     table.insert(Part.List.layout, o)
 
-    -- store image in lookup table
-    layout.Image.image_lookup[file] = o
+--     -- store image in lookup table
+--     layout.Image.image_lookup[file] = o
 
-    return o
-end
+--     return o
+-- end
 
--- Image : Justify
--- -------------------------------------------
+-- -- Image : Justify
+-- -- -------------------------------------------
 
--- left
-function layout.Image.Image:justLeft()
-    self.justHorz = -1
-end
+-- -- left
+-- function layout.Image.Image:justLeft()
+--     self.justHorz = -1
+-- end
 
--- right
-function layout.Image.Image:justRight()
-    self.justHorz = 1
-end
+-- -- right
+-- function layout.Image.Image:justRight()
+--     self.justHorz = 1
+-- end
 
--- top
-function layout.Image.Image:justTop()
-    self.justVert = -1
-end
+-- -- top
+-- function layout.Image.Image:justTop()
+--     self.justVert = -1
+-- end
 
--- bottom
-function layout.Image.Image:justBottom()
-    self.justVert = 1
-end
+-- -- bottom
+-- function layout.Image.Image:justBottom()
+--     self.justVert = 1
+-- end
 
--- Image : Load
--- -------------------------------------------
+-- -- Image : Load
+-- -- -------------------------------------------
 
-function layout.Image.Image:load()
-    -- use hdpi assets?
-    if self.use_hdpi_assets then
-        -- go through levels
-        for i = 0, #self.levels - 1 do
-            -- construct filename from base filename and zoom level
-            local filename = self.file .. ".png"
+-- function layout.Image.Image:load()
+--     -- use hdpi assets?
+--     if self.use_hdpi_assets then
+--         -- go through levels
+--         for i = 0, #self.levels - 1 do
+--             -- construct filename from base filename and zoom level
+--             local filename = self.file .. ".png"
 
-            -- load image
-            if i == 0 then
-                gfx.loadimg(self.handle + i, ScriptPath .. filename)
-            else
-                -- Find the position of the last slash
-                local last_slash_Pos = self.file:match(".*()/")
-                local before_last_folder = self.file:sub(1, last_slash_Pos - 1)
-                local file = self.file:sub(last_slash_Pos + 1)
-                local path = before_last_folder .. "/" .. self.levels[i + 1] .. "/" .. file .. ".png"
-                gfx.loadimg(self.handle + i, ScriptPath .. path)
-            end
+--             -- load image
+--             if i == 0 then
+--                 gfx.loadimg(self.handle + i, ScriptPath .. filename)
+--             else
+--                 -- Find the position of the last slash
+--                 local last_slash_Pos = self.file:match(".*()/")
+--                 local before_last_folder = self.file:sub(1, last_slash_Pos - 1)
+--                 local file = self.file:sub(last_slash_Pos + 1)
+--                 local path = before_last_folder .. "/" .. self.levels[i + 1] .. "/" .. file .. ".png"
+--                 gfx.loadimg(self.handle + i, ScriptPath .. path)
+--             end
 
-            -- increment image index
-            Part.Draw.Sprites.getNextFreeImageSlot()
-        end
-    else
-        -- load image
-        gfx.loadimg(self.handle, ScriptPath .. self.file .. ".png")
+--             -- increment image index
+--             Part.Draw.Sprites.getNextFreeImageSlot()
+--         end
+--     else
+--         -- load image
+--         gfx.loadimg(self.handle, ScriptPath .. self.file .. ".png")
 
-        -- increment image index
-        Part.Draw.Sprites.getNextFreeImageSlot()
-    end
-end
+--         -- increment image index
+--         Part.Draw.Sprites.getNextFreeImageSlot()
+--     end
+-- end
 
--- Image : Draw
--- -------------------------------------------
+-- -- Image : Draw
+-- -- -------------------------------------------
 
-function layout.Image.Image:draw()
-    -- prepare dimensions
-    local x = Part.Functions.rescale(self.dim_x, true)
-    local y = Part.Functions.rescale(self.dim_y, false, true)
-    local w = Part.Functions.rescale(self.dim_w)
-    local h = Part.Functions.rescale(self.dim_h)
+-- function layout.Image.Image:draw()
+--     -- prepare dimensions
+--     local x = Part.Functions.rescale(self.dim_x, true)
+--     local y = Part.Functions.rescale(self.dim_y, false, true)
+--     local w = Part.Functions.rescale(self.dim_w)
+--     local h = Part.Functions.rescale(self.dim_h)
 
-    -- set transparency
-    Part.Color.setColor({ 0, 0, 0, self.alpha })
+--     -- set transparency
+--     Part.Color.setColor({ 0, 0, 0, self.alpha })
 
-    -- use hdpi assets?
-    if self.use_hdpi_assets then
-        -- image handle offset
-        local handle_plus = 0
+--     -- use hdpi assets?
+--     if self.use_hdpi_assets then
+--         -- image handle offset
+--         local handle_plus = 0
 
-        -- go through levels
-        for key, val in pairs(self.levels) do
-            -- level is matching scale?
-            if Part.Global.scale * 100 >= val then
-                -- increment handle offset
-                handle_plus = key - 1
-            end
-        end
+--         -- go through levels
+--         for key, val in pairs(self.levels) do
+--             -- level is matching scale?
+--             if Part.Global.scale * 100 >= val then
+--                 -- increment handle offset
+--                 handle_plus = key - 1
+--             end
+--         end
 
-        -- set drawing cursor
-        Part.Cursor.setCursor(x, y, w, h)
+--         -- set drawing cursor
+--         Part.Cursor.setCursor(x, y, w, h)
 
-        -- get image dimensions
-        local img_w, img_h = gfx.getimgdim(self.handle + handle_plus)
+--         -- get image dimensions
+--         local img_w, img_h = gfx.getimgdim(self.handle + handle_plus)
 
-        -- justify left
-        if self.justHorz == 0 then
-            gfx.x = gfx.x + (w - img_w) / 2
-        end
+--         -- justify left
+--         if self.justHorz == 0 then
+--             gfx.x = gfx.x + (w - img_w) / 2
+--         end
 
-        -- justify right
-        if self.justHorz > 0 then
-            gfx.x = gfx.x + (w - img_w)
-        end
+--         -- justify right
+--         if self.justHorz > 0 then
+--             gfx.x = gfx.x + (w - img_w)
+--         end
 
-        -- justify top
-        if self.justVert == 0 then
-            gfx.y = gfx.y + (h - img_h) / 2
-        end
+--         -- justify top
+--         if self.justVert == 0 then
+--             gfx.y = gfx.y + (h - img_h) / 2
+--         end
 
-        -- justify bottom
-        if self.justVert > 0 then
-            gfx.y = gfx.y + (h - img_h)
-        end
+--         -- justify bottom
+--         if self.justVert > 0 then
+--             gfx.y = gfx.y + (h - img_h)
+--         end
 
-        -- draw image
-        gfx.blit(self.handle + handle_plus, 1, 0)
+--         -- draw image
+--         gfx.blit(self.handle + handle_plus, 1, 0)
 
-        -- reset cursor
-        Part.Cursor.setCursor(x, y, w, h)
+--         -- reset cursor
+--         Part.Cursor.setCursor(x, y, w, h)
 
-        -- don't use hdpi assets?
-    else
-        Part.Cursor.setCursor(x, y, w, h)
+--         -- don't use hdpi assets?
+--     else
+--         Part.Cursor.setCursor(x, y, w, h)
 
-        -- calculate image size
-        local size = Part.Global.scale / 2
+--         -- calculate image size
+--         local size = Part.Global.scale / 2
 
-        -- get image dimensions
-        local img_w, img_h = gfx.getimgdim(self.handle)
+--         -- get image dimensions
+--         local img_w, img_h = gfx.getimgdim(self.handle)
 
-        -- rescaling
-        img_w = img_w * size
-        img_h = img_h * size
+--         -- rescaling
+--         img_w = img_w * size
+--         img_h = img_h * size
 
-        -- justify left
-        if self.justHorz == 0 then
-            gfx.x = gfx.x + (w - img_w) / 2
-        end
+--         -- justify left
+--         if self.justHorz == 0 then
+--             gfx.x = gfx.x + (w - img_w) / 2
+--         end
 
-        -- justify right
-        if self.justHorz > 0 then
-            gfx.x = gfx.x + (w - img_w)
-        end
+--         -- justify right
+--         if self.justHorz > 0 then
+--             gfx.x = gfx.x + (w - img_w)
+--         end
 
-        -- justify top
-        if self.justVert == 0 then
-            gfx.y = gfx.y + (h - img_h) / 2
-        end
+--         -- justify top
+--         if self.justVert == 0 then
+--             gfx.y = gfx.y + (h - img_h) / 2
+--         end
 
-        -- justify bottom
-        if self.justVert > 0 then
-            gfx.y = gfx.y + (h - img_h)
-        end
+--         -- justify bottom
+--         if self.justVert > 0 then
+--             gfx.y = gfx.y + (h - img_h)
+--         end
 
-        -- draw image
-        gfx.blit(self.handle, size, 0)
+--         -- draw image
+--         gfx.blit(self.handle, size, 0)
 
-        -- reset cursor
-        Part.Cursor.setCursor(x, y, w, h)
-    end
-end
+--         -- reset cursor
+--         Part.Cursor.setCursor(x, y, w, h)
+--     end
+-- end
 
 -- ==========================================================================================
 --                      Layout : Spritesheet

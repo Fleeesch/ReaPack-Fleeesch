@@ -1,13 +1,15 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 
 --[[
-    Controls with a bank context.
+    Controls with a bank system context.
     Get's a separate file since the bank system is a little more complex and represents
     a different context than the one of theme parameters.
+
+    It's still messy and has a lot of redundancy.
 ]]--
 
 local control = { ButtonBank = {}, Copy = {}, Select = {} }
@@ -31,7 +33,6 @@ function control.ButtonBank:new(o, handler, text)
     -- bank handler
     o.handler = handler
 
-
     -- bank
     o.bank = nil
 
@@ -52,7 +53,6 @@ function control.ButtonBank:new(o, handler, text)
     o.submit_time = 70
     o.submit_counter = 0
 
-
     -- default colors
     o.color_bg_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.bank_bar.button.off_bg)
     o.color_fg_off = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.bank_bar.button.off_fg)
@@ -60,7 +60,6 @@ function control.ButtonBank:new(o, handler, text)
     o.color_fg_on = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.bank_bar.button.on_fg)
     o.color_border = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.bank_bar.button.border)
     o.color_submit_ol = Part.Functions.deepCopy(Part.Color.Lookup.color_palette.bank_bar.button.submit_overlay)
-
 
     if handler ~= nil then
         -- with must cover text
@@ -259,7 +258,6 @@ function control.ButtonBank:draw()
 
         Part.Draw.Graphics.drawRectangle(inner_x, inner_y, sub_w, inner_h, color_submit)
     end
-
 
     -- text
     local text_out = self:getOutputText()

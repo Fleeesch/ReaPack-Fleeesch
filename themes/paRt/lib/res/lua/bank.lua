@@ -1,20 +1,22 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 --[[
     This section was originally the central point for file and bank management.
+
+    It still provides most of the bank system functionality.
+
     It has been partially moved to the config.lua file since v1.2.2,
     but there's still some old stuff here that would require some time porting.
-    ]] --
+]] --
 
 local bank = { Functions = {}, Handler = {}, ParameterSet = {}, Slot = {} }
 
 -- ==========================================================================================
 --                      Bank : Functions
 -- ==========================================================================================
-
 
 --  Method : Pending Save
 -- -------------------------------------------
@@ -80,7 +82,7 @@ function bank.Functions.storeParameterFile(target_file_name)
             if last_theme ~= nil and #last_theme > 0 then
                 -- store last theme
                 local file = io.open(filepath, "w")
-                file:write()
+                file:write(last_theme)
                 file:close()
             end
         end
@@ -133,7 +135,7 @@ function bank.Functions.loadParameterFile(force, target_file_name)
     if target_file_name ~= nil then
         manual_load = true
     end
-    
+
 
     -- assume theme hasn't changed
     local same_theme = true
@@ -144,7 +146,6 @@ function bank.Functions.loadParameterFile(force, target_file_name)
 
         -- file not found
         if not file then
-            
             -- if it's the parameters.partmap, do a reset
             if not manual_load then
                 bank.Functions.hardResetAllParameters()
@@ -446,8 +447,25 @@ end
 --                      Bank : Parameter Set
 -- ==========================================================================================
 
+--[[
+A Parameter Set is a group of individual parameters that can be controlled using paRts bank system.
+When the Theme Adjuster is providing 8 banks for example, a Parameter Set will contain 8 parameters reserved
+for the individual banks and an additional parameter for a "global" bank whenever the bank functionality is disabled.
 
---  Bank Parametr Set
+Think of it as a railroad switch for parameters. The interface shows 1 slider, but the banking system switches between
+various parameters in the background.
+
+You'll end up with
+    - track_height_global
+    - track_height_bank_1
+    - track_height_bank_2
+    - track_height_bank_3
+    - track_height_bank_4
+    ...
+
+]]
+
+--  Bank Parameter Set
 -- -------------------------------------------
 
 bank.ParameterSet.BankParameterSet = {}

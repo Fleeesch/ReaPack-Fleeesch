@@ -1,9 +1,20 @@
--- @version 1.3.1
+-- @version 1.3.2
 -- @author Fleeesch
 -- @description paRt Theme Adjuster
 -- @noIndex
 
 Part = {}
+
+-- ================================================================
+--          paRt Theme Adjuster GUI
+--
+--          Graphical interface providing controls for
+--          user adjustments.
+--
+--          Requires the "part_lib" file for
+--          its feature set.
+--          
+-- ================================================================
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 --  External Files
@@ -26,7 +37,12 @@ Part.Theme.checkCurrentTheme()
 Part.Gui.Macros = require("lib.res.lua.map_macros")
 require("lib.res.lua.map")
 
-Part.Version.setVersion("1.3.1")
+Part.Version.setVersion("1.3.2")
+
+-- check internet if there's a new version available
+Part.Version.initializeRemoteVersionCheck()
+
+
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 --  Method : Draw
@@ -159,6 +175,11 @@ end
 function Part.main()
     -- change theme refresh frequency according to track count
     Part.Parameter.Theme.updateThemeParameterRefreshRate()
+
+    -- check if remote version has updated data as long as there is no timeout
+    if Part.Version.remote_version_check > 0 then
+        Part.Version.remoteVersionCheck()
+    end
 
     --      Keyoard Shortcuts
     -- ========================================
