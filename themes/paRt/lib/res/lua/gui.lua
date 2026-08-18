@@ -9,6 +9,7 @@
     Handles dynamic DPI changes and scaling factors used by the Theme Adjuster.
 ]] --
 
+
 local gui = { Window = {}, Keyboard = {}, Mouse = {} }
 
 -- ================================================================================
